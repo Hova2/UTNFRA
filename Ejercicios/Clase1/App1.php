@@ -1,5 +1,5 @@
 <?php
-	$nombre = "Juan";
+	$nombre   = "Juan";
 	$apellido = "Guglielmone";
-	echo $apellido.", ".$nombre;
+	echo $apellido.", ".$nombre;	
 ?>
