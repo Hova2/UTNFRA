@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"emmet.excludeLanguages": ["php"],
+		"php.validate.executablePath": "/opt/lampp/bin/php",
+		"php.suggest.basic": false
+	}
+}
