@@ -9,13 +9,13 @@
             $this->_tamanio = $tamanio;
             switch($tamanio){
                 case "chico":
-                $this->_capacidad = 1000;
+                    $this->_capacidad = 1000;
                     break;
                 case "mediano":
-                $this->_capacidad = 2500;
+                    $this->_capacidad = 2500;
                     break;
                 case "grande":
-                $this->_capacidad = 9000;
+                    $this->_capacidad = 9000;
                     break;
             }
 
@@ -28,23 +28,37 @@
         }
 
         public function agregarProducto($producto){
-            if(count($this->_productos)==0){
+            $tam=count($this->_productos);
+            
+            if($tam==0){
                 array_push($this->_productos,$producto);
                 $this->_capacidadActual=($this->_capacidadActual)-($producto->getKilos());
             }else{
-                if((($this->_capacidadActual)-($producto->getKilos())>=0){
-                    for ($i=0;$i<count($this->_productos);$i++){
-                        if($this->_productos[$i]->getId()==$producto->getId()){
-                            $this->_productos[$i]->setKilos($this->_productos[$i]->getKilos()+$producto->getKilos());
+                if((($this->_capacidadActual)-($producto->getKilos())>=0)){
+                    $existe=false;
+                    foreach ($this->_productos as $valor){
+                        if($valor->getId()==$producto->getId()){
+                            $existe=true;
+                            $valor->setKilos($valor->getKilos()+$producto->getKilos());
                             $this->_capacidadActual=($this->_capacidadActual)-($producto->getKilos());
-                        }else{
-                            array_push($this->_productos,$producto);
-                            $this->_capacidadActual=($this->_capacidadActual)-($producto->getKilos());
+                            break;
                         }
+                    }
+                    if(!$existe){
+                        array_push($this->_productos,$producto);
+                        $this->_capacidadActual=($this->_capacidadActual)-($producto->getKilos());
                     }
                 }else{
                     echo "No hay espacio en el container";
                 }
+            }
+        }
+
+        public function mostrarProductos(){
+            foreach ($this->_productos as $valor){
+                echo "El id del producto es: " . $valor->getId() . "<br>";
+                echo "Los kilos del producto son: " . $valor->getKilos() . "<br>";
+                echo "<br>";
             }
         }
     }

@@ -6,8 +6,10 @@
 	],
 	"settings": {
 		"emmet.excludeLanguages": ["php"],
-		"php.validate.executablePath": "/xampp/php/php.exe",
-		//"php.validate.executablePath": "/opt/lampp/bin/php",
-		
+		"php.suggest.basic": false,
+		//"php.validate.executablePath": "/xampp/php/php.exe",
+		//"php.executablePath": "/xampp/php/php.exe",
+		"php.validate.executablePath": "/opt/lampp/bin/php",
+		"php.executablePath": "/opt/lampp/bin/php"
 	}
 }
