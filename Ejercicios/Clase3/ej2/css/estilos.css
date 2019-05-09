@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+h1{
+    background-color: lightblue;
+    width: 300px;
+    height: 100px;
+    margin: 20px;
+    padding: 10px 20px 30px 40px;
+    border: 5px solid green;
+    border-bottom-color: blue;
+    background-image: url("../imagenes/fondo.jpg");
+    /*box-sizing: border-box;*/
+}
+
+.caja1{
+    background-color: blue;
+    width: 50px;
+    height: 50px;   
+}
+
+/*li{
+    background-color: black;
+}*/
+
+/*ul li{
+    background-color: bisque;
+}*/
+
