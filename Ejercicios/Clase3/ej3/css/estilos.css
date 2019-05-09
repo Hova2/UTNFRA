@@ -5,24 +5,30 @@
 
 #caja1{
     background-color: red;
+    
 }
 
 #caja2{
     background-color:green;
     /*position: absolute;
     top:20px;
-    opacity: .5;*/
+    opacity: .5;
+    display: none;*/
+    visibility: hidden;
     
-
+    
 }
 
 #caja3{
     background-color:blue;
+    
 }
 
 .cajita{
     background-color:orange;
     width: 40px;
     height: 40px;
+    position: absolute;
+    
 }
 

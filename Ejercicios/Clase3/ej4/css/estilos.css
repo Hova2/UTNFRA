@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    background-color: red;
+    height: 100px;
+}
+
+nav {
+    background-color:green;
+    height: 50px;
+}
+
+main{
+    background-color: black;
+    width: 80%;
+    height: 200px;
+    float: left;
+}
+
+section {
+    background-color:blue;
+    width: 50%;
+    height: 200px;
+    margin: 0px auto;
+}
+
+article{
+    background-color:pink;
+    width: 50%;
+    height: 100px;
+    margin: 0px auto;
+}
+
+aside{
+    background-color:sandybrown;
+    width: 100%;
+    height: 200px;
+}
+
+footer{
+    background-color:yellow;
+}
+
+
+
+
