@@ -1,5 +1,5 @@
 <?php
-    include_once "vehiculo.php";
+    include_once __DIR__ . '/../Class/vehiculo.php';
     
     $arregloVehiculo=Vehiculo::leer();
 

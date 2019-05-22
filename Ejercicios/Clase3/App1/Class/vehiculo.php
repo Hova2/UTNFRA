@@ -5,7 +5,7 @@
        private $importe;
     
         public static function leer(){
-            $archivo=fopen("vehiculo.txt","r");
+            $archivo=fopen(__DIR__ . "/../BD/vehiculo.txt","r");
             $retorno=array();
             while (!feof($archivo)) {
                 /*echo "<br>";
@@ -23,7 +23,7 @@
         }
 
         public static function guardar($vehiculo){
-            $archivo=fopen("vehiculo.txt","a");
+            $archivo=fopen(__DIR__ . "/../BD/vehiculo.txt","a");
             $vehTmp=implode(",",$vehiculo->toArray());
             fputs($archivo,"\n $vehTmp");
             fclose($archivo);

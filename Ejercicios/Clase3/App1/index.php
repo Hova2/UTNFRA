@@ -1,12 +1,13 @@
 <?php
-    //include "crearvehiculo.php";
-    //include "traervehiculo.php";
+    //include __DIR__ . '/Controladores/crearvehiculo.php';
+    //include __DIR__ . '/Controladores/traervehiculo.php';
 
     $metodo=$_SERVER['REQUEST_METHOD'];
 
     switch ($metodo) {
         case 'GET':
-            switch ($_GET[0]) {
+                            
+            switch ($_GET['param1']) {
                 case 'auto':
                     echo "Traigo un auto";
                     break;
@@ -14,9 +15,7 @@
                 case 'estacionamiento':
                     echo "Traigo un estacionamiento";
                     break;
-            }    
-
-
+            } 
 
             break;
         
