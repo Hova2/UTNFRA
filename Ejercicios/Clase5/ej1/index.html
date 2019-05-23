@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h2>Materias</h2>
+        <ul id="lista"><!-- prueba -->
+            <li>Programacion III</li>
+            <li>Laboratorio III</li>
+            <li>Base de datos</li>
+        </ul>
+    </div>
+    <p> 
+        <input type="button" value="ejecutar" id="btnRun"> 
+    </p>
+
+    <script>
+        var boton;
+        
+        window.addEventListener('load', function(){
+            boton = document.getElementById('btnRun');
+            boton.addEventListener('click',ejecutar,false);
+
+        },false);
+        
+        function ejecutar(){
+            /*alert("Hola mundo");*/
+            var lista = document.getElementById('lista');
+            //console.log(lista.children);
+            //console.log(lista.childNodes);
+            //console.log(lista.childElementCount);
+
+            var hijos=lista.childNodes;
+
+            for(var i=0;i<hijos.length;i++){
+                //console.log(hijos[i].nodeType);
+                if(hijos[i].nodeType == Node.ELEMENT_NODE){
+                    console.log(hijos[i]);
+                }
+            }
+
+        }
+    </script>
+
+    <!-- Mala practica 
+        
+        <div id="info">
+
+    </div>
+
+    <script>
+        var h1="";
+        var mensaje = "Hola mundo";
+        h1+='<h1>' + mensaje + '</h1>';
+        document.getElementById('info').innerHTML=h1;
+    
+    </script> -->
+        
+</body>
+</html>  

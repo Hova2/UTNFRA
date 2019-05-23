@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+       <p>Esto es un parrafo</p>
+    </div>
+    <p> 
+        <input type="button" value="ejecutar" id="btnRun"> 
+    </p>
+
+    <script>
+        var boton;
+        
+        window.addEventListener('load', function(){
+            boton = document.getElementById('btnRun');
+            boton.addEventListener('click',ejecutar,false);
+
+        },false);
+        
+        function ejecutar(){
+            var parrafo = document.getElementsByTagName('p')[0];
+            //console.log(parrafo);
+            var padre = parrafo.parentNode;
+            //console.log(padre);
+            padre.style.background = 'blue';
+        }
+    </script>
+</body>
+</html>  

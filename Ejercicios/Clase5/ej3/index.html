@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="miDiv">
+        <p>Esto es un parrafo 1</p>
+        <p>Esto es un parrafo 2</p>
+        <p>Esto es un parrafo 3</p>
+        <p>Esto es un parrafo 4</p>
+        <p>Esto es un parrafo 5</p>
+        <p>Esto es un parrafo 6</p>
+        <p>Esto es un parrafo 7</p>
+    </div>
+    <p> 
+        <input type="button" value="ejecutar" id="btnRun"> 
+    </p>
+
+    <script>
+        var boton;
+        
+        window.addEventListener('load', function(){
+            boton = document.getElementById('btnRun');
+            boton.addEventListener('click',ejecutar,false);
+
+        },false);
+        
+        function ejecutar(){
+           var div = document.getElementById('miDiv');
+           var primerHijo = div.firstElementChild;
+           var ultimoHijo = div.lastElementChild;
+           var hermano = primerHijo.nextElementSibling;
+           //console.log(primerHijo);
+           //console.log(primerHijo.childNodes[0].nodeValue); //Solo para tipo texto
+           //console.log(primerHijo.textContent);
+           //console.log(ultimoHijo);
+           //console.log(hermano);
+           /*while(primerHijo){
+               console.log(primerHijo);
+               primerHijo=primerHijo.nextElementSibling;
+           }*/
+           while(ultimoHijo){
+                ultimoHijo.textContent = ultimoHijo.textContent + '.';
+                ultimoHijo = ultimoHijo.previousElementSibling;
+           }
+
+        }
+    </script>
+
+    <!-- Mala practica 
+        
+        <div id="info">
+
+    </div>
+
+    <script>
+        var h1="";
+        var mensaje = "Hola mundo";
+        h1+='<h1>' + mensaje + '</h1>';
+        document.getElementById('info').innerHTML=h1;
+    
+    </script> -->
+        
+</body>
+</html>  
