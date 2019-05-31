@@ -161,7 +161,8 @@ class estacionamiento
 
 			});";
 			
-			$archivo=fopen("js/funcionAutoCompletar.js", "w");
+			$ruta=__DIR__ . "/../js/funcionAutoCompletar.js";
+			$archivo=fopen($ruta, "w");
 			fwrite($archivo, $archivoJS);
 	}
 

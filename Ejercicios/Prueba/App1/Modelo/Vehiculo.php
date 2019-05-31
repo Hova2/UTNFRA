@@ -1,5 +1,7 @@
 <?php
-    class vehiculo{
+    namespace App1\Modelo;
+
+    class Vehiculo{
        private $patente;
        private $ingreso;
        private $importe;

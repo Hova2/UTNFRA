@@ -1,6 +1,8 @@
 <?php
 
-require"clases/estacionamiento.php";
+require __DIR__ . '/clases/estacionamiento.php';
+
+
 $path = "gestion.php";
 
 estacionamiento::CrearJSAutocompletar();
@@ -58,7 +60,7 @@ estacionamiento::CrearTablaEstacionados();
 
      <?php 
 
-      include("archivos/tablaEstacionados.php");
+      include __DIR__ . '/archivos/tablaestacionados.php';
 
      ?>
       
