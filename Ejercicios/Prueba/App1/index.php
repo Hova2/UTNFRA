@@ -13,7 +13,7 @@
                             
             switch ($_GET['param1']) {
                 case 'auto':
-                    //echo "Traigo un auto";
+                    /*echo "Traigo un auto";
                     $arregloVehiculo1=App1\Modelo\Vehiculo::leer();
                     $arregloVehiculo2=App1\Modelo\Vehiculo::leer();
 
@@ -22,7 +22,9 @@
                     }
                     foreach ($arregloVehiculo2 as $value) {
                         $value->mostrar();
-                    }
+                    }*/
+
+                    $loader->loadClass('App1\Controlador\traervehiculo');
                     break;
                 
                 case 'estacionamiento':
