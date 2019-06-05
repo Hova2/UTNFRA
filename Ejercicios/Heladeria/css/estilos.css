@@ -4,13 +4,18 @@
     border: 0;
 }
 
-body{
+html,body{
     height: 100%;
     width: 100%;
 }
 
+body{
+    display:table;
+}
+
 header {
-    height: 100px;
+    /*height: 100px;*/
+    height: 10%;
     position: relative;
 }
 
@@ -18,40 +23,48 @@ nav {
     border-color: black;
     border-style: solid;
     border-width: thick;
-    height: 50px;
+    height: 5%;
     position: relative;
 }
 
 main{
     background-color: black;
-    width: 80%;
-    height: 200px;
-    float: left;
+    width: 90%;
+    height: 80%;
+    float: right;
 }
 
 section {
     background-color:blue;
     width: 50%;
-    height: 200px;
+    height: 50%;
     margin: 0px auto;
+    position: relative;
 }
 
 article{
     background-color:pink;
     width: 50%;
-    height: 100px;
+    height: 25%;
     margin: 0px auto;
 }
 
 aside{
     background-color:sandybrown;
-    width: 100%;
-    height: 200px;
+    width: 10%;
+    height: 80%;
+    position: relative;
 }
 
 footer{
     background-color:yellow;
-    height: 100px;
+    height: 5%;
+    position: relative;
+}
+
+nav div p{
+    float:left;
+    margin: auto 20px auto 20px;
 }
 
 .centrado{
@@ -63,9 +76,10 @@ footer{
     transform: translate(-50%, -50%);
 }
 
+.textoCentrado{
+    text-align: center;
+}
 
-
-nav div p{
-    float:left;
-    margin: auto 20px auto 20px;
+.puntero{
+    cursor: pointer;
 }
