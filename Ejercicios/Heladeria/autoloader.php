@@ -1,5 +1,5 @@
 <?php
-namespace EstacionamientoMio;
+namespace Heladeria;
 
 /**
  * An example of a general-purpose implementation that includes the optional
