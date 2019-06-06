@@ -14,7 +14,6 @@ body{
 }
 
 header {
-    /*height: 100px;*/
     height: 10%;
     position: relative;
 }
@@ -23,6 +22,7 @@ nav {
     border-color: black;
     border-style: solid;
     border-width: thick;
+    background-color: #5f5f5f;
     height: 5%;
     position: relative;
 }
@@ -64,7 +64,32 @@ footer{
 
 nav div p{
     float:left;
-    margin: auto 20px auto 20px;
+    padding: 0px 20px;
+}
+
+.barraDeNavegacion{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 30px;
+    color: ghostwhite;
+    cursor: pointer;
+    
+}
+
+.titulo{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 50px;
 }
 
 .centrado{
@@ -82,4 +107,12 @@ nav div p{
 
 .puntero{
     cursor: pointer;
+}
+
+.fuente{
+    font-family: 'Permanent Marker', cursive;
+}
+
+.tamFuente{
+    font-size: 30px;
 }
