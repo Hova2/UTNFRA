@@ -1,6 +1,4 @@
 <?php
-    namespace Heladeria\clases\modelo
-
     class helado
     {
         private $sabor;
@@ -94,6 +92,16 @@
                 $this->cantKg = $cantKg;
 
                 return $this;
+        }
+
+        public function toArray(){
+                $array=array();
+                array_push($array,$this->sabor);
+                array_push($array,$this->tipo);
+                array_push($array,$this->precio);
+                array_push($array,$this->cantKg);
+                return $array;
+    
         }
     }
 
