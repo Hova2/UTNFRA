@@ -32,16 +32,14 @@
                 case 'crearHeladoFoto':
                 $tipoHelado=strtolower($_POST[2]);
                     if($tipoHelado == 'crema' || $tipoHelado == 'agua'){
-                        controlador::crearHelado($_POST[1], $tipoHelado, $_POST[3], $_POST[4]);
-                        require  __DIR__ . './clases/vista/cargaHeladoFoto.php';
+                        controlador::crearHeladoFoto($_POST[1], $tipoHelado, $_POST[3], $_POST[4]);
                     }else{
                         echo "<h1>El tipo de helado solo puede ser de crema o agua</h1>";
                     }
                     break;
-                }*/
+                }
                 break;
                 }
-             }
             break;
         case 'DELETE':
             echo "Estoy en un DELETE";

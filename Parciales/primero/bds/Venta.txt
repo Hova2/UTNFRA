@@ -1,0 +1,5 @@
+nacho.mone@gmail.com,frutilla,piedra,4
+nacho.mone@gmail.com,frutilla,piedra,0
+,,,
+,,,5
+nacho.mone@gmail.com,frutilla,piedra,5
