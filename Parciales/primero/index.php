@@ -15,6 +15,9 @@
                             echo "<h1>El tipo de pizza solo puede ser molde o piedra</h1>";
                         }
                     break;
+                    case 'ListadoDeImagenes':
+                        require_once __DIR__ . '/./clases/controlador/ListadoDeImagenes.php';                   
+                    break;
                 }
             }
             break;
@@ -30,14 +33,35 @@
                     case 'AltaVenta':
                         require_once __DIR__ . './clases/controlador/AltaVenta.php';
                     break;
+                    case 'PizzaCarga':
+                        require_once __DIR__ . '/./clases/controlador/PizzaCarga.php';                   
+                    break;
                 }
             }
             break;
         case 'DELETE':
-            echo "Estoy en un DELETE";
+            parse_str(file_get_contents("php://input"),$_DELETE);
+            if(count($_DELETE)==0){
+                echo "Ingrese parametros";
+            }else{
+                switch ($_DELETE['accion']) {
+                    case 'BorrarPizza':
+                        require_once __DIR__ . '/./clases/controlador/BorrarPizza.php';                   
+                    break;
+                }
+            }
             break;
         case 'PUT':
-            echo "Estoy en un PUT";
+            parse_str(file_get_contents("php://input"),$_PUT);
+            if(count($_PUT)==0){
+                echo "Ingrese parametros";
+            }else{
+                switch ($_PUT['accion']) {
+                    case 'PizzaCargaPlus':
+                        require_once __DIR__ . '/./clases/controlador/PizzaCargaPlus.php';                   
+                    break;
+                }
+            }
             break;
     }
 ?>

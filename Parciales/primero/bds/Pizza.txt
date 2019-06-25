@@ -1,2 +1,5 @@
 0,menta,12,molde,10
 1,muzzarela,12,piedra,10
+3,carne,6,piedra,20
+4,carne,10,molde,50
+5,palmito,18,piedra,20
