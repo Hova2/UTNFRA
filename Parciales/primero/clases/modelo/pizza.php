@@ -2,17 +2,47 @@
 
 class Pizza{
     
+    private $id;
     private $sabor;
     private $precio;
     private $tipo;
     private $cantidad;
 
-    public function __construct($sabor, $precio, $tipo, $cantidad)
+    public function __construct()
     {
-        $this->sabor = $sabor;
-        $this->precio = $precio;
-        $this->tipo = $tipo;
-        $this->cantidad = $cantidad;
+        $parametros=func_get_args();
+        if(func_num_args()==4){
+            $this->sabor = $parametros[0];
+            $this->precio = $parametros[1];
+            $this->tipo = $parametros[2];
+            $this->cantidad = $parametros[3];
+        }else{
+            $this->id = $parametros[0];
+            $this->sabor = $parametros[1];
+            $this->precio = $parametros[2];
+            $this->tipo = $parametros[3];
+            $this->cantidad = $parametros[4];
+        }
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -100,6 +130,7 @@ class Pizza{
 
     public function toArray(){
         $array=array();
+        array_push($array,$this->id);
         array_push($array,$this->sabor);
         array_push($array,$this->precio);
         array_push($array,$this->tipo);
@@ -121,7 +152,7 @@ class Pizza{
             $renglon = fgets($archivo);
             if(strlen($renglon)>0){
                 $arrayDatos = explode(",",$renglon);
-                $pizzaTmp=new Pizza($arrayDatos[0],$arrayDatos[1],$arrayDatos[2],$arrayDatos[3]);
+                $pizzaTmp=new Pizza($arrayDatos[0],$arrayDatos[1],$arrayDatos[2],$arrayDatos[3],$arrayDatos[4]);
                 array_push($retorno,$pizzaTmp);
             }
         }
@@ -131,6 +162,26 @@ class Pizza{
 
     public static function borrar(){
         $archivo=fopen(__DIR__ . "/../../bds/Pizza.txt","w");
+        fclose($archivo);
+    }
+
+    public static function getUltimoId(){
+        $idPizza;
+        $retorno;
+        if(file_exists( __DIR__ . "/../../bds/IdPizza.txt")){
+            $idPizza = file(__DIR__ . "/../../bds/IdPizza.txt");
+            $retorno=(int)$idPizza[0];
+        }else{
+            $archivo=fopen(__DIR__ . "/../../bds/IdPizza.txt","w");
+            fclose($archivo);
+            $retorno=0;
+        }
+        return $retorno;
+    }
+
+    public static function setUltimoId($id){
+        $archivo=fopen(__DIR__ . "/../../bds/IdPizza.txt","w");
+        fputs($archivo,$id);
         fclose($archivo);
     }
 

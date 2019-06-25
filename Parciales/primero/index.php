@@ -8,12 +8,12 @@
             }else{
                 switch ($_GET[0]) {
                     case 'PizzaCarga':
-                    $tipoPizza=strtolower($_GET[3]);
-                    if($tipoPizza == 'molde' || $tipoPizza == 'piedra'){
-                        require_once __DIR__ . './clases/controlador/PizzaCarga.php';                   
-                    }else{
-                        echo "<h1>El tipo de pizza solo puede ser molde o piedra</h1>";
-                    }
+                        $tipoPizza=strtolower($_GET[3]);
+                        if($tipoPizza == 'molde' || $tipoPizza == 'piedra'){
+                            require_once __DIR__ . '/./clases/controlador/PizzaCarga.php';                   
+                        }else{
+                            echo "<h1>El tipo de pizza solo puede ser molde o piedra</h1>";
+                        }
                     break;
                 }
             }

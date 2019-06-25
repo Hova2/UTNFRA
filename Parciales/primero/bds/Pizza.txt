@@ -1,1 +1,2 @@
-frutilla,12.5,piedra,0
+0,menta,12,molde,10
+1,muzzarela,12,piedra,10

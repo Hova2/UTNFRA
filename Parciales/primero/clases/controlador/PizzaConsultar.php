@@ -8,12 +8,12 @@
     $existeTipo=false;
 
     foreach ($arregloPizza as $value) {
-        if($value->getSabor()==$_POST[1] && $value->getTipo()==$_POST[2]){
+        if($value->getSabor()==strtolower($_POST[2]) && $value->getTipo()==strtolower($_POST[3]){
             $existePizza=true;
             break;
-        }else if ($value->getSabor()==$_POST[1]) {
+        }else if ($value->getSabor()==strtolower($_POST[2])) {
             $existeSabor=true;
-        }else if($value->getTipo()==$_POST[2]){
+        }else if($value->getTipo()==strtolower($_POST[3])){
             $existeTipo=true;
         }
     }
