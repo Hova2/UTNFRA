@@ -1,6 +1,6 @@
 <?php
     if(isset($_GET[1])){
-        if (strcmp($_GET[1], 'borradas')==0){
+        if (strcmp(strtolower($_GET[1]), 'borradas')==0){
             $directorio = __DIR__ . '/../../bds/BackUpFotos/';
             $borradas  = scandir($directorio);
 
@@ -14,9 +14,7 @@
                 for($i=2 ; $i < sizeof($borradas) ; $i++){
                     echo "<tr>";
                     echo "<td>";
-                    echo "<img src=http://localhost/UTNFRA/Parciales/Primero/bds/BackUpFotos/";
-                    echo $borradas[$i];
-                    echo '>';
+                    echo "<img src=" . dirname($_SERVER['PHP_SELF']) . "/bds/BackUpFotos/" . $borradas[$i] . ">";
                     echo "</td>";
                     echo "<td>";
                     echo $borradas[$i];
@@ -37,9 +35,7 @@
                 for($i=2 ; $i < sizeof($fotos1) ; $i++){
                     echo "<tr>";
                     echo "<td>";
-                    echo "<img src=http://localhost/UTNFRA/Parciales/Primero/bds/ImagenesDeLaVenta/";
-                    echo $fotos1[$i];
-                    echo '>';
+                    echo "<img src=" . dirname($_SERVER['PHP_SELF']) . "/bds/ImagenesDeLaVenta/" . $fotos1[$i] . ">";
                     echo "</td>";
                     echo "<td>";
                     echo $fotos1[$i];
@@ -59,9 +55,7 @@
                 for($i=2 ; $i < sizeof($fotos2) ; $i++){
                     echo "<tr>";
                     echo "<td>";
-                    echo "<img src=http://localhost/UTNFRA/Parciales/Primero/bds/ImagenesDePizzas/";
-                    echo $fotos2[$i];
-                    echo '>';
+                    echo "<img src=" . dirname($_SERVER['PHP_SELF']) . "/bds/ImagenesDePizzas/" . $fotos2[$i] . ">";
                     echo "</td>";
                     echo "<td>";
                     echo $fotos2[$i];

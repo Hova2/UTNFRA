@@ -18,6 +18,9 @@
                     case 'ListadoDeImagenes':
                         require_once __DIR__ . '/./clases/controlador/ListadoDeImagenes.php';                   
                     break;
+                    case 'Prueba':
+                        require_once __DIR__ . '/./clases/controlador/Prueba.php';                   
+                    break;
                 }
             }
             break;
@@ -35,6 +38,9 @@
                     break;
                     case 'PizzaCarga':
                         require_once __DIR__ . '/./clases/controlador/PizzaCarga.php';                   
+                    break;
+                    case 'AltaEmpleado':
+                        require_once __DIR__ . '/./clases/controlador/AltaEmpleado.php';                   
                     break;
                 }
             }
