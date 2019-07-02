@@ -27,7 +27,7 @@
     function altaImagen(){
         $destino = __DIR__ . '/../../bds/ImagenesDeEmpleado/' . $_FILES["archivo"]["name"];
         $arrayMail = explode('@', $_POST[0]);
-        $destino = pathinfo($destino, PATHINFO_DIRNAME) . "/" . $arrayMail[0] . pathinfo($destino, PATHINFO_EXTENSION);
+        $destino = pathinfo($destino, PATHINFO_DIRNAME) . "/" . $arrayMail[0] . "." . pathinfo($destino, PATHINFO_EXTENSION);
         move_uploaded_file($_FILES["archivo"]["tmp_name"], $destino);
     }
 ?>

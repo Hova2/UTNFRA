@@ -18,6 +18,9 @@
                     case 'ListadoDeImagenes':
                         require_once __DIR__ . '/./clases/controlador/ListadoDeImagenes.php';                   
                     break;
+                    case 'ListadoEmpleado':
+                        require_once __DIR__ . '/./clases/controlador/ListadoEmpleado.php';                   
+                    break;
                     case 'Prueba':
                         require_once __DIR__ . '/./clases/controlador/Prueba.php';                   
                     break;
@@ -65,6 +68,9 @@
                 switch ($_PUT['accion']) {
                     case 'PizzaCargaPlus':
                         require_once __DIR__ . '/./clases/controlador/PizzaCargaPlus.php';                   
+                    break;
+                    case 'EmpleadoDatos':
+                        require_once __DIR__ . '/./clases/controlador/EmpleadoDatos.php';                   
                     break;
                 }
             }

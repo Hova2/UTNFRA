@@ -125,5 +125,10 @@
             fputs($archivo,"$empleadoTmp\n");
             fclose($archivo);
         }
+
+        public static function borrar(){
+            $archivo=fopen(__DIR__ . "/../../bds/Empleado.txt","w");
+            fclose($archivo);
+        }
     }
 ?>
