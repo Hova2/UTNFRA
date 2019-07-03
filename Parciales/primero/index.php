@@ -21,6 +21,9 @@
                     case 'ListadoEmpleado':
                         require_once __DIR__ . '/./clases/controlador/ListadoEmpleado.php';                   
                     break;
+                    case 'ListadoEmpleadosVentas':
+                        require_once __DIR__ . '/./clases/controlador/ListadoEmpleadosVentas.php';                   
+                    break;
                     case 'Prueba':
                         require_once __DIR__ . '/./clases/controlador/Prueba.php';                   
                     break;
@@ -44,6 +47,9 @@
                     break;
                     case 'AltaEmpleado':
                         require_once __DIR__ . '/./clases/controlador/AltaEmpleado.php';                   
+                    break;
+                    case 'AltaVentaConImagenYEmpleado':
+                        require_once __DIR__ . '/./clases/controlador/AltaVentaConImagenYEmpleado.php';                   
                     break;
                 }
             }

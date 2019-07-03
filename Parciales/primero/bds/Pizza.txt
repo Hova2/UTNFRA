@@ -1,4 +1,4 @@
-0,menta,12,molde,10
+0,menta,12,molde,2
 1,muzzarela,12,piedra,10
 3,carne,6,piedra,20
 4,carne,10,molde,50
