@@ -57,6 +57,9 @@
                     case 'BorrarPizza':
                         require_once __DIR__ . '/./clases/controlador/BorrarPizza.php';                   
                     break;
+                    case 'EmpleadoBorrar':
+                        require_once __DIR__ . '/./clases/controlador/EmpleadoBorrar.php';
+                    break;
                 }
             }
             break;
