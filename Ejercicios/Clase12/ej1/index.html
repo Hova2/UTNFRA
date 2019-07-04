@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/scripts.js"></script>
+    <title>Document</title>
+</head>
+    <body>
+    <form action="#">
+        <fieldset>
+            <legend>Alta persona</legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="txtNombre">Nombre:</label>
+                </td> 
+                <td>
+                    <input type="text" id="txtNombre">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="txtApellido">Apellido:</label>
+                </td>
+                <td>
+                    <input type="text" id="txtApellido">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Alta persona">
+                </td>
+                
+            </tr>
+        </table>
+    </fieldset>
+    </form>
+    <hr>
+
+    <fieldset>
+            <legend>Persona Agregada</legend>
+        <table>
+
+                <tr>
+                        <td><label for="id">ID:</label></td>
+                        <td><input type="text" id ="id"></td>
+                </tr>
+
+            <tr>
+                <td><label for="nombre">Nombre:</label></td>
+                <td><input type="text" id ="nombre"></td>
+                <td id="spin"></td>
+
+            </tr>
+            <tr>
+                    <td><label for="apellido">Apellido:</label></td>
+                    <td><input type="text" id ="apellido"></td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <hr>
+    <button id="btnGetPersonas">Traer Personas</button>
+    <fieldset>
+        <div id='info'></div>
+    </fieldset>
+</body>
+</html>
