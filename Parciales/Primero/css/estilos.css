@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    display:table;
+}
+
+header {
+    height: 10%;
+    position: relative;
+}
+
+nav {
+    border-color: black;
+    border-style: solid;
+    border-width: thick;
+    background-color: #5f5f5f;
+    height: 5%;
+    position: relative;
+}
+
+main{
+    background-color: black;
+    width: 90%;
+    height: 80%;
+    float: right;
+}
+
+section {
+    background-color:blue;
+    width: 50%;
+    height: 50%;
+    margin: 0px auto;
+    position: relative;
+}
+
+article{
+    background-color:pink;
+    width: 50%;
+    height: 25%;
+    margin: 0px auto;
+}
+
+aside{
+    background-color:sandybrown;
+    width: 10%;
+    height: 80%;
+    position: relative;
+}
+
+footer{
+    background-color:yellow;
+    height: 5%;
+    position: relative;
+}
+
+nav div p{
+    float:left;
+    padding: 0px 20px;
+}
+
+.barraDeNavegacion{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Game of Thrones', cursive;
+    font-size: 15px;
+    color: ghostwhite;
+    cursor: pointer;
+    
+}
+
+.titulo{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Game of Thrones', cursive;
+    font-size: 30px;
+}
+
+.centrado{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.textoCentrado{
+    text-align: center;
+}
+
+.puntero{
+    cursor: pointer;
+}
+
+.fuente{
+    font-family: 'Game of Thrones', cursive;
+}
+
+.tamFuente{
+    font-size: 15px;
+}
