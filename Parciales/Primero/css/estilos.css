@@ -28,7 +28,7 @@ nav {
 }
 
 main{
-    background-color: black;
+    background-color: white;
     width: 90%;
     height: 80%;
     float: right;
@@ -115,4 +115,26 @@ nav div p{
 
 .tamFuente{
     font-size: 15px;
+}
+
+table, th, td{
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    font-size: 15px;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
 }
