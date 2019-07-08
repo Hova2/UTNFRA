@@ -28,7 +28,7 @@ nav {
 }
 
 main{
-    background-color: white;
+    background-color:whitesmoke;
     width: 90%;
     height: 80%;
     float: right;
@@ -115,6 +115,11 @@ nav div p{
 
 .tamFuente{
     font-size: 15px;
+}
+
+.imagen{
+    width: 450px;
+    height:350px;
 }
 
 table, th, td{

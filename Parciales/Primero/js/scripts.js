@@ -30,25 +30,33 @@ function crearTabla(arregloDatos){
 }
 
 function traerPersonajes(){
+    var spinner = document.createElement('img');
+    var contenedor = document.getElementById('tabla');
     var xhr = new XMLHttpRequest();
-    xhr.open('GET','http://localhost:3000/traerPersonajes',true);
-    xhr.onreadystatechange=function(personajes){
-        if (this.readyState === 4){
-            if(this.status === 200){
+    spinner.setAttribute('src','imagenes/spinner.gif');
+    spinner.setAttribute('alt','Esperando');
+    spinner.setAttribute('id','spinner');
+    spinner.className="imagen";
+    xhr.onreadystatechange=function(){
+        if (this.readyState == 4){
+            if(this.status == 200){
                 var personajes=JSON.parse(this.responseText);
                 if(personajes.length > 0){
                     crearTabla(personajes);
                 }else{
-                    var mensaje    = document.createElement("H1");
+                    var mensaje    = document.createElement('H1');
                     var texto = document.createTextNode("No hay personajes para mostrar");
-                    var contenedor = document.getElementById("tabla");
+                    contenedor.innerHTML = "";
                     mensaje.appendChild(texto);
                     contenedor.appendChild(mensaje);
                 }
             }else{
                 console.log('Error: ' + this.statusText);
             }
+        }else{
+            contenedor.appendChild(spinner);
         }
     };
+    xhr.open('GET','http://localhost:3000/traerPersonajes',true);
     xhr.send();
 }
