@@ -143,3 +143,17 @@ th {
     background-color: #4CAF50;
     color: white;
 }
+
+.frmGenerico{
+    width: 40%;
+    height: 400px;;
+    position: fixed;    
+    top: 50%;
+    left: 50%;
+    border-radius: 30px;
+    background-size: 50%;
+    background-color: rgba(45, 218, 117, 1 );
+    transform: translate(-50%, -50%);
+    color: rgb(199, 52, 33);
+    font-weight: bold;   
+}
