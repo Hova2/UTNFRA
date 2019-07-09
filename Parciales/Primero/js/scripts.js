@@ -64,21 +64,26 @@ function traerPersonajes(){
 
 function formulario(){
     var formulario = document.createElement('form');
-    formulario.className = 'frmGenerico';
-    var nombre = document.createElement('input');
-    var apellido = document.createElement('input');
-    var edad = document.createElement('input');
-    var stark = document.createElement('input');
+    
+    var nombre    = document.createElement('input');
+    var apellido  = document.createElement('input');
+    var edad      = document.createElement('input');
+    var stark     = document.createElement('input');
     var lannister = document.createElement('input');
     var targaryen = document.createElement('input');
-    var enviar = document.createElement('input');
+    var trai      = document.createElement('input');
+    var enviar    = document.createElement('input');
     
-    var lNombre = document.createElement('label');
-    var lApellido = document.createElement('label');
-    var lEdad = document.createElement('label');
-    var lStark = document.createElement('label');
+    var lNombre    = document.createElement('label');
+    var lApellido  = document.createElement('label');
+    var lEdad      = document.createElement('label');
+    var lStark     = document.createElement('label');
     var lLannister = document.createElement('label');
     var lTargaryen = document.createElement('label');
+    var lTrai      = document.createElement('label');
+    
+    formulario.className = 'frmGenerico';
+    enviar.className = 'boton';
     
     nombre.setAttribute('type',"text");
     apellido.setAttribute('type',"text");
@@ -86,6 +91,7 @@ function formulario(){
     stark.setAttribute('type',"radio");
     lannister.setAttribute('type',"radio");
     targaryen.setAttribute('type',"radio");
+    trai.setAttribute('type',"checkbox");
     enviar.setAttribute('type',"submit");
     
     nombre.setAttribute('name',"nombre");
@@ -94,25 +100,28 @@ function formulario(){
     stark.setAttribute('name',"casa");
     lannister.setAttribute('name',"casa");
     targaryen.setAttribute('name',"casa");
-    enviar.setAttribute('value',"Submit");
+    trai.setAttribute('name',"traidor");
+    enviar.setAttribute('value',"Enviar");
     
     stark.setAttribute('id',"stark");
     lannister.setAttribute('id',"lannister");
     targaryen.setAttribute('id',"targaryen");
 
-    lNombre.htmlFor="nombre";
-    lApellido.htmlFor="apellido";
-    lEdad.htmlFor="edad";
-    lStark.htmlFor="stark";
-    lLannister.htmlFor="lannister";
-    lTargaryen.htmlFor="targaryen";
+    lNombre.htmlFor    = "nombre";
+    lApellido.htmlFor  = "apellido";
+    lEdad.htmlFor      = "edad";
+    lStark.htmlFor     = "stark";
+    lLannister.htmlFor = "lannister";
+    lTargaryen.htmlFor = "targaryen";
+    lTrai.htmlFor      = "traidor";
     
-    lNombre.innerHTML="Nombre: ";
-    lApellido.innerHTML="Apellido: ";
-    lEdad.innerHTML="Edad: ";
-    lStark.innerHTML="Stark";
-    lLannister.innerHTML="Lannister";
-    lTargaryen.innerHTML="Targaryen";
+    lNombre.innerHTML    = "Nombre: ";
+    lApellido.innerHTML  = "Apellido: ";
+    lEdad.innerHTML      = "Edad: ";
+    lStark.innerHTML     = "Stark: ";
+    lLannister.innerHTML = "Lannister: ";
+    lTargaryen.innerHTML = "Targaryen: ";
+    lTrai.innerHTML      = "Traidor: ";
     
     formulario.appendChild(lNombre);
     formulario.appendChild(nombre);
@@ -126,6 +135,8 @@ function formulario(){
     formulario.appendChild(lannister);
     formulario.appendChild(lTargaryen);
     formulario.appendChild(targaryen);
+    formulario.appendChild(lTrai);
+    formulario.appendChild(trai);
     formulario.appendChild(enviar);
     document.body.appendChild(formulario);
 }
