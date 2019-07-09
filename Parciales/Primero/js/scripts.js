@@ -83,29 +83,41 @@ function formulario(){
     var lTrai      = document.createElement('label');
     
     formulario.className = 'frmGenerico';
-    enviar.className = 'boton';
+    enviar.className     = 'boton';
     
-    nombre.setAttribute('type',"text");
-    apellido.setAttribute('type',"text");
-    edad.setAttribute('type',"text");
-    stark.setAttribute('type',"radio");
-    lannister.setAttribute('type',"radio");
-    targaryen.setAttribute('type',"radio");
-    trai.setAttribute('type',"checkbox");
-    enviar.setAttribute('type',"submit");
+    enviar.addEventListener("click", altaPersonaje , false);
     
-    nombre.setAttribute('name',"nombre");
-    apellido.setAttribute('name',"apellido");
-    edad.setAttribute('name',"edad");
-    stark.setAttribute('name',"casa");
-    lannister.setAttribute('name',"casa");
-    targaryen.setAttribute('name',"casa");
-    trai.setAttribute('name',"traidor");
-    enviar.setAttribute('value',"Enviar");
+    formulario.id = 'formulario';
+    nombre.id     = 'nombre';
+    apellido.id   = 'apellido';
+    edad.id       = 'edad';
+    stark.id      = "stark";
+    lannister.id  = "lannister";
+    targaryen.id  = "targaryen";
+    trai.id       = 'traidor';
+
+    nombre.type    = "text";
+    apellido.type  = "text";
+    edad.type      = "text";
+    stark.type     = "radio";
+    lannister.type = "radio";
+    targaryen.type = "radio";
+    trai.type      = "checkbox";
+    enviar.type    = "submit";
     
-    stark.setAttribute('id',"stark");
-    lannister.setAttribute('id',"lannister");
-    targaryen.setAttribute('id',"targaryen");
+    nombre.name    = "nombre";
+    apellido.name  = "apellido";
+    edad.name      = "edad";
+    stark.name     = "casa";
+    lannister.name = "casa";
+    targaryen.name = "casa";
+    trai.name      = "traidor";
+    enviar.name    = "enviar";
+
+    stark.value     = "Stark";
+    lannister.value = "Lannister";
+    targaryen.value = "Targaryen";
+    enviar.value    = "Enviar";
 
     lNombre.htmlFor    = "nombre";
     lApellido.htmlFor  = "apellido";
@@ -138,5 +150,41 @@ function formulario(){
     formulario.appendChild(lTrai);
     formulario.appendChild(trai);
     formulario.appendChild(enviar);
+    
     document.body.appendChild(formulario);
+}
+
+function altaPersonaje(){
+    var elementosForm = document.getElementById('formulario').elements;
+    var nombre        = elementosForm['nombre'].value;
+    var apellido      = elementosForm['apellido'].value;
+    var edad          = elementosForm['edad'].value;
+    var casa          = elementosForm['casa'].value;
+    var trai          = elementosForm['traidor'];
+    var xhr = new XMLHttpRequest();
+    var datos="";
+    
+    datos=datos.concat("nombre=");
+    datos=datos.concat(encodeURIComponent(nombre));
+    datos=datos.concat("&apellido=");
+    datos=datos.concat(encodeURIComponent(apellido));
+    datos=datos.concat("&edad=");
+    datos=datos.concat(encodeURIComponent(edad));
+    datos=datos.concat("&casa=");
+    datos=datos.concat(encodeURIComponent(casa));
+    datos=datos.concat("&traidor=");
+    datos=datos.concat(encodeURIComponent(trai.checked));
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                alert(xhr.responseText);
+            }
+            else {
+                console.log('Error ' + xhr.statusText);
+            }
+        }
+    };
+    xhr.open("POST", "http://localhost:3000/altaPersonaje", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(datos);
 }
