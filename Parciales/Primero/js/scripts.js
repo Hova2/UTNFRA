@@ -49,7 +49,8 @@ function traerPersonajes(){
                 }else{
                     var mensaje              = document.createElement('H1');
                     var texto                = document.createTextNode("No hay personajes para mostrar");
-                        contenedor.innerHTML = "";
+                        
+                    contenedor.innerHTML = "";
                     mensaje.appendChild(texto);
                     contenedor.appendChild(mensaje);
                 }
@@ -167,10 +168,11 @@ function formulario(){
 
         formulario.appendChild(enviar);
     }else{
-        var id                   = document.createElement('input');
-        var modificar            = document.createElement('input');
-        var eliminar             = document.createElement('input');
-            formulario.className = 'frmGenericoMB fuente tamFuente';
+        var id        = document.createElement('input');
+        var modificar = document.createElement('input');
+        var eliminar  = document.createElement('input');
+            
+        formulario.className = 'frmGenericoMB fuente tamFuente';
         
         id.id               = 'id';
         id.type             = "hidden";
@@ -186,12 +188,12 @@ function formulario(){
         eliminar.name       = "eliminar";
         eliminar.value      = "Eliminar";
 
-                                                                                                            id.value       = this.childNodes[0].textContent;
-                                                                                                            nombre.value   = this.childNodes[1].textContent;
-                                                                                                            apellido.value = this.childNodes[2].textContent;
-                                                                                                            edad.value     = this.childNodes[3].textContent;
-                                                                                        formulario.elements['casa'].value  = this.childNodes[4].textContent;
-                                                                                                            trai.checked   = JSON.parse(this.childNodes[5].textContent);
+                            id.value       = this.childNodes[0].textContent;
+                            nombre.value   = this.childNodes[1].textContent;
+                            apellido.value = this.childNodes[2].textContent;
+                            edad.value     = this.childNodes[3].textContent;
+        formulario.elements['casa'].value  = this.childNodes[4].textContent;
+                            trai.checked   = JSON.parse(this.childNodes[5].textContent);
 
         modificar.addEventListener("click", modificarPersonaje , false);
         eliminar.addEventListener("click", bajaPersonaje , false);
