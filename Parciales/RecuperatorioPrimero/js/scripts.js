@@ -3,6 +3,7 @@ window.addEventListener('load', traerPersonajes, false);
 
 function asignarManejadores(){
     document.getElementById('btnSetPersonaje').addEventListener('click', formulario, false);  
+    document.getElementById('color').addEventListener('change', cambiarColor, false); 
 }
 
 function crearTabla(arregloDatos){
@@ -492,4 +493,9 @@ function bajaPersonaje(){
 
 function cerrarFormulario(){
     document.body.removeChild(document.getElementById('formulario'));
+}
+
+function cambiarColor(){
+    var color = document.getElementById('color');
+    document.getElementById('principal').style.backgroundColor = color.value;
 }
