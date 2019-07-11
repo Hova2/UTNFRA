@@ -263,6 +263,7 @@ function formulario(){
         var id        = document.createElement('input');
         var modificar = document.createElement('input');
         var eliminar  = document.createElement('input');
+        var caracteristicas=[];
             
         formulario.className = 'frmGenericoMB fuente tamFuente';
         
@@ -286,6 +287,17 @@ function formulario(){
                             edad.value     = this.childNodes[3].textContent;
         formulario.elements['casa'].value  = this.childNodes[4].textContent;
                             trai.checked   = JSON.parse(this.childNodes[5].textContent);
+        formulario.elements['temporada'].selectedIndex = parseInt(this.childNodes[6].textContent)-1;
+        caracteristicas = this.childNodes[7].textContent.split(',');
+                            
+                            guerrero.checked= JSON.parse(caracteristicas[0]);
+                            manipulador.checked= JSON.parse(caracteristicas[1]);
+                            diplomatico.checked= JSON.parse(caracteristicas[2]);
+                            lider.checked= JSON.parse(caracteristicas[3]);
+                            vengativo.checked= JSON.parse(caracteristicas[4]);
+                            ambicioso.checked= JSON.parse(caracteristicas[5]);
+
+        
 
         modificar.addEventListener("click", modificarPersonaje , false);
         eliminar.addEventListener("click", bajaPersonaje , false);
@@ -307,9 +319,18 @@ function altaPersonaje(){
     var edad          = elementosForm['edad'].value;
     var casa          = elementosForm['casa'].value;
     var trai          = elementosForm['traidor'];
+    var caracteristicas = [];
+    var temporada = elementosForm['temporada'].value;
     var xhr           = new XMLHttpRequest();
     var datos         = "";
     
+    caracteristicas.push(elementosForm['guerrero'].checked);
+    caracteristicas.push(elementosForm['manipulador'].checked);
+    caracteristicas.push(elementosForm['diplomatico'].checked);
+    caracteristicas.push(elementosForm['lider'].checked);
+    caracteristicas.push(elementosForm['vengativo'].checked);
+    caracteristicas.push(elementosForm['ambicioso'].checked);
+
     datos = datos.concat("nombre=");
     datos = datos.concat(encodeURIComponent(nombre));
     datos = datos.concat("&apellido=");
@@ -320,6 +341,10 @@ function altaPersonaje(){
     datos = datos.concat(encodeURIComponent(casa));
     datos = datos.concat("&traidor=");
     datos = datos.concat(encodeURIComponent(trai.checked));
+    datos = datos.concat("&temporada=");
+    datos = datos.concat(encodeURIComponent(temporada));
+    datos = datos.concat("&caracteristicas=");
+    datos = datos.concat(encodeURIComponent(caracteristicas));
     
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
@@ -344,8 +369,17 @@ function modificarPersonaje(){
     var edad          = elementosForm['edad'].value;
     var casa          = elementosForm['casa'].value;
     var trai          = elementosForm['traidor'];
+    var caracteristicas = [];
+    var temporada = elementosForm['temporada'].value;
     var xhr           = new XMLHttpRequest();
     var datos         = "";
+
+    caracteristicas.push(elementosForm['guerrero'].checked);
+    caracteristicas.push(elementosForm['manipulador'].checked);
+    caracteristicas.push(elementosForm['diplomatico'].checked);
+    caracteristicas.push(elementosForm['lider'].checked);
+    caracteristicas.push(elementosForm['vengativo'].checked);
+    caracteristicas.push(elementosForm['ambicioso'].checked);
     
     datos = datos.concat("id=");
     datos = datos.concat(encodeURIComponent(id));
@@ -359,6 +393,10 @@ function modificarPersonaje(){
     datos = datos.concat(encodeURIComponent(casa));
     datos = datos.concat("&traidor=");
     datos = datos.concat(encodeURIComponent(trai.checked));
+    datos = datos.concat("&temporada=");
+    datos = datos.concat(encodeURIComponent(temporada));
+    datos = datos.concat("&caracteristicas=");
+    datos = datos.concat(encodeURIComponent(caracteristicas));
           
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
