@@ -34,5 +34,10 @@
     "scripts": {
         "start": "php -S localhost:8080 -t public",
         "test": "phpunit"
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\App\\Clases\\": "src/app/clases" 
+        }
     }
 }

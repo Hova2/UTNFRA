@@ -1,5 +1,6 @@
 <?php
-namespace App\Herramientas;
+namespace Src\App\Clases\Helper;
+
 use Firebase\JWT\JWT;
 
 class AutentificadorJWT{
