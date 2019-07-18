@@ -37,7 +37,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Src\\App\\Clases\\": "src/app/clases" 
+            "Src\\App\\Clases\\": "src/App/Clases" 
         }
     }
 }
