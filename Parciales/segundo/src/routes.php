@@ -39,7 +39,19 @@ return function (App $app) {
             $usuario->save();
 
             return $response->write($sb);
-          });
+          })->add(function (Request $request, Response $response, $next) {
+            $token = $request->getParam('token');
+                
+            AutentificadorJWT::verificarToken($token);
+            $datosToken = AutentificadorJWT::obtenerData($token);
+    
+            if($datosToken->perfil === 'admin'){
+                $response = $next($request, $response);
+            }else{
+                $response->write('El usuario es no admin'); 
+            }
+            return $response;
+        });
 
           $this->get('/todos[/]', function (Request $request, Response $response, array $args) {
               return $response->write(Usuario::all()->toJson());
@@ -52,7 +64,7 @@ return function (App $app) {
             $clave = strtolower(trim($request->getParam('clave')));
             
             if($nombre === 'juan' && $clave === '123456'){
-                $datos = array('usuario' => $nombre,'perfil' => 'admin', 'alias' => "Pepe");
+                $datos = array('usuario' => $nombre,'perfil' => 'usuario');
                 $token= AutentificadorJWT::CrearToken($datos); 
                 $respuesta = $response->withJson($token, 200); 
             }else{
@@ -68,8 +80,8 @@ return function (App $app) {
             AutentificadorJWT::verificarToken($token);
             $datosToken = AutentificadorJWT::obtenerData($token);
             
-            if($datosToken->usuario === 'admin'){
-                $response->write('El usuario es admin'); 
+            if($datosToken->perfil === 'admin'){
+                $response->write(var_dump($datosToken)); 
             }else{
                 $response->write('El usuario es no admin'); 
             }
@@ -90,11 +102,11 @@ return function (App $app) {
             $respuesta = $response->withJson($token, 200); 
             return $respuesta;
           });
-    });
+    });*/
 
     // Para encadenar middlewares
     
-    $app->get('/', function ($req, $res) {
+    /*$app->get('/', function ($req, $res) {
         return $res->write('Center');
     })->add(function ($req, $res, $next) {
         $res->write('In1');
@@ -107,6 +119,32 @@ return function (App $app) {
         $res->write('Out2');
         return $res;
     });*/
+
+    // Prueba middlewares
+
+    $app->post('/', function ($req, $res) {
+        return $res->write('Center');
+    })->add(function ($req, $res, $next) {
+        $res->write('In1');
+        $res = $next($req, $res);
+        $res->write('Out1');
+        return $res;
+    })->add(function ($req, $res, $next) {
+        $token = $req->getParam('token');
+            
+        AutentificadorJWT::verificarToken($token);
+        $datosToken = AutentificadorJWT::obtenerData($token);
+
+        if($datosToken->perfil === 'admin'){
+            $res = $next($req, $res);
+        }else{
+            $res->write('El usuario es no admin'); 
+        }
+        return $res;
+    });
+
 };
+
+
 
 ?>
