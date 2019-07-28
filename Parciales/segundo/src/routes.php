@@ -5,6 +5,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Src\App\Clases\Helper\AutentificadorJWT;
 use Src\App\Clases\Model\Usuario;
+use Src\App\Clases\Model\Log;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -39,7 +40,27 @@ return function (App $app) {
             $usuario->save();
 
             return $response->write($sb);
-          })->add(function (Request $request, Response $response, $next) {
+        })->add(function (Request $request, Response $response, $next) {
+            $token = $request->getParam('token');
+            $ruta=$request->getUri()->getPath();
+            $metodo=$request->getMethod();
+            $hora=date("His");
+            $datosToken = AutentificadorJWT::obtenerData($token);
+            $usuario=$datosToken->usuario;
+            $log=new Log;
+
+            $log->usuario=$usuario;
+            $log->metodo=$metodo;
+            $log->ruta=$ruta;
+            $log->hora=$hora;
+
+            $log->save();
+
+            $response = $next($request, $response);
+
+            return $response;
+
+        })->add(function (Request $request, Response $response, $next) {
             $token = $request->getParam('token');
                 
             AutentificadorJWT::verificarToken($token);
@@ -50,12 +71,12 @@ return function (App $app) {
             }else{
                 $response->write('El usuario es no admin'); 
             }
-            return $response;
-        });
+            return $response;;
 
           $this->get('/todos[/]', function (Request $request, Response $response, array $args) {
               return $response->write(Usuario::all()->toJson());
           });
+    });
     });
    
     $app->group('/JWT', function (){   
@@ -63,8 +84,18 @@ return function (App $app) {
             $nombre = strtolower(trim($request->getParam('nombre')));
             $clave = strtolower(trim($request->getParam('clave')));
             
-            if($nombre === 'juan' && $clave === '123456'){
-                $datos = array('usuario' => $nombre,'perfil' => 'usuario');
+            $usuarios = Usuario::where('nombre',$nombre)->get();
+
+            $userValido=null;
+            foreach ($usuarios as $usuario) {
+               if($usuario->clave === $clave){
+                    $userValido=$usuario;
+                    break;
+               }
+            }
+            
+            if($userValido){
+                $datos = array('usuario' => $userValido->nombre,'perfil' => $userValido->perfil);
                 $token= AutentificadorJWT::CrearToken($datos); 
                 $respuesta = $response->withJson($token, 200); 
             }else{
@@ -143,8 +174,7 @@ return function (App $app) {
         return $res;
     });
 
-};
-
+}
 
 
 ?>
