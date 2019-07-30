@@ -3,7 +3,9 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
+//use Slim\Http\UploadedFile;
 use Src\App\Clases\Helper\AutentificadorJWT;
+use Src\App\Clases\Helper\Altaimagen;
 use Src\App\Clases\Model\Usuario;
 use Src\App\Clases\Model\Compra;
 use Src\App\Clases\Model\Comprausuario;
@@ -13,6 +15,8 @@ use Src\App\Clases\Model\Log;
 return function (App $app) {
     $container = $app->getContainer();
 
+    $container['dirCompraImg']=__DIR__ . '\\public_html\\images\\IMGCompras\\';
+    
     // MW para loguear en la BD
     
     $logueador=function (Request $request, Response $response, $next) {
@@ -62,8 +66,6 @@ return function (App $app) {
 
         return $next($request, $response);
     };
-
-
 
     $app->group('/Usuarios', function (){   
         $this->post('/alta[/]', function (Request $request, Response $response, array $args) {
@@ -167,6 +169,41 @@ return function (App $app) {
 
             return $response->write('<h1>Se dio de alta la compra</h1>');
         });
+
+        $this->post('/altaconimagen[/]', function (Request $request, Response $response, array $args) {
+            $token = $request->getParam('token');
+            $articulo = strtolower(trim($request->getParam('articulo')));
+            $fecha = new DateTime('America/Argentina/Buenos_Aires');
+            $precio = $request->getParam('precio');
+            $archivosSubidos = $request->getUploadedFiles();
+            $archivoTmp = $archivosSubidos['archivo'];
+
+
+            $datosToken = AutentificadorJWT::obtenerData($token);
+
+            $compra = new Compra;
+
+            $compra->articulo = $articulo;
+            $compra->fecha = $fecha;
+            $compra->precio = $precio;
+            
+            $compra->save();
+
+            $usuario = Usuario::where('nombre',$datosToken->usuario)->first(); 
+
+            $comprausuario=new Comprausuario;
+
+            $comprausuario->idusuario=$usuario->id;
+            $comprausuario->idcompra=$compra->id;
+
+            $comprausuario->save();
+
+            $nombreArchivo=$compra->id . '-' . $compra->articulo;
+            
+            Altaimagen::alta($this->get('dirCompraImg'),$nombreArchivo,$archivoTmp);
+
+            return $response->write('<h1>Se dio de alta la compra</h1>');
+        });
         
         $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
             $token=$request->getParam('token');
@@ -184,6 +221,7 @@ return function (App $app) {
                 return $response->write($sb); 
             }
         });
+
     })->add($logueador)->add($autorizar);
     
     
