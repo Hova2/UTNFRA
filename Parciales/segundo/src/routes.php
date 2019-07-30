@@ -3,8 +3,10 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Src\App\Clases\Helper\AutentificadorJWT;
 use Src\App\Clases\Helper\Altaimagen;
+use Src\App\Clases\Helper\Bajaimagen;
 use Src\App\Clases\Helper\Listarimagenes;
 use Src\App\Clases\Model\Usuario;
 use Src\App\Clases\Model\Compra;
@@ -334,6 +336,19 @@ return function (App $app) {
             
             
             return $response->write($respuesta); 
+            
+        })->add($logueador)->add($autorizarAdmin);
+
+        $this->delete('/baja[/]', function (Request $request, Response $response, array $args) {
+            $idcompra = strtolower(trim($request->getParam('id')));
+            
+            $compra=Compra::where('id',$idcompra)->first();
+            Comprausuario::where('idcompra',$idcompra)->delete();
+            
+            $compra->delete();
+            Bajaimagen::baja($this->get('dirCompraImg'),$idcompra);
+            
+            return $response->write('<h1>Se borro la compra</h1>'); 
             
         })->add($logueador)->add($autorizarAdmin);
 
