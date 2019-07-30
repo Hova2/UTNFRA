@@ -104,6 +104,24 @@ return function (App $app) {
 
             return $response->write('<h1>Se modificaron la clave y el sexo correctamente</h1>');
         })->add($logueador)->add($autorizar);
+
+        $this->delete('/baja[/]', function (Request $request, Response $response, array $args) {
+            $token      = $request->getParam('token');
+            
+            $datosToken = AutentificadorJWT::obtenerData($token);
+            $usuario = Usuario::where('nombre',$datosToken->usuario)->first();
+            $compasusuario = Comprausuario::where('idusuario',$usuario->id)-get();
+
+            foreach ($compasusuario as $comprausuario) {
+                $compra=Compra::where('id',$comprausuario->idcompra)->first();
+                Comprausuario::where('idcompra',$idcompra)->delete();
+                $compra->delete();
+                Bajaimagen::baja($this->get('dirCompraImg'),$idcompra);
+            }
+            
+            return $response->write('<h1>Se borro el usuario</h1>'); 
+            
+        })->add($logueador)->add($autorizar);
     });
    
     $app->group('/JWT', function (){   
