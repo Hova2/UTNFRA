@@ -6,6 +6,7 @@ use Slim\Http\Response;
 //use Slim\Http\UploadedFile;
 use Src\App\Clases\Helper\AutentificadorJWT;
 use Src\App\Clases\Helper\Altaimagen;
+use Src\App\Clases\Helper\Listarimagenes;
 use Src\App\Clases\Model\Usuario;
 use Src\App\Clases\Model\Compra;
 use Src\App\Clases\Model\Comprausuario;
@@ -219,6 +220,23 @@ return function (App $app) {
                     $sb.=Compra::where('id',$comprausuario->idcompra)->first()->toJson();
                 }
                 return $response->write($sb); 
+            }
+        });
+            
+        $this->get('/listaconimagenes[/]', function (Request $request, Response $response, array $args) {
+            $token=$request->getParam('token');
+            $datosToken=AutentificadorJWT::obtenerData($token);
+            $usuario=Usuario::where('nombre',$datosToken->usuario)->first();
+
+            if($usuario->nombre==='admin'){
+                return $response->write(Listarimagenes::listarAdmin($this->get('dirCompraImg'))); 
+            }else{
+                $idsCompras=[];
+                $comprausuarios=Comprausuario::where('idusuario',$usuario->id)->get();
+                foreach ($comprausuarios as $comprausuario) {
+                    array_push($idsCompras,$comprausuario->idcompra);
+                }
+                return $response->write(Listarimagenes::listarUsuario($this->get('dirCompraImg'),$datosToken->usuario,$idsCompras));
             }
         });
 
