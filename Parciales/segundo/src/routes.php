@@ -110,13 +110,13 @@ return function (App $app) {
             
             $datosToken = AutentificadorJWT::obtenerData($token);
             $usuario = Usuario::where('nombre',$datosToken->usuario)->first();
-            $compasusuario = Comprausuario::where('idusuario',$usuario->id)-get();
+            $compasusuario = Comprausuario::where('idusuario',$usuario->id)->get();
 
             foreach ($compasusuario as $comprausuario) {
                 $compra=Compra::where('id',$comprausuario->idcompra)->first();
-                Comprausuario::where('idcompra',$idcompra)->delete();
+                Bajaimagen::baja($this->get('dirCompraImg'),$compra->id);
+                Comprausuario::where('idcompra',$comprausuario->idcompra)->delete();
                 $compra->delete();
-                Bajaimagen::baja($this->get('dirCompraImg'),$idcompra);
             }
 
             $usuario->delete();

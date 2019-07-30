@@ -9,7 +9,7 @@ class BajaImagen{
             for($i=2 ; $i < sizeof($imagenes) ; $i++){
                 $arrayImagen = explode('-', $imagenes[$i]);
                 if($arrayImagen[0]==$idcompra){
-                    unlink($directorio . $imagenes[$i]);
+                    unlink($directorio . '\\' .$imagenes[$i]);
                 }
             }
         }
