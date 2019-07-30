@@ -1,6 +1,6 @@
 <?php
 
-public static function marcaDeAgua($im){
+function marcaDeAgua($im){
 
 //$im = imagecreatefrompng("fotoUno.png");
 $estampa = imagecreatefrompng('fotoDos.png');

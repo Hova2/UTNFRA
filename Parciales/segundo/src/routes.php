@@ -17,13 +17,14 @@ return function (App $app) {
     $container = $app->getContainer();
 
     $container['dirCompraImg']=__DIR__ . '\\public_html\\images\\IMGCompras\\';
+    $container['marcaDeAgua']=__DIR__ . '\\public_html\\images\\marcadeagua.png';
     
     // MW para loguear en la BD
     
     $logueador=function (Request $request, Response $response, $next) {
+        $metodo=$request->getMethod();
         $token=$request->getParam('token');
         $ruta=$request->getUri()->getPath();
-        $metodo=$request->getMethod();
         $hora=new DateTime('America/Argentina/Buenos_Aires');
         $datosToken = AutentificadorJWT::obtenerData($token);
         $usuario=$datosToken->usuario;
@@ -45,7 +46,7 @@ return function (App $app) {
     // MW para autorizacion admin
 
     $autorizarAdmin=function (Request $request, Response $response, $next) {
-        $token = $request->getParam('token');
+        $token=$request->getParam('token');
             
         AutentificadorJWT::verificarToken($token);
         $datosToken = AutentificadorJWT::obtenerData($token);
@@ -60,15 +61,13 @@ return function (App $app) {
 
     // MW para autorizacion
     $autorizar=function (Request $request, Response $response, $next) {
-        $token = $request->getParam('token');
-            
+        $token=$request->getParam('token'); 
         AutentificadorJWT::verificarToken($token);
-        $datosToken = AutentificadorJWT::obtenerData($token);
 
         return $next($request, $response);
     };
 
-    $app->group('/Usuarios', function (){   
+    $app->group('/Usuarios', function () use ($logueador, $autorizarAdmin, $autorizar){   
         $this->post('/alta[/]', function (Request $request, Response $response, array $args) {
             $nombre = strtolower(trim($request->getParam('nombre')));
             $clave = strtolower(trim($request->getParam('clave')));
@@ -85,12 +84,26 @@ return function (App $app) {
             $usuario->save();
 
             return $response->write('<h1>Se dio de alta el usuario</h1>');
-        });
+        })->add($logueador)->add($autorizarAdmin);
         
         $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
             return $response->write(Usuario::all()->toJson());
-        });
-    })->add($logueador)->add($autorizarAdmin);
+        })->add($logueador)->add($autorizarAdmin);
+
+        $this->put('/modificar[/]', function (Request $request, Response $response, array $args) {
+            $token=$request->getParam('token'); 
+            $sexo = $request->getParam('sexo');
+            $clave = $request->getParam('clave');
+            $datosToken = AutentificadorJWT::obtenerData($token);
+
+            $usuario = Usuario::where('nombre',$datosToken->usuario)->first();
+            $usuario->sexo=$sexo;
+            $usuario->clave=$clave;
+            $usuario->save();
+
+            return $response->write('<h1>Se modificaron la clave y el sexo correctamente</h1>');
+        })->add($logueador)->add($autorizar);
+    });
    
     $app->group('/JWT', function (){   
         $this->post('/login[/]', function (Request $request, Response $response, array $args) {
@@ -118,7 +131,7 @@ return function (App $app) {
             }
             
             if($userValido){
-                $datos = array('usuario' => $userValido->nombre,'perfil' => $userValido->perfil,'sexo' => $userValido->sexo);
+                $datos = array('usuario' => $userValido->nombre,'perfil' => $userValido->perfil);
                 $token= AutentificadorJWT::CrearToken($datos); 
                 $respuesta = $response->withJson($token, 200); 
             }else{
@@ -205,6 +218,40 @@ return function (App $app) {
 
             return $response->write('<h1>Se dio de alta la compra</h1>');
         });
+
+        $this->post('/altaconimgmarcadeagua[/]', function (Request $request, Response $response, array $args) {
+            $token = $request->getParam('token');
+            $articulo = strtolower(trim($request->getParam('articulo')));
+            $fecha = new DateTime('America/Argentina/Buenos_Aires');
+            $precio = $request->getParam('precio');
+            $archivosSubidos = $request->getUploadedFiles();
+            $archivoTmp = $archivosSubidos['archivo'];
+
+            $datosToken = AutentificadorJWT::obtenerData($token);
+
+            $compra = new Compra;
+
+            $compra->articulo = $articulo;
+            $compra->fecha = $fecha;
+            $compra->precio = $precio;
+            
+            $compra->save();
+
+            $usuario = Usuario::where('nombre',$datosToken->usuario)->first(); 
+
+            $comprausuario=new Comprausuario;
+
+            $comprausuario->idusuario=$usuario->id;
+            $comprausuario->idcompra=$compra->id;
+
+            $comprausuario->save();
+
+            $nombreArchivo=$compra->id . '-' . $compra->articulo;
+            
+            Altaimagen::altaMarcaDeAgua($this->get('dirCompraImg'),$this->get('marcaDeAgua'),$nombreArchivo,$archivoTmp);
+
+            return $response->write('<h1>Se dio de alta la compra</h1>');
+        });
         
         $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
             $token=$request->getParam('token');
@@ -242,7 +289,13 @@ return function (App $app) {
 
     })->add($logueador)->add($autorizar);
     
-    
+    $app->group('/Logs', function (){   
+        $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
+            $metodo=strtoupper(trim($request->getParam('metodo')));
+            return $response->write(Log::where('metodo',$metodo)->get()->toJson());
+        });
+
+    })->add($logueador)->add($autorizarAdmin);
     
    
 
