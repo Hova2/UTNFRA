@@ -3,7 +3,6 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Illuminate\Support\Facades\DB;
 use Src\App\Clases\Helper\AutentificadorJWT;
 use Src\App\Clases\Helper\Altaimagen;
 use Src\App\Clases\Helper\Bajaimagen;
@@ -17,10 +16,9 @@ use Src\App\Clases\Model\Log;
 return function (App $app) {
     $container = $app->getContainer();
 
-    //$container['dirCompraImg']=__DIR__ . '\\public_html\\images\\IMGCompras\\';
-    //$container['marcaDeAgua'] = __DIR__ . '\\public_html\\images\\marcadeagua.png';
-    $container['dirCompraImg']=__DIR__ . '/public_html/images/IMGCompras/';
-    $container['marcaDeAgua'] = __DIR__ . '/public_html/images/marcadeagua.png';
+    $container['dirCompraImg']=__DIR__ . '\\public_html\\images\\IMGCompras\\';
+    $container['marcaDeAgua'] = __DIR__ . '\\public_html\\images\\marcadeagua.png';
+   
     
     // MW para loguear en la BD
     
@@ -109,7 +107,7 @@ return function (App $app) {
     });
    
     $app->group('/JWT', function (){   
-        $this->post('/login[/]', function (Request $request, Response $response, array $args) {
+        $this->get('/login[/]', function (Request $request, Response $response, array $args) {
             $nombre         = strtolower(trim($request->getParam('nombre')));
             $clave          = strtolower(trim($request->getParam('clave')));
             $sexo           = strtolower(trim($request->getParam('sexo')));
@@ -340,7 +338,7 @@ return function (App $app) {
         })->add($logueador)->add($autorizarAdmin);
 
         $this->delete('/baja[/]', function (Request $request, Response $response, array $args) {
-            $idcompra = strtolower(trim($request->getParam('id')));
+            $idcompra = $request->getParam('id');
             
             $compra=Compra::where('id',$idcompra)->first();
             Comprausuario::where('idcompra',$idcompra)->delete();
@@ -351,6 +349,20 @@ return function (App $app) {
             return $response->write('<h1>Se borro la compra</h1>'); 
             
         })->add($logueador)->add($autorizarAdmin);
+
+        $this->put('/modificar[/]', function (Request $request, Response $response, array $args) {
+            $idcompra  = $request->getParam('id');
+            $articulo  =  strtolower(trim($request->getParam('articulo')));
+            $precio = $request->getParam('precio');
+
+            $compra = Compra::where('id',$idcompra)->first();
+            
+            $compra->articulo  = $articulo;
+            $compra->precio = $precio;
+            $compra->save();
+
+            return $response->write('<h1>Se modifico la compra correctamente</h1>');
+        })->add($logueador)->add($autorizar);
 
     });
     
