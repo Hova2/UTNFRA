@@ -3,7 +3,6 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
-//use Slim\Http\UploadedFile;
 use Src\App\Clases\Helper\AutentificadorJWT;
 use Src\App\Clases\Helper\Altaimagen;
 use Src\App\Clases\Helper\Listarimagenes;
@@ -16,24 +15,26 @@ use Src\App\Clases\Model\Log;
 return function (App $app) {
     $container = $app->getContainer();
 
-    $container['dirCompraImg']=__DIR__ . '\\public_html\\images\\IMGCompras\\';
-    $container['marcaDeAgua']=__DIR__ . '\\public_html\\images\\marcadeagua.png';
+    //$container['dirCompraImg']=__DIR__ . '\\public_html\\images\\IMGCompras\\';
+    //$container['marcaDeAgua'] = __DIR__ . '\\public_html\\images\\marcadeagua.png';
+    $container['dirCompraImg']=__DIR__ . '/public_html/images/IMGCompras/';
+    $container['marcaDeAgua'] = __DIR__ . '/public_html/images/marcadeagua.png';
     
     // MW para loguear en la BD
     
     $logueador=function (Request $request, Response $response, $next) {
-        $metodo=$request->getMethod();
-        $token=$request->getParam('token');
-        $ruta=$request->getUri()->getPath();
-        $hora=new DateTime('America/Argentina/Buenos_Aires');
+        $metodo     = $request->getMethod();
+        $token      = $request->getParam('token');
+        $ruta       = $request->getUri()->getPath();
+        $hora       = new DateTime('America/Argentina/Buenos_Aires');
         $datosToken = AutentificadorJWT::obtenerData($token);
-        $usuario=$datosToken->usuario;
-        $log=new Log;
+        $usuario    = $datosToken->usuario;
+        $log        = new Log;
 
-        $log->usuario=$usuario;
-        $log->metodo=$metodo;
-        $log->ruta=$ruta;
-        $log->hora=$hora;
+        $log->usuario = $usuario;
+        $log->metodo  = $metodo;
+        $log->ruta    = $ruta;
+        $log->hora    = $hora;
 
         $log->save();
 
@@ -46,9 +47,9 @@ return function (App $app) {
     // MW para autorizacion admin
 
     $autorizarAdmin=function (Request $request, Response $response, $next) {
-        $token=$request->getParam('token');
+        $token = $request->getParam('token');
             
-        AutentificadorJWT::verificarToken($token);
+                      AutentificadorJWT::verificarToken($token);
         $datosToken = AutentificadorJWT::obtenerData($token);
 
         if($datosToken->perfil === 'admin'){
@@ -61,8 +62,8 @@ return function (App $app) {
 
     // MW para autorizacion
     $autorizar=function (Request $request, Response $response, $next) {
-        $token=$request->getParam('token'); 
-        AutentificadorJWT::verificarToken($token);
+        $token = $request->getParam('token');
+        AutentificadorJWT:: verificarToken($token);
 
         return $next($request, $response);
     };
@@ -70,15 +71,15 @@ return function (App $app) {
     $app->group('/Usuarios', function () use ($logueador, $autorizarAdmin, $autorizar){   
         $this->post('/alta[/]', function (Request $request, Response $response, array $args) {
             $nombre = strtolower(trim($request->getParam('nombre')));
-            $clave = strtolower(trim($request->getParam('clave')));
-            $sexo = strtolower(trim($request->getParam('sexo')));
+            $clave  = strtolower(trim($request->getParam('clave')));
+            $sexo   = strtolower(trim($request->getParam('sexo')));
             $perfil = 'usuario';
 
             $usuario = new Usuario;
 
             $usuario->nombre = $nombre;
-            $usuario->clave = $clave;
-            $usuario->sexo = $sexo;
+            $usuario->clave  = $clave;
+            $usuario->sexo   = $sexo;
             $usuario->perfil = $perfil;
     
             $usuario->save();
@@ -91,14 +92,14 @@ return function (App $app) {
         })->add($logueador)->add($autorizarAdmin);
 
         $this->put('/modificar[/]', function (Request $request, Response $response, array $args) {
-            $token=$request->getParam('token'); 
-            $sexo = $request->getParam('sexo');
-            $clave = $request->getParam('clave');
+            $token      = $request->getParam('token');
+            $sexo       = $request->getParam('sexo');
+            $clave      = $request->getParam('clave');
             $datosToken = AutentificadorJWT::obtenerData($token);
 
-            $usuario = Usuario::where('nombre',$datosToken->usuario)->first();
-            $usuario->sexo=$sexo;
-            $usuario->clave=$clave;
+            $usuario        = Usuario::where('nombre',$datosToken->usuario)->first();
+            $usuario->sexo  = $sexo;
+            $usuario->clave = $clave;
             $usuario->save();
 
             return $response->write('<h1>Se modificaron la clave y el sexo correctamente</h1>');
@@ -107,77 +108,83 @@ return function (App $app) {
    
     $app->group('/JWT', function (){   
         $this->post('/login[/]', function (Request $request, Response $response, array $args) {
-            $nombre = strtolower(trim($request->getParam('nombre')));
-            $clave = strtolower(trim($request->getParam('clave')));
-            $sexo = strtolower(trim($request->getParam('sexo')));
-            $coincideNombre=false;
-            $coincideClave=false;
-            $coincideSexo=false;
+            $nombre         = strtolower(trim($request->getParam('nombre')));
+            $clave          = strtolower(trim($request->getParam('clave')));
+            $sexo           = strtolower(trim($request->getParam('sexo')));
+            $coincideNombre = false;
+            $coincideClave  = false;
+            $coincideSexo   = false;
 
 
             $usuarios = Usuario::where('nombre',$nombre)->get();
 
-            $userValido=null;
+            $userValido = null;
             foreach ($usuarios as $usuario) {
-               $coincideNombre=true;
+               $coincideNombre = true;
                 if($usuario->clave === $clave){
-                    $coincideClave=true;
+                    $coincideClave = true;
                     if($usuario->sexo === $sexo){
-                        $coincideSexo=true;
-                        $userValido=$usuario;
+                        $coincideSexo = true;
+                        $userValido   = $usuario;
                         break;
                     }
                }
             }
             
             if($userValido){
-                $datos = array('usuario' => $userValido->nombre,'perfil' => $userValido->perfil);
-                $token= AutentificadorJWT::CrearToken($datos); 
-                $respuesta = $response->withJson($token, 200); 
+                $datos     = array('usuario' => $userValido->nombre,'perfil' => $userValido->perfil);
+                $token     = AutentificadorJWT::CrearToken($datos);
+                $respuesta = $response->withJson($token, 200);
             }else{
-                $aviso='';
+                $aviso = '';
                 if($coincideNombre){
                     if($coincideClave){
                         if(!$coincideSexo){
-                            $aviso='<h1>El sexo del usuario no coincide</h1>';                    
+                            $aviso = '<h1>El sexo del usuario no coincide</h1>';
                         }
                     }else{
-                        $aviso='<h1>La clave del usuario no coincide</h1>';                    
+                        $aviso = '<h1>La clave del usuario no coincide</h1>';
                     }
                 }else{
-                    $aviso='<h1>El nombre del usuario no existe</h1>';
+                    $aviso = '<h1>El nombre del usuario no existe</h1>';
                 }
                 
-                $respuesta = $response->write($aviso); 
+                $respuesta = $response->write($aviso);
             }
 
             return $respuesta;
           });
+          $this->post('/dir[/]', function (Request $request, Response $response, array $args) {
+              return $response->write(__DIR__ . '\\public_html\\images\\IMGCompras\\');
+          });
+          
     });
 
     $app->group('/Compras', function (){   
         $this->post('/alta[/]', function (Request $request, Response $response, array $args) {
-            $token = $request->getParam('token');
+            $token    = $request->getParam('token');
             $articulo = strtolower(trim($request->getParam('articulo')));
-            $fecha = new DateTime('America/Argentina/Buenos_Aires');
-            $precio = $request->getParam('precio');
+            $fecha    = new DateTime('America/Argentina/Buenos_Aires');
+            $precio   = $request->getParam('precio');
+            $tipopago = strtolower(trim($request->getParam('tipopago')));
 
             $datosToken = AutentificadorJWT::obtenerData($token);
 
             $compra = new Compra;
 
-            $compra->articulo = $articulo;
-            $compra->fecha = $fecha;
-            $compra->precio = $precio;
+            $compra->articulo   = $articulo;
+            $compra->fecha      = $fecha;
+            $compra->precio     = $precio;
+            $compra->tipopago   = $tipopago;
             
             $compra->save();
 
-            $usuario = Usuario::where('nombre',$datosToken->usuario)->first(); 
+            $usuario = Usuario::where('nombre',$datosToken->usuario)->first();
 
-            $comprausuario=new Comprausuario;
+            $comprausuario = new Comprausuario;
 
-            $comprausuario->idusuario=$usuario->id;
-            $comprausuario->idcompra=$compra->id;
+            $comprausuario->idusuario = $usuario->id;
+            $comprausuario->idcompra  = $compra->id;
 
             $comprausuario->save();
 
@@ -185,12 +192,13 @@ return function (App $app) {
         });
 
         $this->post('/altaconimagen[/]', function (Request $request, Response $response, array $args) {
-            $token = $request->getParam('token');
-            $articulo = strtolower(trim($request->getParam('articulo')));
-            $fecha = new DateTime('America/Argentina/Buenos_Aires');
-            $precio = $request->getParam('precio');
+            $token           = $request->getParam('token');
+            $articulo        = strtolower(trim($request->getParam('articulo')));
+            $fecha           = new DateTime('America/Argentina/Buenos_Aires');
+            $precio          = $request->getParam('precio');
+            $tipopago        = strtolower(trim($request->getParam('tipopago')));
             $archivosSubidos = $request->getUploadedFiles();
-            $archivoTmp = $archivosSubidos['archivo'];
+            $archivoTmp      = $archivosSubidos['archivo'];
 
 
             $datosToken = AutentificadorJWT::obtenerData($token);
@@ -198,55 +206,58 @@ return function (App $app) {
             $compra = new Compra;
 
             $compra->articulo = $articulo;
-            $compra->fecha = $fecha;
-            $compra->precio = $precio;
+            $compra->fecha    = $fecha;
+            $compra->precio   = $precio;
+            $compra->tipopago = $tipopago;
             
             $compra->save();
 
-            $usuario = Usuario::where('nombre',$datosToken->usuario)->first(); 
+            $usuario = Usuario::where('nombre',$datosToken->usuario)->first();
 
-            $comprausuario=new Comprausuario;
+            $comprausuario = new Comprausuario;
 
-            $comprausuario->idusuario=$usuario->id;
-            $comprausuario->idcompra=$compra->id;
+            $comprausuario->idusuario = $usuario->id;
+            $comprausuario->idcompra  = $compra->id;
 
             $comprausuario->save();
 
-            $nombreArchivo=$compra->id . '-' . $compra->articulo;
+            $nombreArchivo = $compra->id . '-' . $compra->articulo;
             
-            Altaimagen::alta($this->get('dirCompraImg'),$nombreArchivo,$archivoTmp);
+            Altaimagen:: alta($this->get('dirCompraImg'),$nombreArchivo,$archivoTmp);
 
             return $response->write('<h1>Se dio de alta la compra</h1>');
         });
 
         $this->post('/altaconimgmarcadeagua[/]', function (Request $request, Response $response, array $args) {
-            $token = $request->getParam('token');
-            $articulo = strtolower(trim($request->getParam('articulo')));
-            $fecha = new DateTime('America/Argentina/Buenos_Aires');
-            $precio = $request->getParam('precio');
+            $token           = $request->getParam('token');
+            $articulo        = strtolower(trim($request->getParam('articulo')));
+            $fecha           = new DateTime('America/Argentina/Buenos_Aires');
+            $precio          = $request->getParam('precio');
+            $tipopago        = strtolower(trim($request->getParam('tipopago')));
             $archivosSubidos = $request->getUploadedFiles();
-            $archivoTmp = $archivosSubidos['archivo'];
+            $archivoTmp      = $archivosSubidos['archivo'];
 
             $datosToken = AutentificadorJWT::obtenerData($token);
 
             $compra = new Compra;
 
             $compra->articulo = $articulo;
-            $compra->fecha = $fecha;
-            $compra->precio = $precio;
+            $compra->fecha    = $fecha;
+            $compra->precio   = $precio;
+            $compra->tipopago = $tipopago;
             
             $compra->save();
 
-            $usuario = Usuario::where('nombre',$datosToken->usuario)->first(); 
+            $usuario = Usuario::where('nombre',$datosToken->usuario)->first();
 
-            $comprausuario=new Comprausuario;
+            $comprausuario = new Comprausuario;
 
-            $comprausuario->idusuario=$usuario->id;
-            $comprausuario->idcompra=$compra->id;
+            $comprausuario->idusuario = $usuario->id;
+            $comprausuario->idcompra  = $compra->id;
 
             $comprausuario->save();
 
-            $nombreArchivo=$compra->id . '-' . $compra->articulo;
+            $nombreArchivo = $compra->id . '-' . $compra->articulo;
             
             Altaimagen::altaMarcaDeAgua($this->get('dirCompraImg'),$this->get('marcaDeAgua'),$nombreArchivo,$archivoTmp);
 
@@ -254,32 +265,32 @@ return function (App $app) {
         });
         
         $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
-            $token=$request->getParam('token');
-            $datosToken=AutentificadorJWT::obtenerData($token);
-            $usuario=Usuario::where('nombre',$datosToken->usuario)->first();
+            $token      = $request->getParam('token');
+            $datosToken = AutentificadorJWT::obtenerData($token);
+            $usuario    = Usuario::where('nombre',$datosToken->usuario)->first();
 
             if($usuario->nombre==='admin'){
                 return $response->write(Compra::all()->toJson()); 
             }else{
-                $sb='';
-                $comprausuarios=Comprausuario::where('idusuario',$usuario->id)->get();
+                $sb             = '';
+                $comprausuarios = Comprausuario::where('idusuario',$usuario->id)->get();
                 foreach ($comprausuarios as $comprausuario) {
-                    $sb.=Compra::where('id',$comprausuario->idcompra)->first()->toJson();
+                    $sb .= Compra::where('id',$comprausuario->idcompra)->first()->toJson();
                 }
                 return $response->write($sb); 
             }
         });
             
         $this->get('/listaconimagenes[/]', function (Request $request, Response $response, array $args) {
-            $token=$request->getParam('token');
-            $datosToken=AutentificadorJWT::obtenerData($token);
-            $usuario=Usuario::where('nombre',$datosToken->usuario)->first();
+            $token      = $request->getParam('token');
+            $datosToken = AutentificadorJWT::obtenerData($token);
+            $usuario    = Usuario::where('nombre',$datosToken->usuario)->first();
 
             if($usuario->nombre==='admin'){
                 return $response->write(Listarimagenes::listarAdmin($this->get('dirCompraImg'))); 
             }else{
-                $idsCompras=[];
-                $comprausuarios=Comprausuario::where('idusuario',$usuario->id)->get();
+                $idsCompras     = [];
+                $comprausuarios = Comprausuario::where('idusuario',$usuario->id)->get();
                 foreach ($comprausuarios as $comprausuario) {
                     array_push($idsCompras,$comprausuario->idcompra);
                 }
@@ -291,7 +302,7 @@ return function (App $app) {
     
     $app->group('/Logs', function (){   
         $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
-            $metodo=strtoupper(trim($request->getParam('metodo')));
+            $metodo = strtoupper(trim($request->getParam('metodo')));
             return $response->write(Log::where('metodo',$metodo)->get()->toJson());
         });
 
