@@ -16,7 +16,7 @@ use Src\App\Clases\Model\Log;
 return function (App $app) {
     $container = $app->getContainer();
 
-    $container['dirCompraImg']=__DIR__ . '\\public_html\\images\\IMGCompras\\';
+    $container['dirCompraImg']=__DIR__ . '\\public_html\\images\\IMGCompras';
     $container['marcaDeAgua'] = __DIR__ . '\\public_html\\images\\marcadeagua.png';
    
     
@@ -118,6 +118,8 @@ return function (App $app) {
                 $compra->delete();
                 Bajaimagen::baja($this->get('dirCompraImg'),$idcompra);
             }
+
+            $usuario->delete();
             
             return $response->write('<h1>Se borro el usuario</h1>'); 
             
@@ -369,7 +371,7 @@ return function (App $app) {
         })->add($logueador)->add($autorizarAdmin);
 
         $this->put('/modificar[/]', function (Request $request, Response $response, array $args) {
-            $idcompra  = $request->getParam('id');
+            $idcompra  = $request->getParam('idcompra');
             $articulo  =  strtolower(trim($request->getParam('articulo')));
             $precio = $request->getParam('precio');
 
