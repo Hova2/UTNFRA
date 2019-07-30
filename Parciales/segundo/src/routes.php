@@ -154,13 +154,11 @@ return function (App $app) {
 
             return $respuesta;
           });
-          $this->post('/dir[/]', function (Request $request, Response $response, array $args) {
-              return $response->write(__DIR__ . '\\public_html\\images\\IMGCompras\\');
-          });
+          
           
     });
 
-    $app->group('/Compras', function (){   
+    $app->group('/Compras', function () use ($logueador, $autorizarAdmin, $autorizar){   
         $this->post('/alta[/]', function (Request $request, Response $response, array $args) {
             $token    = $request->getParam('token');
             $articulo = strtolower(trim($request->getParam('articulo')));
@@ -189,7 +187,7 @@ return function (App $app) {
             $comprausuario->save();
 
             return $response->write('<h1>Se dio de alta la compra</h1>');
-        });
+        })->add($logueador)->add($autorizar);
 
         $this->post('/altaconimagen[/]', function (Request $request, Response $response, array $args) {
             $token           = $request->getParam('token');
@@ -226,7 +224,7 @@ return function (App $app) {
             Altaimagen:: alta($this->get('dirCompraImg'),$nombreArchivo,$archivoTmp);
 
             return $response->write('<h1>Se dio de alta la compra</h1>');
-        });
+        })->add($logueador)->add($autorizar);
 
         $this->post('/altaconimgmarcadeagua[/]', function (Request $request, Response $response, array $args) {
             $token           = $request->getParam('token');
@@ -262,7 +260,7 @@ return function (App $app) {
             Altaimagen::altaMarcaDeAgua($this->get('dirCompraImg'),$this->get('marcaDeAgua'),$nombreArchivo,$archivoTmp);
 
             return $response->write('<h1>Se dio de alta la compra</h1>');
-        });
+        })->add($logueador)->add($autorizar);
         
         $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
             $token      = $request->getParam('token');
@@ -279,7 +277,7 @@ return function (App $app) {
                 }
                 return $response->write($sb); 
             }
-        });
+        })->add($logueador)->add($autorizar);
             
         $this->get('/listaconimagenes[/]', function (Request $request, Response $response, array $args) {
             $token      = $request->getParam('token');
@@ -296,9 +294,50 @@ return function (App $app) {
                 }
                 return $response->write(Listarimagenes::listarUsuario($this->get('dirCompraImg'),$datosToken->usuario,$idsCompras));
             }
-        });
+        })->add($logueador)->add($autorizar);
 
-    })->add($logueador)->add($autorizar);
+        $this->get('/listaconfiltros[/]', function (Request $request, Response $response, array $args) {
+            $filto = strtolower(trim($request->getParam('filtro')));
+            $valor = strtolower(trim($request->getParam('valor')));
+            
+            $respuesta = '';
+
+            switch($filto){
+                case 'nombre':
+                    $usuario=Usuario::where('nombre',$valor)->first();
+                    $comprausuarios = Comprausuario::where('idusuario',$usuario->id)->get();
+                    foreach ($comprausuarios as $comprausuario) {
+                        $compra=Compra::where('id',$comprausuario->idcompra)->first()->toJson();
+                        $respuesta.=$compra;
+                        $respuesta .= '<br>';
+                    }
+                break;
+                case 'articulo':
+                    $compras = Compra::all();
+                    foreach ($compras as $compra) {
+                        if($compra->articulo==$valor){
+                            $respuesta .= $compra;
+                            $respuesta .= '<br>';
+                        }
+                    }
+                break;
+                case 'tipodepago':
+                    $compras = Compra::all();
+                    foreach ($compras as $compra) {
+                        if($compra->tipopago==$valor){
+                            $respuesta .= $compra;
+                            $respuesta .= '<br>';
+                        }
+                    }
+                break;
+            }
+            
+            
+            return $response->write($respuesta); 
+            
+        })->add($logueador)->add($autorizarAdmin);
+
+    });
     
     $app->group('/Logs', function (){   
         $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
