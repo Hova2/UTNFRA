@@ -7,28 +7,56 @@ use Src\App\Clases\Helper\AutentificadorJWT;
 use Src\App\Clases\Model\Usuario;
 use Src\App\Clases\Model\Log;
 
+
 return function (App $app) {
     $container = $app->getContainer();
+
+    // MW para loguear en la BD
+    
+    $logueador=function (Request $request, Response $response, $next) {
+        $token=$request->getParam('token');
+        $ruta=$request->getUri()->getPath();
+        $metodo=$request->getMethod();
+        $hora=new DateTime('America/Argentina/Buenos_Aires');
+        $datosToken = AutentificadorJWT::obtenerData($token);
+        $usuario=$datosToken->usuario;
+        $log=new Log;
+
+        $log->usuario=$usuario;
+        $log->metodo=$metodo;
+        $log->ruta=$ruta;
+        $log->hora=$hora;
+
+        $log->save();
+
+        $response = $next($request, $response);
+
+        return $response;
+
+    };
+
+    // MW para autorizacion
+
+    $autorizar=function (Request $request, Response $response, $next) {
+        $token = $request->getParam('token');
+            
+        AutentificadorJWT::verificarToken($token);
+        $datosToken = AutentificadorJWT::obtenerData($token);
+
+        if($datosToken->perfil === 'admin'){
+            $response = $next($request, $response);
+        }else{
+            $response->write('<h1>El usuario es no admin</h1>'); 
+        }
+        return $response;;
+    }; 
 
     $app->group('/Usuarios', function (){   
         $this->post('/alta[/]', function (Request $request, Response $response, array $args) {
             $nombre = strtolower(trim($request->getParam('nombre')));
             $clave = strtolower(trim($request->getParam('clave')));
             $sexo = strtolower(trim($request->getParam('sexo')));
-            
             $perfil = 'usuario';
-
-            $sb = 'Nombre: ';
-            $sb .= $nombre;
-            $sb .= ' - ';
-            $sb .= 'Clave: ';
-            $sb .= $clave;
-            $sb .= ' - ';
-            $sb .= 'Sexo: ';
-            $sb .= $sexo;
-            $sb .= ' - ';
-            $sb .= 'Perfil: ';
-            $sb .= $perfil;
 
             $usuario = new Usuario;
 
@@ -39,85 +67,61 @@ return function (App $app) {
     
             $usuario->save();
 
-            return $response->write($sb);
-        })->add(function (Request $request, Response $response, $next) {
-            $token = $request->getParam('token');
-            $ruta=$request->getUri()->getPath();
-            $metodo=$request->getMethod();
-            $hora=date("His");
-            $datosToken = AutentificadorJWT::obtenerData($token);
-            $usuario=$datosToken->usuario;
-            $log=new Log;
-
-            $log->usuario=$usuario;
-            $log->metodo=$metodo;
-            $log->ruta=$ruta;
-            $log->hora=$hora;
-
-            $log->save();
-
-            $response = $next($request, $response);
-
-            return $response;
-
-        })->add(function (Request $request, Response $response, $next) {
-            $token = $request->getParam('token');
-                
-            AutentificadorJWT::verificarToken($token);
-            $datosToken = AutentificadorJWT::obtenerData($token);
-    
-            if($datosToken->perfil === 'admin'){
-                $response = $next($request, $response);
-            }else{
-                $response->write('El usuario es no admin'); 
-            }
-            return $response;;
-
-          $this->get('/todos[/]', function (Request $request, Response $response, array $args) {
-              return $response->write(Usuario::all()->toJson());
-          });
-    });
-    });
+            return $response->write('<h1>Se dio de alta el usuario</h1>');
+        });
+        
+        $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
+            return $response->write(Usuario::all()->toJson());
+        });
+    })->add($logueador)->add($autorizar);
    
     $app->group('/JWT', function (){   
         $this->post('/login[/]', function (Request $request, Response $response, array $args) {
             $nombre = strtolower(trim($request->getParam('nombre')));
             $clave = strtolower(trim($request->getParam('clave')));
-            
+            $sexo = strtolower(trim($request->getParam('sexo')));
+            $coincideNombre=false;
+            $coincideClave=false;
+            $coincideSexo=false;
+
+
             $usuarios = Usuario::where('nombre',$nombre)->get();
 
             $userValido=null;
             foreach ($usuarios as $usuario) {
-               if($usuario->clave === $clave){
-                    $userValido=$usuario;
-                    break;
+               $coincideNombre=true;
+                if($usuario->clave === $clave){
+                    $coincideClave=true;
+                    if($usuario->sexo === $sexo){
+                        $coincideSexo=true;
+                        $userValido=$usuario;
+                        break;
+                    }
                }
             }
             
             if($userValido){
-                $datos = array('usuario' => $userValido->nombre,'perfil' => $userValido->perfil);
+                $datos = array('usuario' => $userValido->nombre,'perfil' => $userValido->perfil,'sexo' => $userValido->sexo);
                 $token= AutentificadorJWT::CrearToken($datos); 
                 $respuesta = $response->withJson($token, 200); 
             }else{
-                $respuesta = $response->write('Usuario invalido'); 
+                $aviso='';
+                if($coincideNombre){
+                    if($coincideClave){
+                        if(!$coincideSexo){
+                            $aviso='<h1>El sexo del usuario no coincide</h1>';                    
+                        }
+                    }else{
+                        $aviso='<h1>La clave del usuario no coincide</h1>';                    
+                    }
+                }else{
+                    $aviso='<h1>El nombre del usuario no existe</h1>';
+                }
+                
+                $respuesta = $response->write($aviso); 
             }
 
             return $respuesta;
-          });
-
-          $this->post('/prueba[/]', function (Request $request, Response $response, array $args) {
-            $token = $request->getParam('token');
-            
-            AutentificadorJWT::verificarToken($token);
-            $datosToken = AutentificadorJWT::obtenerData($token);
-            
-            if($datosToken->perfil === 'admin'){
-                $response->write(var_dump($datosToken)); 
-            }else{
-                $response->write('El usuario es no admin'); 
-            }
-            
-            return $response;
           });
     });
 
