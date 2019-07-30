@@ -317,41 +317,30 @@ return function (App $app) {
         })->add($logueador)->add($autorizar);
 
         $this->get('/listaconfiltros[/]', function (Request $request, Response $response, array $args) {
-            $filto = strtolower(trim($request->getParam('filtro')));
             $valor = strtolower(trim($request->getParam('valor')));
             
             $respuesta = '';
 
-            switch($filto){
-                case 'nombre':
-                    $usuario=Usuario::where('nombre',$valor)->first();
-                    $comprausuarios = Comprausuario::where('idusuario',$usuario->id)->get();
-                    foreach ($comprausuarios as $comprausuario) {
-                        $compra=Compra::where('id',$comprausuario->idcompra)->first()->toJson();
-                        $respuesta.=$compra;
-                        $respuesta .= '<br>';
-                    }
-                break;
-                case 'articulo':
-                    $compras = Compra::all();
-                    foreach ($compras as $compra) {
-                        if($compra->articulo==$valor){
-                            $respuesta .= $compra;
-                            $respuesta .= '<br>';
-                        }
-                    }
-                break;
-                case 'tipodepago':
-                    $compras = Compra::all();
-                    foreach ($compras as $compra) {
-                        if($compra->tipopago==$valor){
-                            $respuesta .= $compra;
-                            $respuesta .= '<br>';
-                        }
-                    }
-                break;
+            $usuario=Usuario::where('nombre',$valor)->first();
+            $comprausuarios = Comprausuario::where('idusuario',$usuario->id)->get();
+            foreach ($comprausuarios as $comprausuario) {
+                $compra=Compra::where('id',$comprausuario->idcompra)->first()->toJson();
+                $respuesta.=$compra;
+                $respuesta .= '<br>';
             }
-            
+            $compras = Compra::all();
+            foreach ($compras as $compra) {
+                if($compra->articulo==$valor){
+                        $respuesta .= $compra;
+                        $respuesta .= '<br>';
+                }
+            }
+            foreach ($compras as $compra) {
+                if($compra->tipopago==$valor){
+                    $respuesta .= $compra;
+                    $respuesta .= '<br>';
+                }
+            }                   
             
             return $response->write($respuesta); 
             
