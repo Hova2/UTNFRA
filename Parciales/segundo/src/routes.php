@@ -5,6 +5,8 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Src\App\Clases\Helper\AutentificadorJWT;
 use Src\App\Clases\Model\Usuario;
+use Src\App\Clases\Model\Compra;
+use Src\App\Clases\Model\Comprausuario;
 use Src\App\Clases\Model\Log;
 
 
@@ -35,9 +37,9 @@ return function (App $app) {
 
     };
 
-    // MW para autorizacion
+    // MW para autorizacion admin
 
-    $autorizar=function (Request $request, Response $response, $next) {
+    $autorizarAdmin=function (Request $request, Response $response, $next) {
         $token = $request->getParam('token');
             
         AutentificadorJWT::verificarToken($token);
@@ -48,8 +50,20 @@ return function (App $app) {
         }else{
             $response->write('<h1>El usuario es no admin</h1>'); 
         }
-        return $response;;
-    }; 
+        return $response;
+    };
+
+    // MW para autorizacion
+    $autorizar=function (Request $request, Response $response, $next) {
+        $token = $request->getParam('token');
+            
+        AutentificadorJWT::verificarToken($token);
+        $datosToken = AutentificadorJWT::obtenerData($token);
+
+        return $next($request, $response);
+    };
+
+
 
     $app->group('/Usuarios', function (){   
         $this->post('/alta[/]', function (Request $request, Response $response, array $args) {
@@ -73,7 +87,7 @@ return function (App $app) {
         $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
             return $response->write(Usuario::all()->toJson());
         });
-    })->add($logueador)->add($autorizar);
+    })->add($logueador)->add($autorizarAdmin);
    
     $app->group('/JWT', function (){   
         $this->post('/login[/]', function (Request $request, Response $response, array $args) {
@@ -125,58 +139,56 @@ return function (App $app) {
           });
     });
 
-    
-    
-    
-    /*// Para cear un Token
-        
-    $app->group('/JWT', function (){   
-        $this->get('/crearToken[/]', function (Request $request, Response $response) {
-            $datos = array('usuario' => 'eeee@ma.il','perfil' => 'Administrador', 'alias' => "Pepe");
-            $token= AutentificadorJWT::CrearToken($datos); 
-            $respuesta = $response->withJson($token, 200); 
-            return $respuesta;
-          });
-    });*/
+    $app->group('/Compras', function (){   
+        $this->post('/alta[/]', function (Request $request, Response $response, array $args) {
+            $token = $request->getParam('token');
+            $articulo = strtolower(trim($request->getParam('articulo')));
+            $fecha = new DateTime('America/Argentina/Buenos_Aires');
+            $precio = $request->getParam('precio');
 
-    // Para encadenar middlewares
-    
-    /*$app->get('/', function ($req, $res) {
-        return $res->write('Center');
-    })->add(function ($req, $res, $next) {
-        $res->write('In1');
-        $res = $next($req, $res);
-        $res->write('Out1');
-        return $res;
-    })->add(function ($req, $res, $next) {
-        $res->write('In2');
-        $res = $next($req, $res);
-        $res->write('Out2');
-        return $res;
-    });*/
+            $datosToken = AutentificadorJWT::obtenerData($token);
 
-    // Prueba middlewares
+            $compra = new Compra;
 
-    $app->post('/', function ($req, $res) {
-        return $res->write('Center');
-    })->add(function ($req, $res, $next) {
-        $res->write('In1');
-        $res = $next($req, $res);
-        $res->write('Out1');
-        return $res;
-    })->add(function ($req, $res, $next) {
-        $token = $req->getParam('token');
+            $compra->articulo = $articulo;
+            $compra->fecha = $fecha;
+            $compra->precio = $precio;
             
-        AutentificadorJWT::verificarToken($token);
-        $datosToken = AutentificadorJWT::obtenerData($token);
+            $compra->save();
 
-        if($datosToken->perfil === 'admin'){
-            $res = $next($req, $res);
-        }else{
-            $res->write('El usuario es no admin'); 
-        }
-        return $res;
-    });
+            $usuario = Usuario::where('nombre',$datosToken->usuario)->first(); 
+
+            $comprausuario=new Comprausuario;
+
+            $comprausuario->idusuario=$usuario->id;
+            $comprausuario->idcompra=$compra->id;
+
+            $comprausuario->save();
+
+            return $response->write('<h1>Se dio de alta la compra</h1>');
+        });
+        
+        $this->get('/lista[/]', function (Request $request, Response $response, array $args) {
+            $token=$request->getParam('token');
+            $datosToken=AutentificadorJWT::obtenerData($token);
+            $usuario=Usuario::where('nombre',$datosToken->usuario)->first();
+
+            if($usuario->nombre==='admin'){
+                return $response->write(Compra::all()->toJson()); 
+            }else{
+                $sb='';
+                $comprausuarios=Comprausuario::where('idusuario',$usuario->id)->get();
+                foreach ($comprausuarios as $comprausuario) {
+                    $sb.=Compra::where('id',$comprausuario->idcompra)->first()->toJson();
+                }
+                return $response->write($sb); 
+            }
+        });
+    })->add($logueador)->add($autorizar);
+    
+    
+    
+   
 
 }
 
