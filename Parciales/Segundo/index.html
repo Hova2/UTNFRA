@@ -12,22 +12,45 @@
     <title>Segundo parcial</title>
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          1 of 2
+    <div class="container-fluid">
+      <div class="row-12 bg-primary rounded-top border-top border-right border-left border-dark">
+        <div class="col-12 mb-2">
+          <p class="h1 text-center font-weight-bolder">Veterinaria</p>
         </div>
-        <div class="col">
-          2 of 2
+        <div class="col-12 rounded-top bg-warning">
+            <p class="h3 text-center font-weight-bolder">Datos de la mascota</p>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          1 of 2
-        </div>
-        <div class="col">
-          2 of 2
-        </div>
+        <form>
+          <div class="form-row mx-0 mb-2 rounded-top bg-success">
+            <div class="col-sm-auto col-md-4 text-center mb-2">
+                <label for="inputId" class="font-weight-bolder">ID</label>
+                <input type="number" class="form-control" id="inputId" placeholder="Igrese ID">
+            </div>
+            <div class="col-sm-auto col-md-4 text-center mb-2">
+                <label for="inputNombre" class="font-weight-bolder">Nombre</label>
+                <input type="text" class="form-control" id="inputNombre" placeholder="Igrese nombre">
+            </div>
+            <div class="col-sm-auto col-md-4 text-center mb-2">
+                <label for="inputEdad" class="font-weight-bolder">Edad</label>
+                <input type="number" class="form-control text-center" id="inputEdad" placeholder="Igrese edad" min="1" max="150">
+            </div>
+              <div class="col-sm-auto col-md-6 text-center mb-2">
+                <label for="selectTipo" class="font-weight-bolder">Igrese el tipo </label>
+                <select id="selectTipo"class="custom-select">
+                    <option selected>Elegir el tipo</option>
+                    <option value="1">Reptil</option>
+                    <option value="2">Ave</option>
+                    <option value="3">Roedor</option>
+                    <option value="4">Felino</option>
+                </select>
+              </div>
+              <div class="col-sm-auto col-md-6 text-center mb-2">
+                    <label for="inputPatas" class="font-weight-bolder">Igrese la cantidad de patas</label>
+                    <input type="number" class="form-control text-center" id="inputPatas" placeholder="Igrese el N° de patas" min="1" max="4">
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </body>
