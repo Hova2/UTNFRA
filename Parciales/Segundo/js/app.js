@@ -1,7 +1,5 @@
 $(document).ready(asignarManejadores);
 $(document).ready(traerMascotas);
-var lastId = 1;
-var mascotas = new Array();
 function asignarManejadores() {
     $('#btnSetMascota').click(altaMascota);
 }
