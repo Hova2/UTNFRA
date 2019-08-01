@@ -1,5 +1,12 @@
+$(document).ready(asignarManejadores);
 $(document).ready(traerMascotas);
+var lastId = 1;
+var mascotas = new Array();
+function asignarManejadores() {
+    $('#btnSetMascota').click(altaMascota);
+}
 function crearTabla(arregloDatos) {
+    console.log(arregloDatos);
     var tabla = $('<table>');
     var contenedor = $('#contenedor');
     var indices = Object.keys(arregloDatos[0]);
@@ -24,9 +31,11 @@ function crearTabla(arregloDatos) {
     contenedor.append(tabla);
 }
 function traerMascotas() {
-    var personajes = new Array();
-    if (personajes.length > 0) {
-        crearTabla(personajes);
+    for (var i = 1; i != localStorage.length; i++) {
+        mascotas.push(JSON.parse(localStorage.getItem(String(i))));
+    }
+    if (mascotas.length > 0) {
+        crearTabla(mascotas);
     }
     else {
         var mensaje = $('<h1>');
@@ -35,4 +44,30 @@ function traerMascotas() {
         contenedor.empty();
         contenedor.append(mensaje);
     }
+}
+function altaMascota() {
+    var id = lastId;
+    var nombre = $("#formMascotas").find('input[id=inputNombre]').val();
+    var edad = $("#formMascotas").find('input[id=inputEdad]').val();
+    var patas = $("#formMascotas").find('input[id=inputPatas]').val();
+    var tipo = $("#formMascotas").find('select[id=selectTipo] option:selected').text();
+    var tipoanimal;
+    switch (tipo) {
+        case 'Reptil':
+            tipoanimal = TipoAnimal.reptil;
+            break;
+        case 'Ave':
+            tipoanimal = TipoAnimal.ave;
+            break;
+        case 'Roedor':
+            tipoanimal = TipoAnimal.roedor;
+            break;
+        case 'Felino':
+            tipoanimal = TipoAnimal.felino;
+            break;
+    }
+    var mascota = new Mascota(id, tipoanimal, Number(patas), String(nombre), Number(edad));
+    console.log(mascota.id);
+    localStorage.setItem(String(lastId), JSON.stringify(mascota));
+    lastId++;
 }
