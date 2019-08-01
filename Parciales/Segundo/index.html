@@ -12,16 +12,16 @@
     <title>Segundo parcial</title>
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row-12 bg-primary rounded-top border-top border-right border-left border-dark">
+    <div class="container-fluid bg-primary rounded border border-dark">
+      <div class="row-12 ">
         <div class="col-12 mb-2">
           <p class="h1 text-center font-weight-bolder">Veterinaria</p>
         </div>
-        <div class="col-12 rounded-top bg-warning">
+        <div class="col-12 mb-2 rounded bg-warning border border-dark">
             <p class="h3 text-center font-weight-bolder">Datos de la mascota</p>
         </div>
         <form>
-          <div class="form-row mx-0 mb-2 rounded-top bg-success">
+          <div class="form-row mb-2 rounded bg-primary">
             <div class="col-sm-auto col-md-4 text-center mb-2">
                 <label for="inputId" class="font-weight-bolder">ID</label>
                 <input type="number" class="form-control" id="inputId" placeholder="Igrese ID">
@@ -49,8 +49,42 @@
                     <input type="number" class="form-control text-center" id="inputPatas" placeholder="Igrese el N° de patas" min="1" max="4">
               </div>
             </div>
+            <div class="col-12 mb-2 rounded bg-warning border border-dark">
+                <p class="h4 text-center font-weight-bolder">Acciones</p>
+            </div>
+            <div class="text-center mb-2 col-sm-auto col-md-12">
+              <button type="submit" class="btn mr-2 col-md-2 btn-info border border-dark">Agregar</button>
+              <button type="submit" class="btn mr-2 col-md-2 btn-info border border-dark">Modificar</button>
+              <button type="submit" class="btn mr-2 col-md-2 btn-danger border border-dark">Eliminar</button>
+            </div>
           </div>
         </form>
+        <div class="col-12 mb-2 rounded bg-warning border border-dark">
+            <p class="h4 text-center font-weight-bolder">Filtros</p>
+        </div>
+        <div class="col-sm-auto col-md-12 d-inline-flex">
+          <form> 
+            
+              <label for="selectTipo" class="col-sm-auto col-md-3 font-weight-bolder col-form-label">Igrese el tipo </label>
+              <select id="selectTipo" class="custom-select col-sm-auto col-md-3">
+                <option selected>Elegir el tipo</option>
+                <option value="1">Reptil</option>
+                <option value="2">Ave</option>
+                <option value="3">Roedor</option>
+                <option value="4">Felino</option>
+              </select>
+              <button type="submit" class="btn col-sm-auto col-md-1 btn-info border border-dark">Filtrar</button>
+          
+          </form>
+          <form>
+              <div class="col-sm-auto col-md-5 text-center">
+                <label for="selectTipo" class="col-sm-auto col-md-3 font-weight-bolder col-form-label">Igrese el tipo </label>
+              </div>
+            </form>
+        </div>
+        <div class="text-center col-sm-auto col-md-12">
+            <button type="button" class="btn mr-2 col-md-2 btn-danger border border-dark ">Limpiar local storage</button>
+        </div>
       </div>
     </div>
   </body>
