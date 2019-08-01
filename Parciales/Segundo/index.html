@@ -9,49 +9,67 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="./js/tipoanimal.js"></script>
-    <script src="./js/animal.js"></script>
-    <script src="./js/mascota.js"></script>
+    <script src="./js/tipolegislador.js"></script>
+    <script src="./js/persona.js"></script>
+    <script src="./js/legislador.js"></script>
     <script src="./js/app.js"></script>
     <title>Segundo parcial</title>
   </head>
   <body>
     <div class="container bg-primary rounded border border-dark">
       <div class="row">
-        <p class="h1 col-sm-auto col-md-12 text-center font-weight-bolder mb-2">Veterinaria</p>
+        <p class="h1 col-sm-auto col-md-12 text-center font-weight-bolder mb-2">Congreso</p>
       </div>
       <div class="row rounded bg-warning border border-dark mb-2">
-        <p class="h4 col-sm-auto col-md-12 text-center font-weight-bolder">Datos de la mascota</p>
+        <p class="h4 col-sm-auto col-md-12 text-center font-weight-bolder">Datos del legislador</p>
       </div>
-      <form id="formMascotas">
+      <form id="formLegisladores">
         <div class="form-row mb-2">
-          <div class="form-group col-sm-auto col-md-4 text-center mb-2">
+          <div class="form-group col-sm-auto col-md-2 text-center mb-2">
               <label for="inputId" class="font-weight-bolder">ID</label>
               <input type="number" class="form-control" id="inputId" disabled>
-          </div>
-          <div class="form-group col-sm-auto col-md-4 text-center mb-2">
-            <label for="inputNombre" class="font-weight-bolder">Nombre</label>
-            <input type="text" class="form-control" id="inputNombre" placeholder="Igrese nombre">
-          </div>
-          <div class="form-group col-sm-auto col-md-4 text-center mb-2">
-            <label for="inputEdad" class="font-weight-bolder">Edad</label>
-            <input type="number" class="form-control" id="inputEdad" placeholder="Igrese edad" min="1" max="150">
           </div>
         </div>
         <div class="form-row mb-2">
           <div class="form-group col-sm-auto col-md-6 text-center mb-2">
-            <label for="selectTipo" class="font-weight-bolder">Igrese el tipo </label>
-            <select id="selectTipo"class="custom-select">
-                <option selected>Elegir el tipo</option>
-                <option value="1">Reptil</option>
-                <option value="2">Ave</option>
-                <option value="3">Roedor</option>
-                <option value="4">Felino</option>
-            </select>
+            <label for="inputNombre" class="font-weight-bolder">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" placeholder="Igrese nombre">
           </div>
           <div class="form-group col-sm-auto col-md-6 text-center mb-2">
-            <label for="inputPatas" class="font-weight-bolder">Igrese la cantidad de patas</label>
-            <input type="number" class="form-control text-center" id="inputPatas" placeholder="Igrese el N° de patas" min="1" max="4">
+            <label for="inputApellido" class="font-weight-bolder">Apellido</label>
+            <input type="text" class="form-control" id="inputApellido" placeholder="Igrese apellido">
+          </div>
+        </div>
+        <div class="form-row mb-2">
+          <div class="form-group col-sm-auto col-md-6 text-center mb-2">
+            <label for="inputEmail" class="font-weight-bolder">E-Mail</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Igrese e-mail">
+          </div>
+          <div class="form-group col-sm-auto col-md-6 text-center mb-2">
+            <label for="inputEdad" class="font-weight-bolder">Edad</label>
+            <input type="number" class="form-control" id="inputEdad" placeholder="Igrese edad" min="1" max="150">
+          </div>
+        </div>
+        <div class="form-row-12 text-center d-flex mb-2 rounded bg-success border border-dark">
+          <p class="font-weight-bolder">Sexo</p>
+          <div class="btn-group col-sm-auto col-md-6" data-toggle="buttons">
+            <label for="inputHombre" class="btn btn-default">
+            <input type="radio" name="inputSexo" id="inputHombre" value="Hombre" checked>
+            Hombre </label>
+            <label for="inputMujer" class="btn btn-default">
+            <input type="radio" name="inputSexo" id="inputMujer" value="Mujer">
+            Mujer </label>
+          </div>
+        </div>
+        <div class="form-row-12 d-flex mb-2 rounded bg-success border border-dark">
+          <p class="font-weight-bolder">Tipo de legislador</p>
+          <div class="btn-group col-sm-auto col-md-6" data-toggle="buttons">
+            <label for="inputDiputado" class="btn btn-default">
+            <input type="radio" name="inputLegislador" id="inputDiputado" value="diputado" checked>
+            Diputado </label>
+            <label for="inputSenador" class="btn btn-default">
+            <input type="radio" name="inputLegislador" id="inputSenador" value="senador">
+            Senador </label>
           </div>
         </div>
         <div class="form-row rounded bg-success border border-dark mb-2">
@@ -59,7 +77,7 @@
         </div>
         <div class="form-row mb-2">
           <div class="form-group text-center mb-2 col-12">
-            <button type="submit" id="btnSetMascota" class="btn btn-info border border-dark">Agregar</button>
+            <button type="submit" id="btnSetLegislador" class="btn btn-info border border-dark">Agregar</button>
             <button type="submit" class="btn btn-info border border-dark">Modificar</button>
             <button type="submit" class="btn btn-danger border border-dark">Eliminar</button>
           </div>
@@ -74,14 +92,12 @@
             <label for="selectTipo" class="col-auto font-weight-bolder col-form-label">Igrese el tipo</label>
             <div class="col-auto">
               <select id="selectTipo" class="custom-select">
-                <option selected>Elegir el tipo</option>
-                <option value="1">Reptil</option>
-                <option value="2">Ave</option>
-                <option value="3">Roedor</option>
-                <option value="4">Felino</option>
+                <option selected>Todos</option>
+                <option value="1">Diputado</option>
+                <option value="2">Senador</option>
               </select>
             </div>
-            <button type="submit" class="col-auto btn btn-info border border-dark">Filtrar</button>
+            <input type="button" id="btnFiltrarTipo" class="col-auto btn btn-info border border-dark" value="Filtrar por tipo">
           </div>
         </form>
         <form>
@@ -98,21 +114,33 @@
           <p class="h4 col-sm-auto col-md-12 text-center font-weight-bolder">Seleccionar columna</p>
       </div>
       <div class="row-12 d-flex bg-success rounded border border-dark mb-2">
-        <div class="custom-control custom-switch col-sm-auto col-md-3 text-center">
+        <div class="custom-control custom-switch col-sm-auto col-md-1 text-center">
           <input type="checkbox" class="custom-control-input" id="chkId">
           <label class="custom-control-label font-weight-bolder" for="chkId">ID</label>
         </div>
-        <div class="custom-control custom-switch col-sm-auto col-md-3 text-center ">
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center ">
           <input type="checkbox" class="custom-control-input" id="chkNombre">
           <label class="custom-control-label font-weight-bolder" for="chkNombre">Nombre</label>
         </div>
-        <div class="custom-control custom-switch col-sm-auto col-md-3 text-center">
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center ">
+          <input type="checkbox" class="custom-control-input" id="chkApellido">
+          <label class="custom-control-label font-weight-bolder" for="chkApellido">Apellido</label>
+        </div>
+        <div class="custom-control custom-switch col-sm-auto col-md-1 text-center ">
+          <input type="checkbox" class="custom-control-input" id="chkEmail">
+          <label class="custom-control-label font-weight-bolder" for="chkEmail">Email</label>
+        </div>
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center">
           <input type="checkbox" class="custom-control-input" id="chkEdad">
           <label class="custom-control-label font-weight-bolder" for="chkEdad">Edad</label>
         </div>
-        <div class="custom-control custom-switch col-sm-auto col-md-3 text-center">
-          <input type="checkbox" class="custom-control-input" id="chkPatas">
-          <label class="custom-control-label font-weight-bolder" for="chkPatas">Patas</label>
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center">
+          <input type="checkbox" class="custom-control-input" id="chkSexo">
+          <label class="custom-control-label font-weight-bolder" for="chkSexo">Sexo</label>
+        </div>
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center">
+          <input type="checkbox" class="custom-control-input" id="chkTipo">
+          <label class="custom-control-label font-weight-bolder" for="chkTipo">Tipo</label>
         </div>
       </div>
       <div class="row rounded bg-warning border border-dark mb-2">

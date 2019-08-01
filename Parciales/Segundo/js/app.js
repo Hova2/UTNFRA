@@ -1,10 +1,25 @@
 $(document).ready(asignarManejadores);
-$(document).ready(traerMascotas);
+$(document).ready(traerLegisladores);
+var ultimoId;
+if (localStorage.length == 0) {
+    ultimoId = 1;
+}
+else {
+    ultimoId = Number(localStorage.getItem(String(0)));
+}
 function asignarManejadores() {
-    $('#btnSetMascota').click(altaMascota);
+    $('#btnSetLegislador').click(altaLegisladores);
+    $('#chkId').change(traerLegisladores);
+    $('#chkNombre').change(traerLegisladores);
+    $('#chkApellido').change(traerLegisladores);
+    $('#chkEmail').change(traerLegisladores);
+    $('#chkEdad').change(traerLegisladores);
+    $('#chkSexo').change(traerLegisladores);
+    $('#chkTipo').change(traerLegisladores);
+    $('#chkTipo').change(traerLegisladores);
+    $('#btnFiltrarTipo').click(traerLegisladores);
 }
 function crearTabla(arregloDatos) {
-    console.log(arregloDatos);
     var tabla = $('<table>');
     var contenedor = $('#contenedor');
     var indices = Object.keys(arregloDatos[0]);
@@ -19,53 +34,88 @@ function crearTabla(arregloDatos) {
     arregloDatos.forEach(function (dato) {
         var tr = $('<tr>');
         //tr.click(formulario);
-        Object.values(dato).forEach(function (dato2) {
+        indices.forEach(function (elemento) {
             var td = $('<td>');
-            td.append(dato2);
+            td.append(dato[elemento]);
             tr.append(td);
         });
+        tabla.append(tr);
     });
     contenedor.empty();
     contenedor.append(tabla);
 }
-function traerMascotas() {
-    for (var i = 1; i != localStorage.length; i++) {
-        mascotas.push(JSON.parse(localStorage.getItem(String(i))));
+function traerLegisladores() {
+    var legisladores = new Array();
+    for (var i = 1; i <= localStorage.length - 1; i++) {
+        legisladores.push(JSON.parse(localStorage.getItem(String(i))));
     }
-    if (mascotas.length > 0) {
-        crearTabla(mascotas);
+    var legisladoresFiltroUno = legisladores.filter(function (elemento) {
+        var tipo = $('#selectTipo option:selected').text();
+        console.log(tipo);
+        if (tipo == 'Diputado') {
+            return elemento;
+        }
+        else if (tipo == 'Senador') {
+            return elemento;
+        }
+        else if (tipo == 'Todos') {
+            return elemento;
+        }
+    });
+    var legisladoresFiltrados = legisladoresFiltroUno.filter(function (elemento) {
+        if ($("#chkId").prop('checked')) {
+            delete elemento['id'];
+        }
+        if ($("#chkNombre").prop('checked')) {
+            delete elemento['nombre'];
+        }
+        if ($("#chkApellido").prop('checked')) {
+            delete elemento['apellido'];
+        }
+        if ($("#chkEmail").prop('checked')) {
+            delete elemento['email'];
+        }
+        if ($("#chkEdad").prop('checked')) {
+            delete elemento['edad'];
+        }
+        if ($("#chkSexo").prop('checked')) {
+            delete elemento['sexo'];
+        }
+        if ($("#chkTipo").prop('checked')) {
+            delete elemento['tipo'];
+        }
+        return elemento;
+    });
+    if (legisladoresFiltrados.length > 0) {
+        crearTabla(legisladoresFiltrados);
     }
     else {
         var mensaje = $('<h1>');
         var contenedor = $('#contenedor');
-        mensaje.text('No hay mascotas para mostrar');
+        mensaje.text('No hay legisladores para mostrar');
         contenedor.empty();
         contenedor.append(mensaje);
     }
 }
-function altaMascota() {
-    var id = lastId;
-    var nombre = $("#formMascotas").find('input[id=inputNombre]').val();
-    var edad = $("#formMascotas").find('input[id=inputEdad]').val();
-    var patas = $("#formMascotas").find('input[id=inputPatas]').val();
-    var tipo = $("#formMascotas").find('select[id=selectTipo] option:selected').text();
-    var tipoanimal;
+function altaLegisladores() {
+    var id = ultimoId;
+    var nombre = $("#formLegisladores").find('input[id=inputNombre]').val();
+    var apellido = $("#formLegisladores").find('input[id=inputApellido]').val();
+    var email = $("#formLegisladores").find('input[id=inputEmail]').val();
+    var edad = $("#formLegisladores").find('input[id=inputEdad]').val();
+    var sexo = $("#formLegisladores").find('input[name=inputSexo]:checked').val();
+    var tipo = $("#formLegisladores").find('input[name=inputLegislador]:checked').val();
+    var tipolegislador;
     switch (tipo) {
-        case 'Reptil':
-            tipoanimal = TipoAnimal.reptil;
+        case 'diputado':
+            tipolegislador = TipoLegislador.diputado;
             break;
-        case 'Ave':
-            tipoanimal = TipoAnimal.ave;
-            break;
-        case 'Roedor':
-            tipoanimal = TipoAnimal.roedor;
-            break;
-        case 'Felino':
-            tipoanimal = TipoAnimal.felino;
+        case 'senador':
+            tipolegislador = TipoLegislador.senador;
             break;
     }
-    var mascota = new Mascota(id, tipoanimal, Number(patas), String(nombre), Number(edad));
-    console.log(mascota.id);
-    localStorage.setItem(String(lastId), JSON.stringify(mascota));
-    lastId++;
+    var legislador = new Legislador(Number(id), String(nombre), String(apellido), String(email), Number(edad), String(sexo), tipolegislador);
+    localStorage.setItem(String(ultimoId), JSON.stringify(legislador));
+    ultimoId++;
+    localStorage.setItem(String(0), String(ultimoId));
 }
