@@ -47,7 +47,7 @@
           </div>
           <div class="form-group col-sm-auto col-md-6 text-center mb-2">
             <label for="inputEdad" class="font-weight-bolder">Edad</label>
-            <input type="number" class="form-control" id="inputEdad" placeholder="Igrese edad" min="1" max="150">
+            <input type="number" class="form-control" id="inputEdad" placeholder="Igrese edad" min="1" max="150" >
           </div>
         </div>
         <div class="form-row-12 text-center d-flex mb-2 rounded bg-success border border-dark">
@@ -101,11 +101,18 @@
         </form>
         <form>
           <div class="form-group row">
-              <label for="inputPromedio" class="col-auto font-weight-bolder col-form-label">Promedio</label>
+              <label for="inputPromedioEdad" class="col-auto font-weight-bolder col-form-label">Promedio de edad</label>
             <div class="col-auto">
-              <input type="number" class="form-control" id="inputPromedio" disabled>
+              <input type="number" class="form-control" id="inputPromedioEdad" value="0" disabled>
             </div>
-            <button type="submit" class="col-auto btn btn-info border border-dark">Calcular</button>
+          </div>
+        </form>
+        <form>
+          <div class="form-group row">
+              <label for="inputPromedioMSH" class="col-auto font-weight-bolder col-form-label">Gender mix %</label>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="inputPromedioMSH" value="0" disabled>
+            </div>
           </div>
         </form>
       </div>

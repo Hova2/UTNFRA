@@ -18,7 +18,6 @@ function asignarManejadores() {
     $('#chkTipo').change(traerLegisladores);
     $('#chkTipo').change(traerLegisladores);
     $('#selectTipo').change(traerLegisladores);
-    $('#btnSetLegislador').click(limpiarFormuladio);
     $('#btnDelLocalStore').click(limpiarLocalStore);
 }
 function crearTabla(arregloDatos) {
@@ -72,6 +71,7 @@ function traerLegisladores() {
             return elemento;
         }
     });
+    calcularPromedios(legisladoresFiltroUno);
     var legisladoresFiltrados = legisladoresFiltroUno.filter(function (elemento) {
         if (!$("#chkId").prop('checked')) {
             delete elemento['id'];
@@ -137,4 +137,66 @@ function altaLegisladores() {
     localStorage.setItem(String(ultimoId), JSON.stringify(legislador));
     ultimoId++;
     localStorage.setItem(String(0), String(ultimoId));
+    limpiarFormuladio();
+}
+function calcularPromedios(legisladores) {
+    var cantidadLegisladores = legisladores.reduce(function (previo, actual) {
+        var resultado;
+        if (previo == 0) {
+            resultado = 1;
+        }
+        else {
+            resultado = previo + 1;
+        }
+        return resultado;
+    }, 0);
+    var totalEdad = legisladores.reduce(function (previo, actual) {
+        var resultado;
+        if (previo == 0) {
+            resultado = actual.edad;
+        }
+        else {
+            resultado = previo + actual.edad;
+        }
+        return resultado;
+    }, 0);
+    var cantidadEdad = legisladores.reduce(function (previo, actual) {
+        var resultado;
+        if (previo == 0) {
+            resultado = 1;
+        }
+        else {
+            resultado = previo + 1;
+        }
+        return resultado;
+    }, 0);
+    var filtroMujeres = legisladores.filter(function (elemento) {
+        if (elemento.sexo == 'Mujer') {
+            return elemento;
+        }
+    });
+    var cantidadMujeres = filtroMujeres.reduce(function (previo, actual) {
+        var resultado;
+        if (previo == 0) {
+            resultado = 1;
+        }
+        else {
+            resultado = previo + 1;
+        }
+        return resultado;
+    }, 0);
+    var promEdad = totalEdad / cantidadEdad;
+    if (promEdad > 0) {
+        $("#inputPromedioEdad").val(promEdad);
+    }
+    else {
+        $("#inputPromedioEdad").val(0);
+    }
+    var promMSH = cantidadMujeres / cantidadLegisladores;
+    if (promMSH > 0) {
+        $("#inputPromedioMSH").val(promMSH * 100);
+    }
+    else {
+        $("#inputPromedioMSH").val(0);
+    }
 }
