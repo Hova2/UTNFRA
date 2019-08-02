@@ -62,13 +62,22 @@ function traerLegisladores(){
 
     let legisladoresFiltroUno = legisladores.filter(function(elemento){
         let tipo=$('#selectTipo option:selected').text();
-        console.log(tipo);
+        let tipolegislador;
+        switch(tipo){
+            case 'Diputado':
+                tipolegislador = TipoLegislador.diputado;
+            break;
+            case 'Senador':
+                tipolegislador = TipoLegislador.senador;
+            break;
+            case 'Todos':
+                tipolegislador = 'Todos';
+            break;
+        }
         
-        if(tipo=='Diputado'){
+        if(tipolegislador==elemento['tipo']){
             return elemento;
-        }else if(tipo=='Senador'){
-            return elemento;
-        }else if(tipo=='Todos'){
+        }else if(tipolegislador=='Todos'){
             return elemento;
         }
     });

@@ -51,14 +51,22 @@ function traerLegisladores() {
     }
     var legisladoresFiltroUno = legisladores.filter(function (elemento) {
         var tipo = $('#selectTipo option:selected').text();
-        console.log(tipo);
-        if (tipo == 'Diputado') {
+        var tipolegislador;
+        switch (tipo) {
+            case 'Diputado':
+                tipolegislador = TipoLegislador.diputado;
+                break;
+            case 'Senador':
+                tipolegislador = TipoLegislador.senador;
+                break;
+            case 'Todos':
+                tipolegislador = 'Todos';
+                break;
+        }
+        if (tipolegislador == elemento['tipo']) {
             return elemento;
         }
-        else if (tipo == 'Senador') {
-            return elemento;
-        }
-        else if (tipo == 'Todos') {
+        else if (tipolegislador == 'Todos') {
             return elemento;
         }
     });
