@@ -20,7 +20,9 @@ function asignarManejadores(){
     $('#chkSexo').change(traerLegisladores);
     $('#chkTipo').change(traerLegisladores);
     $('#chkTipo').change(traerLegisladores);
-    $('#btnFiltrarTipo').click(traerLegisladores);
+    $('#selectTipo').change(traerLegisladores);
+    $('#btnSetLegislador').click(limpiarFormuladio);
+    $('#btnDelLocalStore').click(limpiarLocalStore);
 }
 
 function crearTabla(arregloDatos){
@@ -83,25 +85,25 @@ function traerLegisladores(){
     });
     
     let legisladoresFiltrados = legisladoresFiltroUno.filter(function(elemento){
-        if($("#chkId").prop('checked')){
+        if(!$("#chkId").prop('checked')){
             delete elemento['id'];
         }
-        if($("#chkNombre").prop('checked')){
+        if(!$("#chkNombre").prop('checked')){
             delete elemento['nombre'];
         }
-        if($("#chkApellido").prop('checked')){
+        if(!$("#chkApellido").prop('checked')){
             delete elemento['apellido'];
         }
-        if($("#chkEmail").prop('checked')){
+        if(!$("#chkEmail").prop('checked')){
             delete elemento['email'];
         }
-        if($("#chkEdad").prop('checked')){
+        if(!$("#chkEdad").prop('checked')){
             delete elemento['edad'];
         }
-        if($("#chkSexo").prop('checked')){
+        if(!$("#chkSexo").prop('checked')){
             delete elemento['sexo'];
         }
-        if($("#chkTipo").prop('checked')){
+        if(!$("#chkTipo").prop('checked')){
             delete elemento['tipo'];
         }
         return elemento;
@@ -116,6 +118,17 @@ function traerLegisladores(){
         contenedor.empty();
         contenedor.append(mensaje);
     }
+}
+
+function limpiarFormuladio(){
+    $("#formLegisladores").trigger('reset');
+    traerLegisladores();
+}
+
+function limpiarLocalStore(){
+    localStorage.clear();
+    ultimoId=1;
+    traerLegisladores();
 }
 
 function altaLegisladores(){
