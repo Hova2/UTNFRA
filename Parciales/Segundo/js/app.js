@@ -80,7 +80,7 @@ function traerLegisladores() {
     });
     var legisladoresFiltroUnoCopia = JSON.parse(JSON.stringify(legisladoresFiltroUno));
     calcularPromedios(legisladoresFiltroUnoCopia);
-    var legisladoresFiltrados = legisladoresFiltroUno.filter(function (elemento) {
+    var legisladoresFiltrados = legisladoresFiltroUno.map(function (elemento) {
         if (!$("#chkId").prop('checked')) {
             delete elemento['id'];
         }

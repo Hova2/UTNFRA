@@ -93,7 +93,7 @@ function traerLegisladores(){
 
     calcularPromedios(legisladoresFiltroUnoCopia);
     
-    let legisladoresFiltrados = legisladoresFiltroUno.filter(function(elemento){
+    let legisladoresFiltrados = legisladoresFiltroUno.map(function(elemento){
         if(!$("#chkId").prop('checked')){
             delete elemento['id'];
         }
