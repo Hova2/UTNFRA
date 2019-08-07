@@ -268,22 +268,31 @@ function habilitarCambios(){
     $('#inputApellido').val(legislador.apellido);
     $('#inputEmail').val(legislador.email);
     $('#inputEdad').val(legislador.edad);
+    console.log();
     
     switch(legislador.sexo){
         case 'Hombre':
                 $('#inputHombre').prop('checked',true);
+                $('#labelHombre').addClass("active");
+                $('#labelMujer').removeClass("active");
         break;
         case 'Mujer':
                 $('#inputMujer').prop('checked',true);
+                $('#labelMujer').addClass("active");
+                $('#labelHombre').removeClass("active");
         break;
     }
 
     switch(legislador.tipo){
         case 'Diputado':
                 $('#inputDiputado').prop('checked',true);
+                $('#labelDiputado').addClass('active');
+                $('#labelSenador').removeClass('active');
         break;
         case 'Senador':
                 $('#inputSenador').prop('checked',true);
+                $('#labelSenador').addClass('active');
+                $('#labelDiputado').removeClass('active');
         break;
     }
 }
