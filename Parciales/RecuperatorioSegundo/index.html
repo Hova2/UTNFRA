@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./js/tipoheroe.js"></script>
+    <script src="./js/personaje.js"></script>
+    <script src="./js/heroe.js"></script>
+    <script src="./js/app.js"></script>
+    <title>Recuperatorio segundo parcial</title>
+  </head>
+  <body>
+    <div class="container bg-primary rounded border border-dark">
+      <div class="row">
+        <p class="h1 col-sm-auto col-md-12 text-center font-weight-bolder mb-2">Heroes</p>
+      </div>
+      <div class="row rounded bg-warning border border-dark mb-2">
+        <p class="h4 col-sm-auto col-md-12 text-center font-weight-bolder">Datos del heroe</p>
+      </div>
+      <form id="formHeroes">
+        <div id="rowId" class="form-row mb-2 justify-content-center">
+          <div class="form-group col-sm-auto col-md-2 text-center mb-2">
+              <label for="inputId" class="font-weight-bolder">ID</label>
+              <input type="number" class="form-control" id="inputId" disabled visi>
+          </div>
+        </div>
+        <div class="form-row mb-2">
+          <div class="form-group col-sm-auto col-md-6 text-center mb-2">
+            <label for="inputNombre" class="font-weight-bolder">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" placeholder="Igrese nombre" required>
+          </div>
+          <div class="form-group col-sm-auto col-md-6 text-center mb-2">
+            <label for="inputAlias" class="font-weight-bolder">Alias</label>
+            <input type="text" class="form-control" id="inputAlias" placeholder="Igrese el alias" required>
+          </div>
+        </div>
+        <div class="form-row mb-2">
+          <div class="form-group col-sm-auto col-md-6 text-center mb-2">
+            <label for="inputEdad" class="font-weight-bolder">Edad</label>
+            <input type="number" class="form-control" id="inputEdad" placeholder="Igrese edad" min="18" max="65" required>
+          </div>
+          <div class="form-group col-sm-auto col-md-6 text-center mb-2">
+            <label for="inputPoder" class="font-weight-bolder">Poder principal</label>
+            <input type="text" class="form-control" id="inputPoder" placeholder="Igrese el poder" required>
+          </div>
+        </div>
+        <div class="form-row justify-content-center text-center mb-2 rounded bg-success border border-dark">
+          <div class="row">
+            <p class="font-weight-bolder h4">Tipo de heroe</p>
+          </div>
+          <div class="w-100"></div>
+          <div class="row mb-2">
+            <label for="selectTipo" class="col-auto font-weight-bolder col-form-label">Igrese el tipo</label>
+            <div class="col-auto">
+              <select id="selectTipo" class="custom-select">
+                <option value="1">XMen</option>
+                <option value="2">Avenger</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row rounded bg-success border border-dark mb-2">
+          <p class="h4 col-sm-auto col-md-12 text-center font-weight-bolder">Acciones</p>
+        </div>
+        <div class="form-row mb-2">
+          <div class="form-group text-center mb-2 col-12">
+            <button type="submit" id="btnSetHeroe" class="btn btn-info border border-dark">Agregar</button>
+            <button type="submit" id="btnModHeroe" class="btn btn-info border border-dark">Modificar</button>
+            <button type="button" id="btnCancHeroe" class="btn btn-info border border-dark">Cancelar</button>
+            <button type="button" id="btnDelHeroe" class="btn btn-danger border border-dark">Eliminar</button>
+          </div>
+        </div>
+      </form>
+      <div class="row rounded bg-warning border border-dark mb-2">
+          <p class="h4 col-sm-auto col-md-12 text-center font-weight-bolder">Filtros</p>
+      </div>
+      <div class="row d-flex justify-content-around">
+        <form>
+          <div class="form-group row">
+            <label for="selectTipo" class="col-auto font-weight-bolder col-form-label">Igrese el tipo</label>
+            <div class="col-auto">
+              <select id="selectTipoFiltro" class="custom-select">
+                <option selected>Todos</option>
+                <option value="1">XMen</option>
+                <option value="2">Avenger</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        <form>
+          <div class="form-group row">
+              <label for="inputPromedioEdad" class="col-auto font-weight-bolder col-form-label">Promedio de edad</label>
+            <div class="col-auto">
+              <input type="number" class="form-control col-5" id="inputPromedioEdad" value="0" disabled>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row rounded bg-warning border border-dark mb-2">
+          <p class="h4 col-sm-auto col-md-12 text-center font-weight-bolder">Seleccionar columna</p>
+      </div>
+      <div class="row bg-success justify-content-center rounded border border-dark mb-2">
+        <div class="custom-control custom-switch col-sm-auto col-md-1 text-center">
+          <input type="checkbox" class="custom-control-input" id="chkId" checked>
+          <label class="custom-control-label font-weight-bolder" for="chkId">ID</label>
+        </div>
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center">
+          <input type="checkbox" class="custom-control-input" id="chkNombre" checked>
+          <label class="custom-control-label font-weight-bolder" for="chkNombre">Nombre</label>
+        </div>
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center">
+          <input type="checkbox" class="custom-control-input" id="chkAlias" checked>
+          <label class="custom-control-label font-weight-bolder" for="chkAlias">Alias</label>
+        </div>
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center">
+          <input type="checkbox" class="custom-control-input" id="chkPoder" checked>
+          <label class="custom-control-label font-weight-bolder" for="chkPoder">Poder</label>
+        </div>
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center">
+          <input type="checkbox" class="custom-control-input" id="chkEdad" checked>
+          <label class="custom-control-label font-weight-bolder" for="chkEdad">Edad</label>
+        </div>
+        <div class="custom-control custom-switch col-sm-auto col-md-2 text-center">
+          <input type="checkbox" class="custom-control-input" id="chkTipo" checked>
+          <label class="custom-control-label font-weight-bolder" for="chkTipo">Tipo</label>
+        </div>
+      </div>
+      <div class="row rounded bg-warning border border-dark mb-2">
+          <p class="h4 col-sm-auto col-md-12 text-center font-weight-bolder">Lista de heroes</p>
+      </div>
+      <div id="contenedor" class="row m-1 justify-content-center">
+      </div>
+      <div class="row d-flex justify-content-center">
+            <button type="button" id="btnDelLocalStore" class="btn btn-danger border border-dark ">Limpiar local storage</button>
+      </div>
+    </div>
+  </body>
+</html>
