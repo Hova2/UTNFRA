@@ -15,25 +15,20 @@ function asignarManejadores(){
     $('#chkTipo').change(traerLegisladores);
     $('#selectTipo').change(traerLegisladores);
     $('#btnDelLocalStore').click(limpiarLocalStore);
-    $('#btnCancLegislador').click(limpiarFormuladio);
     $('#btnDelLegislador').click(eliminarLegisladores);
     $('#rowId').hide();
     $('#btnModLegislador').hide();
     $('#btnDelLegislador').hide();
-    $('#btnCancLegislador').hide();
 }
 
 function crearTabla(arregloDatos,arregloDatosFiltrados){
     let tabla      = $('<table>');
-    let divResponsive      = $('<div>');
     let contenedor = $('#contenedor');
     let indices    = Object.keys(arregloDatosFiltrados[0]);
     let tr         = $('<tr>');
     tabla.append(tr);
 
-    tabla.addClass("table table-striped table-hover table-bordered table-dark");
-    
-    divResponsive.addClass("table-responsive");
+    tabla.addClass("table table-striped table-hover table-dark");
 
     indices.forEach(dato => {
         let th           = $('<th>');
@@ -58,9 +53,8 @@ function crearTabla(arregloDatos,arregloDatosFiltrados){
         tabla.append(tr);
     });
 
-    divResponsive.append(tabla);
     contenedor.empty();
-    contenedor.append(divResponsive);
+    contenedor.append(tabla);
 }
 
 function traerLegisladores(){    
@@ -127,10 +121,9 @@ function traerLegisladores(){
     if(legisladoresFiltrados.length > 0){
         crearTabla(legisladoresFiltroUnoCopia,legisladoresFiltrados);
     }else{
-        let mensaje = $('<p>');
+        let mensaje = $('<h1>');
         let contenedor = $('#contenedor');
         mensaje.text('No hay legisladores para mostrar');
-        mensaje.addClass("h1");
         contenedor.empty();
         contenedor.append(mensaje);
     }
@@ -201,10 +194,15 @@ function eliminarLegisladores(){
 
 function calcularPromedios(legisladores){
     let cantidadLegisladores  = legisladores.reduce(function(previo){
-        return previo+1;
+        let resultado;
+        
+        if(previo==0){
+            resultado=1;
+        }else{
+            resultado=previo+1;
+        }
+        return resultado;
     }, 0);
-
-    console.log(cantidadLegisladores);
 
     let totalEdad  = legisladores.reduce(function(previo, actual){
         let resultado;
@@ -225,19 +223,26 @@ function calcularPromedios(legisladores){
     });
 
     let cantidadMujeres  = filtroMujeres.reduce(function(previo){
-        return previo+1;
+        let resultado;
+        
+        if(previo==0){
+            resultado=1;
+        }else{
+            resultado=previo+1;
+        }
+        return resultado;
     }, 0);
     
     let promEdad=totalEdad/cantidadLegisladores;
     if(promEdad>0){
-        $("#inputPromedioEdad").val(parseFloat(String(promEdad)).toFixed(2));
+        $("#inputPromedioEdad").val(promEdad);
     }else{
         $("#inputPromedioEdad").val(0);
     }
 
     let promMSH=cantidadMujeres/cantidadLegisladores;
     if(promMSH>0){
-        $("#inputPromedioMSH").val(parseFloat(String(promMSH*100)).toFixed(2));
+        $("#inputPromedioMSH").val(promMSH*100);
     }else{
         $("#inputPromedioMSH").val(0);
     }
@@ -252,7 +257,6 @@ function habilitarCambios(){
     $('#btnSetLegislador').hide(1000);
     $('#btnModLegislador').show(1000);
     $('#btnDelLegislador').show(1000);
-    $('#btnCancLegislador').show(1000);
     $('#rowId').show(1000);
 
     $('#formLegisladores').attr('onsubmit', 'return modificarLegisladores()');
@@ -298,7 +302,6 @@ function deshabilitarCambios(){
     $('#rowId').hide(1000);
     $('#btnModLegislador').hide(1000);
     $('#btnDelLegislador').hide(1000);
-    $('#btnCancLegislador').hide(1000);
 
     $('#formLegisladores').attr('onsubmit', 'return altaLegisladores()');
 }
