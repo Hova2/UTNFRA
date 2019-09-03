@@ -1,0 +1,12 @@
+<div class="container">
+  <label for="uname"><b>Username</b></label>
+  <input type="text" [(ngModel)]="usuario.nombre" placeholder="" name="uname" required>
+  <br>
+  <label for="psw"><b>Password</b></label>
+  <input type="password" [(ngModel)]="usuario.password" placeholder="" name="psw" required>
+  <br>
+  <button (click)="cargar()" type="submit">Cargar</button>
+
+</div>
+
+<app-listadodeusuario [listadoDeUsuarios]="listadoDeUsuarios"></app-listadodeusuario>
