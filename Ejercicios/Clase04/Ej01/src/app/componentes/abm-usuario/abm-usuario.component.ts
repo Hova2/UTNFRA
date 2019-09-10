@@ -9,7 +9,7 @@ import { Usuario } from '../../clases/usuario';
 export class AbmUsuarioComponent implements OnInit {
 
   @Output() creeUnUsuario: EventEmitter<any>;
-  @Input() usuarioParaEditar: Usuario;
+  @Input () usuarioParaEditar: Usuario;
 
   constructor() {
      this.creeUnUsuario = new EventEmitter<any>();
