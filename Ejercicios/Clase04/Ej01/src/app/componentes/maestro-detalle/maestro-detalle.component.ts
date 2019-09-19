@@ -13,6 +13,7 @@ export class MaestroDetalleComponent implements OnInit {
 
   constructor() {
     this.listadoDeUsuarios = new Array();
+    this.usuarioSeleccion = new Usuario('Prueba', 'Prueba');
   }
 
   ngOnInit() {

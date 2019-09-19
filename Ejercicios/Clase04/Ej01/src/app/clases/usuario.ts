@@ -1,13 +1,13 @@
 export class Usuario {
-    public nombre:String;
-    public clave:String;
+    public nombre: string;
+    public clave: string;
 
-    constructor(nombre:String, clave:String){
+    constructor(nombre: string, clave: string){
         /*this.nombre = 'natalia';
         this.clave = 'natalia';*/
         this.nombre = nombre;
         this.clave = clave;
     }
 
-    
+
 }

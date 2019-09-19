@@ -1,11 +1,11 @@
 <div class="container">
   <label for="uname"><b>Username</b></label>
   <input type="text" [(ngModel)]="usuarioParaEditar.nombre" placeholder="Enter Username" name="uname"
-    required>{{usuarioParaEditar.nombre}}
+    required>{{ usuarioParaEditar.nombre }}
 
   <label for="psw"><b>Password</b></label>
   <input type="password" [(ngModel)]="usuarioParaEditar.clave" placeholder="Enter Password" name="psw"
-    required>{{usuarioParaEditar.clave}}
+    required>{{ usuarioParaEditar.clave }}
 
   <button (click)="agregar()" type="submit">Agregar</button>
 
