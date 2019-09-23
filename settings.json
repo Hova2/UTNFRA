@@ -1,10 +1,4 @@
 {
-  "folders": [
-    {
-      "path": "."
-    }
-  ],
-  "settings": {
     "workbench.iconTheme": "material-icon-theme",
     "git.autofetch": true,
     "git.enableSmartCommit": true,
@@ -77,9 +71,6 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.fontFamily": "'Fira Code','Droid Sans Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "files.hotExit": "onExit",
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    }
-  }
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "files.hotExit": "onExit"
 }
