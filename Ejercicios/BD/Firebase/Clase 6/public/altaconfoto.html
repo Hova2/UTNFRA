@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="./css/estilos.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+    <script src='./js/Configuracion.js'></script>
+    <title>Alta con foto</title>
+</head>
+<body>
+    <div class="example-chat l-demo-container">
+        <header>Registro con foto</header>
+        <footer>
+            <input type='text' id='usuario'  placeholder='Su Nombre'>
+            <input type='text' id='clave'  placeholder='Su Clave'>
+            <input type="file" name="" id="archivo">
+            <button onclick="registrar()" >Registrar</button >
+        </footer>
+    </div>
+    <script src='./js/Scripts.js'></script>
+</body>
+</html>

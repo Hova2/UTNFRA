@@ -1,0 +1,36 @@
+Facultad: (Hay 3, una no tiene investogador)
+
+1 - CodFacultad
+2 - Nombre
+
+Investigador: (Hay 6, una no tiene reserva)
+
+1 - CodInvestigador
+2 - Nombre
+3 - Apellido
+4 - CodFacultad
+
+
+Reserva: (Hay 10)
+
+1 - CodReserva
+2 - CodInvestigador
+3 - Inicio
+4 - Fin
+
+DetalleReserva: (Las necesarias)
+
+1 - CodReserva
+2 - NumeroSerie
+
+Equipo: (Hay 5, una no se presto)
+
+1 - NumeroSerie
+2 - Descripcion
+3 - CodFacultad
+
+Preguntas:
+
+1 - Mostrar una reserva
+2 - 
+
