@@ -1,0 +1,13 @@
+<div class="login">
+  <h1>LOGIN</h1>
+  <p>Email</p>
+  <input type="text" [(ngModel)]="usuario.email" class="input" />
+  <p>Contraseña</p>
+  <input type="text" [(ngModel)]="usuario.password" class="input"/>
+  <button (click)="Loguear()" class="button">Ingresar</button>
+</div>
+<div *ngIf="logueado" class="resultados">
+  <h1>Usuario Logueado</h1>
+  <span>email: {{ usuario.email }}</span>
+  <span>contraseña: {{ usuario.password }}</span>
+</div>

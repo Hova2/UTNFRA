@@ -1,0 +1,4 @@
+<div *ngFor="let usuario of listadoUsuarios">
+  <p>Email: {{usuario.email}}</p>
+  <span>Password: {{usuario.password}}</span> <button (click)="Editar(usuario)">Editar</button>
+</div>

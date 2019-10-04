@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Password</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let usuario of listadoUsuarios" >
+      <td>{{usuario.email}}</td>
+      <td>{{usuario.password}}</td>
+      <td><button (click)="Editar(usuario)">Editar</button></td>
+      <td><button (click)="Borrar(usuario)">Borrar</button></td>
+  </tr>
+
+</table>

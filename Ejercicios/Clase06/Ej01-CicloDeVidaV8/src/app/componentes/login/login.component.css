@@ -1,0 +1,26 @@
+.login {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width:400px;
+  padding: 30px 20px 50px; border: 1px solid #b3b3b3;
+  border-radius: 4px;margin: 0 auto; box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+  background: #fcfcfc;
+}
+
+.login p {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.login-center {
+  margin: 0 auto;
+}
+
+.resultados {
+  display: block;
+}
+
