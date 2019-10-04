@@ -21,9 +21,9 @@ export class AuthService {
     if(usuario.email == "admin"){
       this.usrLogueado.perfil = "admin";
     }
-    localStorage.setItem("usuario", JSON.stringify(this.usrLogueado.email));
+    localStorage.setItem("usuario", JSON.stringify(this.usrLogueado));
     return of(true).pipe(
-      
+
       delay(1000),
       tap(val =>this.isLoggedIn = true
       )

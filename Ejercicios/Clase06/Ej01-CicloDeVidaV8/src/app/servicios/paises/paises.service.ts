@@ -1,7 +1,6 @@
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { MihttpService } from '../mihttp/mihttp.service';
 import { Router } from '@angular/router';
+import { MihttpService } from '../mihttp/mihttp.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
 
 export class PaisesService {
 
-  public paisSeleccionado: any;
+  private paisSeleccionado: any;
 
   constructor(private route: Router, private miHttp: MihttpService) { }
 
@@ -17,9 +16,14 @@ export class PaisesService {
     return this.miHttp.httpGetO('all');
   }
 
-  verDetalle(pais:any){
+  paisSelec(pais: any){
     this.paisSeleccionado = pais;
-    this.route.navigate(['/paises_detalle']);
+    this.route.navigate(['paises_detalle']);
     console.log("service: ",this.paisSeleccionado.name);
   }
+
+  getPaisSel(): any{
+    return this.paisSeleccionado;
+  }
+
 }

@@ -10,7 +10,7 @@
       <td>{{pais.region}}</td>
 
       <td><img src="{{pais.flag}}" alt="" style="width: 30%;"></td>
-      <td><button (click)="paisesSe">Ver Detalle</button></td>
+      <td *ngIf="esAdmin()" ><button (click)="mostrarDetalle(pais)">Ver detalle</button></td>
   </tr>
 
 </table>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PaisesService } from 'src/app/servicios/paises/paises.service';
+import { PaisesService } from './../../servicios/paises/paises.service';
 
 @Component({
   selector: 'app-paises-detalle',
@@ -8,10 +8,11 @@ import { PaisesService } from 'src/app/servicios/paises/paises.service';
 })
 export class PaisesDetalleComponent implements OnInit {
 
-  mipais: any;
-  constructor(public paisesService: PaisesService) {
-    this.mipais = this.paisesService.paisSeleccionado;
-   }
+  public mipais: any;
+
+  constructor(private paisesService: PaisesService) {
+   this.mipais = this.paisesService.getPaisSel();
+  }
 
   ngOnInit() {
     console.log(this.mipais);
