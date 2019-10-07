@@ -49,6 +49,7 @@ import { JuegoService } from './servicios/juego-service.service';
 import { JugadoresService } from './servicios/jugadores.service';
 import { MiHttpService } from './servicios/mi-http/mi-http.service';
 import { PaisesService } from './servicios/paises.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -58,12 +59,6 @@ import { PaisesService } from './servicios/paises.service';
 
 @NgModule({
   declarations: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    MatNativeDateModule,
-    ReactiveFormsModule,
     AppComponent,
     AdivinaElNumeroComponent,
     ListadoDeResultadosComponent,
@@ -89,6 +84,10 @@ import { PaisesService } from './servicios/paises.service';
     SexoPipe
   ],
   imports: [
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     RuteandoModule,
@@ -96,7 +95,8 @@ import { PaisesService } from './servicios/paises.service';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
     }),
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule
     // NgbModule.forRoot(MiRuteo),
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
