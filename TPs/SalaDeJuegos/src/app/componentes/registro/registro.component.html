@@ -48,23 +48,55 @@
     >
     <div class="modal-content animate">
       <div class="container">
-        <div class="example-container">
-          <mat-form-field>
-            <input matInput type="email" placeholder="Email" />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput type="text" placeholder="CUIT" />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput type="password" placeholder="Clave" />
-          </mat-form-field>
-          <mat-form-field>
-            <mat-select placeholder="Sexo">
-              <mat-option value="M">Masculino</mat-option>
-              <mat-option value="F">Femenino</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Alta de jugador</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <form>
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input
+                  type="email"
+                  matInput
+                  placeholder="Email"
+                  [(ngModel)]="email"
+                  name="Email"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>CUIT</mat-label>
+                <input
+                  matInput
+                  placeholder="CUIT"
+                  [(ngModel)]="cuit"
+                  name="cuit"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Clave</mat-label>
+                <input
+                  matInput
+                  placeholder="Clave"
+                  [(ngModel)]="clave"
+                  name="clave"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Sexo</mat-label>
+                <mat-select [(value)]="sexo" placeholder="Sexo">
+                  <mat-option value="M">Masculino</mat-option>
+                  <mat-option value="F">Femenino</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </form>
+          </mat-card-content>
+          <mat-card-actions>
+            <button  mat-raised-button (click)="altaJugador()"  color="primary">Alta</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
     </div>
   </div>
