@@ -24,9 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/estilos1.css",
-              "src/assets/estilos2.css"
+              "src/styles.css"
             ],
             "scripts": []
           },

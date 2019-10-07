@@ -80,6 +80,7 @@
     "files.hotExit": "onExit",
     "editor.codeActionsOnSave": {
         "source.organizeImports": true
-    }
+    },
+    "prettier.singleQuote": true
   }
 }

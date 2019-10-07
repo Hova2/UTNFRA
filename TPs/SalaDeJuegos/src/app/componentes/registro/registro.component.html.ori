@@ -46,25 +46,46 @@
       title="Close Modal"
       >×</span
     >
-    <div class="modal-content animate">
+    <form class="modal-content animate">
       <div class="container">
-        <div class="example-container">
-          <mat-form-field>
-            <input matInput placeholder="Input" />
-          </mat-form-field>
+        <label><b>Email</b></label>
+        <input
+          type="text"
+          placeholder="Ingresa tu correo"
+          name="email"
+          required
+        />
 
-          <mat-form-field>
-            <textarea matInput placeholder="Textarea"></textarea>
-          </mat-form-field>
+        <label><b>Clave</b></label>
+        <input type="password" placeholder="Aca la clave" name="psw" required />
 
-          <mat-form-field>
-            <mat-select placeholder="Select">
-              <mat-option value="option">Option</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <label><b>Repita la clave</b></label>
+        <input
+          type="password"
+          placeholder="Aca repeti la misa clave  de arriba"
+          name="psw-repeat"
+          required
+        />
+        <input type="checkbox" checked="checked" />Recordar mis datos
+        <p>
+          creando la cuenta aceptando los<a
+            onclick="document.getElementById('id01').style.display='none'"
+            >Terminos y condiciones</a
+          >.
+        </p>
+
+        <div class="clearfix">
+          <button
+            type="button"
+            onclick="document.getElementById('id01').style.display='none'"
+            class="cancelbtn"
+          >
+            Me arrepenti
+          </button>
+          <button type="submit" class="signupbtn">Registrarme</button>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 
   <script>
