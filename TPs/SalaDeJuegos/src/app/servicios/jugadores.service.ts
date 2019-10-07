@@ -1,45 +1,35 @@
 import { Injectable } from '@angular/core';
-import { ArchivosJugadoresService}from './archivos-jugadores.service'
-@Injectable()
+import { Jugador } from '../clases/jugador';
+import { ArchivosJugadoresService } from './archivos-jugadores.service';
+@Injectable({
+  providedIn: 'root'
+})
 export class JugadoresService {
+  constructor(private archJug: ArchivosJugadoresService) {}
 
-  //peticion:any;
-  constructor( public miHttp: ArchivosJugadoresService ) {
-   // this.peticion = this.miHttp.traerJugadores();
-//    this.peticion = this.miHttp.httpGetO("https://restcountries.eu/rest/v2/all");
+  public altaJugador(jugador: Jugador) {
+    this.archJug.altaJugador(jugador);
   }
 
-
-filtrado:any;
-
-  traertodos(ruta : string,filtro: string) 
-  {
-    return this.miHttp.traerJugadores(ruta).then(data=>{
-      console.info("jugadores service",data);
-
-      this.filtrado=data;
-
-     let  ganador: boolean;
-      if(filtro=="ganadores")
-      {
-        ganador= true;
+  public traerJugadoresTodos(filtro: string): Array<Jugador>{
+    const listaJugadores = this.archJug.traerJugadoresTodos();
+    const listaResultado = listaJugadores.filter(item =>{
+      switch (filtro) {
+        case 'todos':
+          return item;
+          break;
+        case 'ganadores':
+          if (item.gano) {
+            return item;
+          }
+          break;
+        default:
+          if (!item.gano) {
+            return item;
+          }
+          break;
       }
-      else
-      {
-        ganador= false;
-      }
-
-      this.filtrado =this.filtrado.filter(
-        data => data.gano === ganador  || filtro=="todos" ); return this.filtrado}
-      )
-      .catch(errror=>{console.log("error")
-      
-
-
-    return this.filtrado;
-      
-
     });
+    return listaResultado;
   }
-
 }

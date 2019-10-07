@@ -1,11 +1,9 @@
 <ul class="nav nav-pills nav-justified">
   <li class="active"><a routerLink="/Principal">Ir a inicio</a></li>
-  <li><a (click)="TraerTodos()">Todos los jugadores</a></li>
-  <li><a (click)="TraerGanadores()">Los ganadores</a></li>
-  <li><a (click)="TraerPerdedores()">Los perdedores</a></li>
+  <li><a (click)="traerTodos()">Todos los jugadores</a></li>
+  <li><a (click)="traerGanadores()">Los ganadores</a></li>
+  <li><a (click)="traerPerdedores()">Los perdedores</a></li>
 </ul>
-
-
 
 <table class="table table-condensed">
   <thead>
@@ -17,13 +15,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let jugador of listado" >
-      <td>{{jugador.usuario}} </td>
-      <td>{{jugador.cuit}} </td> 
-      <td>{{jugador.sexo | sexo| uppercase}} </td> 
-      <td>{{jugador.gano}} </td> 
-      
+    <tr *ngFor="let jugador of listadoJugadores">
+      <td>{{ jugador.usuario }}</td>
+      <td>{{ jugador.cuit }}</td>
+      <td>{{ jugador.sexo | sexo | uppercase }}</td>
+      <td>{{ jugador.gano }}</td>
     </tr>
-   
   </tbody>
 </table>

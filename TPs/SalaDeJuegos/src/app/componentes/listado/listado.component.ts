@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { JuegoServiceService } from '../../servicios/juego-service.service';
+import { Juego } from 'src/app/clases/juego';
+import { JuegoService } from '../../servicios/juego-service.service';
 
 @Component({
   selector: 'app-listado',
@@ -7,27 +8,20 @@ import { JuegoServiceService } from '../../servicios/juego-service.service';
   styleUrls: ['./listado.component.css']
 })
 export class ListadoComponent implements OnInit {
-  public listadoParaCompartir: Array<any>;
-   miServicioJuego:JuegoServiceService
+  public listadoJuegos: Array<Juego>;
 
-  constructor(servicioJuego:JuegoServiceService) {
-    this.miServicioJuego = servicioJuego;
-    
-  }
-  
-  ngOnInit() {
-    
+  constructor(private juegServ: JuegoService) {
   }
 
-  llamaService(){
-    console.log("llamaService");
-    this.listadoParaCompartir= this.miServicioJuego.listar();
+  ngOnInit() {}
+
+  public llamaService(): Array<Juego> {
+    this.listadoJuegos = this.juegServ.traerJuegosTodos();
+    return this.listadoJuegos;
   }
 
-  llamaServicePromesa(){
-    console.log("llamaServicePromesa");
-    this.miServicioJuego.listarPromesa().then((listado) => {
-        this.listadoParaCompartir = listado;
-    });
+  public llamaServicePromesa(): Array<Juego> {
+    this.listadoJuegos = this.juegServ.traerJuegosTodos();
+    return this.listadoJuegos;
   }
 }

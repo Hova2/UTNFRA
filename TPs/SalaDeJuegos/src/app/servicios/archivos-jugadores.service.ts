@@ -1,31 +1,21 @@
 import { Injectable } from '@angular/core';
-import { MiHttpService } from './mi-http/mi-http.service'; 
+import { Jugador } from '../clases/jugador';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ArchivosJugadoresService {
+  private listaJugadores: Array<Jugador>;
 
-  api="http://localhost:8080/jugadoresarchivo/apirestjugadores/";
-  peticion:any;
-  constructor( public miHttp: MiHttpService ) {
-    
+  constructor() {
+    this.listaJugadores = new Array<Jugador>();
   }
 
-
-  public   traerJugadores(ruta) {
-    return this.miHttp.httpGetO(this.api+ruta)
-    .toPromise()
-    .then( data => {
-      console.log("Archivo jugadores");
-     // console.log( data );
-      return data;
-    }, err => {
-      console.log( err );
-    })
- 
-
-  
+  public altaJugador(jugador: Jugador) {
+    this.listaJugadores.push(jugador);
   }
 
-
-
+  public traerJugadoresTodos(): Array<Jugador> {
+    return this.listaJugadores;
+  }
 }
