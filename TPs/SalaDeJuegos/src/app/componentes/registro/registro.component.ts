@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Jugador } from 'src/app/clases/jugador';
-
 //para poder hacer las validaciones
 //import { Validators, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -12,6 +12,7 @@ import { Jugador } from 'src/app/clases/jugador';
 export class RegistroComponent implements OnInit {
   public jugador: Jugador;
 
+
   constructor() {}
 
   ngOnInit() {}
@@ -19,4 +20,6 @@ export class RegistroComponent implements OnInit {
   public altaJugador(){
 
   }
+
+
 }
