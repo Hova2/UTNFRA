@@ -59,7 +59,6 @@ import { PaisesService } from './servicios/paises.service';
 @NgModule({
   declarations: [
     BrowserModule,
-    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     MatNativeDateModule,
