@@ -1,0 +1,10 @@
+.mat-card {
+  display: inline-block;
+  max-width: 200px;
+  min-width: 100px;
+  margin: 10px 10px 10px 10px;
+}
+
+.myGridList {
+  height: 100%;
+}
