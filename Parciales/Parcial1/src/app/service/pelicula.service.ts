@@ -52,4 +52,15 @@ export class PeliculaService {
     const indice = this.listPelicula.indexOf(pelicula);
     this.listPelicula.splice(indice, 1);
   }
+
+  public buscarPelicula(nombre: string): IPelicula{
+    let pelicula: IPelicula;
+    this.listPelicula.forEach( elemento => {
+      if(elemento.nombre === nombre){
+        pelicula = elemento;
+      }
+    });
+
+    return pelicula;
+  }
 }

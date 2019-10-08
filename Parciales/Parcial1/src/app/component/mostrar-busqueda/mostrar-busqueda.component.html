@@ -1,0 +1,28 @@
+<ng-container *ngIf="verificarBusqueda()">
+  <mat-grid-list cols="1">
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        {{ pelicula.nombre }}
+      </mat-grid-tile-header>
+      <mat-card class="mat-card">
+        <img
+          mat-card-image
+          [src]="pelicula.fotoPelicula"
+          alt="{{ pelicula.nombre }}"
+        />
+        <mat-card-footer>
+          Tipo: {{ enumTipo[pelicula.tipo] }}
+          <br>
+          Fecha de estreno: {{ pelicula.fechaEstreno }}
+          <br>
+          Cantidad de publico: {{ pelicula.cantPublico }}
+        </mat-card-footer>
+        <mat-card-actions>
+          <app-boton-borrar [pelicula]="pelicula"></app-boton-borrar>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-container>
+<app-buscar-pelicula (busqueUnaPelicula)="verificarBusqueda($event)">
+</app-buscar-pelicula>

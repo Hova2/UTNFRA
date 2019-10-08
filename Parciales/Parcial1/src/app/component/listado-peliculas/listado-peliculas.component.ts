@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ETipoPelicula } from 'src/app/enum/etipo-pelicula.enum';
 import { IPelicula } from 'src/app/interface/ipelicula';
 import { PeliculaService } from 'src/app/service/pelicula.service';
-import { BotonBorrarComponent } from 'src/app/component/boton-borrar/boton-borrar';
+
 
 @Component({
   selector: 'app-listado-peliculas',
