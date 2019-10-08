@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListadoPeliculasComponent } from './component/listado-peliculas/listado-peliculas.component';
 import { MaterialModule } from './material-module';
+import { BotonBorrarComponent } from './component/boton-borrar/boton-borrar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListadoPeliculasComponent
+    ListadoPeliculasComponent,
+    BotonBorrarComponent
   ],
   imports: [
     BrowserModule,

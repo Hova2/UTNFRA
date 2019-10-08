@@ -7,17 +7,19 @@
       <mat-card class="mat-card">
         <img
           mat-card-image
-          src="{{ pelicula.fotoPelicula }}"
+          [src]="pelicula.fotoPelicula"
           alt="{{ pelicula.nombre }}"
         />
         <mat-card-footer>
-          Fecha de estreno: {{ pelicula.fechaEstreno }}
           Tipo: {{ enumTipo[pelicula.tipo] }}
-          {{ pelicula }}
-
-
+          <br>
+          Fecha de estreno: {{ pelicula.fechaEstreno }}
+          <br>
+          Cantidad de publico: {{ pelicula.cantPublico }}
         </mat-card-footer>
-
+        <mat-card-actions>
+          <app-boton-borrar [pelicula]="pelicula"></app-boton-borrar>
+        </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>

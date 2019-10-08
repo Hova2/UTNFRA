@@ -47,4 +47,9 @@ export class PeliculaService {
   public traerListado(): Array<IPelicula> {
     return this.listPelicula;
   }
+
+  public borrarPelicula(pelicula: IPelicula) {
+    const indice = this.listPelicula.indexOf(pelicula);
+    this.listPelicula.splice(indice, 1);
+  }
 }
