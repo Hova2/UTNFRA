@@ -1,3 +1,5 @@
+<app-buscar-pelicula (busqueUnaPelicula)="verificarBusqueda($event)">
+</app-buscar-pelicula>
 <ng-container *ngIf="verificarBusqueda()">
   <mat-grid-list cols="1">
     <mat-grid-tile>
@@ -24,5 +26,3 @@
     </mat-grid-tile>
   </mat-grid-list>
 </ng-container>
-<app-buscar-pelicula (busqueUnaPelicula)="verificarBusqueda($event)">
-</app-buscar-pelicula>
