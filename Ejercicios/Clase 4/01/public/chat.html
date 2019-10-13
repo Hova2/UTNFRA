@@ -1,0 +1,125 @@
+<html>
+<head>
+ 
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+ <script src='Configuracion.js'></script>
+
+<link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body>
+
+<!-- CHAT MARKUP -->
+<div class="example-chat l-demo-container">
+  <header>Firebase chat demo</header>
+
+  <div class='example-chat-toolbar'>
+    <label for="usuario">Usuario:</label>
+    <input type='text' id='usuario' placeholder='Ingrese su nombre...'>
+  </div>
+
+  <ul id='listadodemensajes' class="example-chat-messages"></ul>
+
+  <footer>
+    <input type='text' id='mensaje'  placeholder='mensaje...'>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+<!--  JAVACRIPT -->
+<script>
+ 
+
+  // REGISTER DOM ELEMENTS
+  var campoMensaje = $('#mensaje');
+  var campoUsuario = $('#usuario');
+  var listaDemensajes = $('#listadodemensajes');
+
+  // manejador del evento KEYPRESS
+  campoMensaje.keypress(function (e) {
+    if (e.keyCode == 13) {
+      //FIELD VALUES
+      var username = campoUsuario.val();
+      var message = campoMensaje.val();
+
+      //SAVE DATA TO FIREBASE AND EMPTY FIELD
+    db.collection("mensajes").add({
+              usuario: username,
+              mensaje: message,
+              fecha: new Date(),
+          })
+          .then(function(docRef) {
+              console.log("Document written with ID: ", docRef.id);
+          })
+          .catch(function(error) {
+              console.error("Error adding document: ", error);
+          });
+      campoMensaje.val('');
+    }
+  });
+
+//Funcion que escucha los cambios en firebase
+
+db.collection("mensajes").onSnapshot(function(coleccion) {
+
+
+console.info("la coleccion : ", coleccion.docs);
+
+
+coleccion.forEach(function(objeto) {
+        // doc.data() is never undefined for query doc snapshots
+        console.info( "el objeto",objeto);
+        console.info( "el id",objeto.id);
+        console.info( "el datos",objeto.data() );
+
+        var messageElement = $("<li>");
+        var nameElement = $("<strong class='example-chat-username'></strong>")
+        nameElement.text(objeto.data().usuario);
+        messageElement.text(objeto.data().mensaje).prepend(nameElement);
+
+        //ADD MESSAGE
+        listaDemensajes.append(messageElement)
+
+        //SCROLL TO BOTTOM OF MESSAGE LIST
+        listaDemensajes[0].scrollTop = listaDemensajes[0].scrollHeight;
+  });
+
+
+
+});
+
+ 
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
