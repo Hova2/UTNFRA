@@ -1,6 +1,0 @@
-Consulta multi tabla:
-
-9 -
-
-SELECT prod.descripcion,(punto_reposicion-cantidad_stock) AS CantComprar, fab.razon_social FROM `productos` AS prod,`fabricantes` AS fab WHERE cantidad_stock <= punto_reposicion AND prod.cod_fabricante=fab.cod_fabricante ORDER BY fab.razon_social, prod.descripcion;
-

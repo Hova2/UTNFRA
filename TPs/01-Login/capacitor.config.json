@@ -1,7 +1,0 @@
-{
-  "appId": "ar.edu.utnfra.01-login",
-  "appName": "01-Login",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "www"
-}
