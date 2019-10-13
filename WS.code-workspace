@@ -17,7 +17,6 @@
     "editor.fontLigatures": true,
     "workbench.settings.useSplitJSON": true,
     "editor.wordWrap": "on",
-    "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 1000,
     "peacock.favoriteColors": [
         {
@@ -78,9 +77,6 @@
     },
     "editor.fontFamily": "'Fira Code','Droid Sans Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "files.hotExit": "onExit",
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
     "prettier.singleQuote": true
   }
 }
