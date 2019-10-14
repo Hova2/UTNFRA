@@ -1,0 +1,2 @@
+Icono        - 1024 x 1024 px - El icono principal: 768 x 768 px - El icono secundario 256 x 256 px
+Splash       - 2732 x 2732 px - El icono principal: 512 x 512 px

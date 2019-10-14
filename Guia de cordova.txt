@@ -1,0 +1,45 @@
+NOTA: Todos los comandos se deben correr dentro del proyecto de ionic
+
+1 - Para agregar a android como plataforma se debe usar el siguiente comando:
+
+ionic cordova platform add android
+
+2 - Para que pueda generar los nuevos resources (icono y splash) mediante la linea de comandos se debe instalar el siguiente paquete con el comando:
+
+npm i cordova-res@latest --save
+
+3 - Para generar los nuevos icon y splash para android correr el siguiente comando:
+
+ionic cordova resources android
+
+NOTA: Si ya se generaron anteriormente, se puede usar el siguiente comando para forzar la generacion nuevamente:
+
+ionic cordova resources android --force
+
+4 - Para generar la apk de android se debe correr el siguiente comando:
+
+ionic cordova build android
+
+NOTA: La apk se encientra en el siguiente directorio:
+
+"Carpeta del proyecto de ionic"/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+
+5 - Despues de cambia el nombre de la aplicacion y el id hay que correr el siguiente comando:
+
+ionic repair
+
+6 - Para cambiar la posicion del spinner hay que editar el siguiente archivo:
+
+"Carpeta del proyecto de ionic"/platforms/android/app/src/main/java/org/apache/cordova/splashscreen/SplashScreen.java
+
+Buscar las siguientes lineas:
+
+centeredLayout.setGravity(Gravity.CENTER);
+layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+
+Y cambiarlas por las siguientes:
+
+centeredLayout.setGravity(Gravity.BOTTOM); 
+layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+
+Este cambio movera el spinner hacia abajo.
