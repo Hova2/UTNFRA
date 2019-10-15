@@ -1,1 +1,12 @@
+.centrado {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+.imagen {
+  height: 35%;
+  width: 35%;
+  margin: auto;
+  display: block;
+}
