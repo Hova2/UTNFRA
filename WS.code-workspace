@@ -12,7 +12,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "Material Theme Darker High Contrast",
+    "workbench.colorTheme": "Material Theme Palenight High Contrast",
     "git.ignoreLimitWarning": true,
     "editor.fontLigatures": true,
     "workbench.settings.useSplitJSON": true,

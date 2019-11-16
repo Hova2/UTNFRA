@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tpbd-616aa": {
+      "hosting": {
+        "TP00": [
+          "tpbd-616aa"
+        ]
+      }
+    }
+  }
+}
