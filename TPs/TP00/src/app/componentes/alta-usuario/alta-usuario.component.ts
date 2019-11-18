@@ -32,7 +32,7 @@ export class AltaUsuarioComponent implements OnInit {
       apellido: this.usuarioForm.value.apellido,
       foto: '',
       activo: true,
-      rol: Rol.Admin
+      rol: Rol.Usuario
     };
 
     this.as.registracion(
@@ -42,24 +42,6 @@ export class AltaUsuarioComponent implements OnInit {
       this.usuarioForm.value.foto.files
     );
   }
-
-  /* altaUsuario() {
-    const userTmp = new Usuario(
-      this.nombre,
-      this.apellido,
-      'Foto',
-      true,
-      this.email,
-      'admin'
-    );
-    this.userService.persistirUsuario(userTmp);
-    this.nombre = '';
-    this.apellido = '';
-    this.email = '';
-    this.password = '';
-  }
-
-  */
 
   ngOnInit() {}
 }

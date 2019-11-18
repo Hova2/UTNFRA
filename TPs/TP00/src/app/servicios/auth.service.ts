@@ -38,11 +38,11 @@ export class AuthService {
     return salida;
   }
 
-  /*async ingresar(email: string, password: string): Promise<string> {
+  async ingresar(email: string, password: string): Promise<string> {
     let salida = 'El usuario ingreso correctamente';
 
     try {
-      const res = await this.angularFireAuth.auth.signInWithEmailAndPassword(
+      const res = await this.afa.auth.signInWithEmailAndPassword(
         email,
         password
       );
@@ -57,7 +57,7 @@ export class AuthService {
     let salida = 'El usuario anonimo ingreso correctamente';
 
     try {
-      const res = await this.angularFireAuth.auth.signInAnonymously();
+      const res = await this.afa.auth.signInAnonymously();
     } catch (err) {
       salida = err.message;
     }
@@ -68,12 +68,12 @@ export class AuthService {
   async salir(): Promise<string> {
     let salida = 'El usuario salio correctamente';
     try {
-      const res = await this.angularFireAuth.auth.signOut();
+      const res = await this.afa.auth.signOut();
       this.router.navigate(['/login']);
     } catch (err) {
       salida = err.message;
     }
 
     return salida;
-  }*/
+  }
 }
