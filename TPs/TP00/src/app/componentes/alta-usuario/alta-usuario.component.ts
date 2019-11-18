@@ -41,6 +41,8 @@ export class AltaUsuarioComponent implements OnInit {
       this.usuarioForm.value.password,
       this.usuarioForm.value.foto.files
     );
+
+    this.borrarForm();
   }
 
   ngOnInit() {}
