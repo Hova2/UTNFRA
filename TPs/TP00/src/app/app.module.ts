@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
@@ -17,11 +18,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AltaProductoComponent } from './componentes/alta-producto/alta-producto.component';
 import { AltaUsuarioComponent } from './componentes/alta-usuario/alta-usuario.component';
+import { BarraTituloComponent } from './componentes/barra-titulo/barra-titulo.component';
+import { LoginComponent } from './componentes/login/login.component';
 import { AuthService } from './servicios/auth.service';
 import { UsuarioService } from './servicios/usuario.service';
 
 @NgModule({
-  declarations: [AppComponent, AltaUsuarioComponent, AltaProductoComponent],
+  declarations: [AppComponent, AltaUsuarioComponent, AltaProductoComponent, LoginComponent, BarraTituloComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -34,7 +37,8 @@ import { UsuarioService } from './servicios/usuario.service';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    MatToolbarModule
   ],
   providers: [
     AngularFirestore,

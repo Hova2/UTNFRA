@@ -1,11 +1,12 @@
-<mat-card>
-  <mat-card-title>
-    <h5>
-      <strong>Alta de usuario</strong>
-    </h5>
-  </mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="usuarioForm" (ngSubmit)="guardarForm()">
+<app-barra-titulo></app-barra-titulo>
+<mat-card class="accent">
+  <mat-card-header>
+    <mat-card-title>
+      Alta de usuario
+    </mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="usuarioForm" (ngSubmit)="guardarForm()">
+    <mat-card-content>
       <div>
         <mat-form-field appearance="outline">
           <mat-label>Nombre</mat-label>
@@ -16,7 +17,6 @@
             name="nombe"
             placeholder="Ingrese nombre"
           />
-          <mat-icon>contacts</mat-icon>
         </mat-form-field>
       </div>
       <div>
@@ -29,7 +29,6 @@
             name="apellido"
             placeholder="Ingrese apellido"
           />
-          <mat-icon>contacts</mat-icon>
         </mat-form-field>
       </div>
       <div>
@@ -59,7 +58,8 @@
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline">
+        <mat-form-field>
+          <mat-label>Foto</mat-label>
           <ngx-mat-file-input
             formControlName="foto"
             name="foto"
@@ -69,11 +69,14 @@
           <mat-icon matSuffix>folder</mat-icon>
         </mat-form-field>
       </div>
-      <div>
-        <button mat-raised-button type="submit" color="primary">
-          Aceptar
-        </button>
-      </div>
-    </form>
-  </mat-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="primary">
+        Aceptar
+      </button>
+      <button mat-raised-button (click)="cancelarForm()" color="warn">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </form>
 </mat-card>
