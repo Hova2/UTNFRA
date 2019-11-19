@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class AltaUsuarioComponent implements OnInit {
   public usuarioForm: FormGroup;
-  public archivo: File;
 
   constructor(private as: AuthService, private router: Router) {
     this.usuarioForm = new FormGroup({

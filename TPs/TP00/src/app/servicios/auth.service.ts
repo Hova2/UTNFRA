@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { UsuarioI } from '../interfaces/usuario-i';
 import { UsuarioService } from './usuario.service';
 
@@ -8,11 +11,16 @@ import { UsuarioService } from './usuario.service';
   providedIn: 'root'
 })
 export class AuthService {
+  usuario$: Observable<UsuarioI>;
+
   constructor(
     private afa: AngularFireAuth,
+    private afs: AngularFirestore,
     private us: UsuarioService,
     private router: Router
-  ) {}
+  ) {
+    this.usuario$ = this.buscarUsuarioFirebase();
+  }
 
   async registracion(
     usuario: UsuarioI,
@@ -75,5 +83,24 @@ export class AuthService {
     }
 
     return salida;
+  }
+
+  private buscarUsuarioFirebase(): Observable<UsuarioI> {
+    const salida = this.afa.authState.pipe(
+      switchMap(usuario => {
+        if (usuario) {
+          return this.afs
+            .doc<UsuarioI>(`usuarios/${usuario.uid}`)
+            .valueChanges();
+        } else {
+          return of(null);
+        }
+      })
+    );
+    return salida;
+  }
+
+  traerUsuarioActivo(): Observable<UsuarioI> {
+    return this.usuario$;
   }
 }

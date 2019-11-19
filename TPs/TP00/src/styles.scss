@@ -11,11 +11,8 @@ mat-card {
   width: 50%;
 }
 
-mat-form-field {
-  width: 100%;
-}
-
 mat-card-header {
+  display: flex !important;
   justify-content: center;
 }
 
@@ -24,7 +21,20 @@ mat-card-actions {
   justify-content: center;
 }
 
+mat-card-footer {
+  display: flex !important;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
 mat-toolbar-row {
   display: flex !important;
   justify-content: center;
+}
+
+button {
+  width: 50%;
 }
