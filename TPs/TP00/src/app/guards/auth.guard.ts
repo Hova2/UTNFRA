@@ -20,13 +20,6 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     return this.as.traerUsuarioActivo().pipe(
       take(1),
-      tap(usuario => {
-        if (usuario) {
-          if (!(next.data.rol.indexOf(usuario.rol) > -1)) {
-            this.router.navigate(['/accesodenegado']);
-          }
-        }
-      }),
       map(usuario => !!usuario),
       tap(estaIniciado => {
         if (!estaIniciado) {

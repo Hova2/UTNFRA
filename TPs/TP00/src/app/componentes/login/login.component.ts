@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Rol } from 'src/app/enums/rol.enum';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthService } from "src/app/servicios/auth.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
   public usuarioForm: FormGroup;
 
   constructor(private as: AuthService, private router: Router) {
     this.usuarioForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl('')
+      email: new FormControl(""),
+      password: new FormControl("")
     });
   }
 
@@ -33,30 +32,25 @@ export class LoginComponent implements OnInit {
     this.borrarForm();
     this.as.traerUsuarioActivo().subscribe(usuario => {
       if (usuario) {
-        switch (usuario.rol) {
-          case Rol.Admin:
-            this.router.navigate(['/administrador']);
-            break;
-          case Rol.Usuario:
-            this.router.navigate(['/usuario']);
-            break;
-        }
+        this.router.navigate(["/principal"]);
+      } else {
+        this.router.navigate(["/login"]);
       }
     });
   }
 
   registrarse() {
     this.borrarForm();
-    this.router.navigate(['/altausuario']);
+    this.router.navigate(["/altausuario"]);
   }
 
   cargarUsuario() {
-    this.usuarioForm.get('email').setValue('usuario@usuario.com');
-    this.usuarioForm.get('password').setValue('usuariousuario');
+    this.usuarioForm.get("email").setValue("usuario@usuario.com");
+    this.usuarioForm.get("password").setValue("usuariousuario");
   }
 
   cargarAdministrador() {
-    this.usuarioForm.get('email').setValue('admin@admin.com');
-    this.usuarioForm.get('password').setValue('adminadmin');
+    this.usuarioForm.get("email").setValue("admin@admin.com");
+    this.usuarioForm.get("password").setValue("adminadmin");
   }
 }

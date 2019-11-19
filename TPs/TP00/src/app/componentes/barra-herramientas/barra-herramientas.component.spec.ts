@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginaUsuarioComponent } from './pagina-usuario.component';
+import { BarraHerramientasComponent } from './barra-herramientas.component';
 
-describe('PaginaUsuarioComponent', () => {
-  let component: PaginaUsuarioComponent;
-  let fixture: ComponentFixture<PaginaUsuarioComponent>;
+describe('BarraHerramientasComponent', () => {
+  let component: BarraHerramientasComponent;
+  let fixture: ComponentFixture<BarraHerramientasComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginaUsuarioComponent ]
+      declarations: [ BarraHerramientasComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaginaUsuarioComponent);
+    fixture = TestBed.createComponent(BarraHerramientasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

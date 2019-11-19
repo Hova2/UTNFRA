@@ -1,0 +1,17 @@
+<button mat-button [matMenuTriggerFor]="usuario">Usuario</button>
+<div>
+  <mat-menu #usuario="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="producto">Producto</button>
+  <mat-menu #producto="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="local">Local</button>
+  <mat-menu #local="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+</div>
