@@ -27,6 +27,8 @@ import { PaginaNoEncontradaComponent } from "./componentes/pagina-no-encontrada/
 import { PaginaPrincipalComponent } from "./componentes/pagina-principal/pagina-principal.component";
 import { BarraHerramientasComponent } from "./componentes/barra-herramientas/barra-herramientas.component";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { MatMenuModule } from "@angular/material/menu";
     MaterialFileInputModule,
     MatToolbarModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSidenavModule,
+    MatExpansionModule
   ],
   providers: [
     AngularFirestore,
