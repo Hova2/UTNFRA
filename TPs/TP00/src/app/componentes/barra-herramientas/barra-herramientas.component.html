@@ -1,5 +1,11 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav class="sidenav-menu" mode="side" opened>
+      <img
+      class="imagen"
+      [src]="foto"
+      alt="Photo of a Shiba Inu"
+    />
+
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -7,6 +13,9 @@
             Usuario
           </mat-panel-title>
         </mat-expansion-panel-header>
+        <button mat-button color="accent">
+          Listar
+        </button>
       </mat-expansion-panel>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -14,6 +23,15 @@
             Producto
           </mat-panel-title>
         </mat-expansion-panel-header>
+        <button mat-button color="accent">
+          Alta
+        </button>
+        <button mat-button color="accent">
+          Baja
+        </button>
+        <button mat-button color="accent">
+          Listar
+        </button>
       </mat-expansion-panel>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -21,6 +39,15 @@
             Local
           </mat-panel-title>
         </mat-expansion-panel-header>
+        <button mat-button color="accent">
+          Alta
+        </button>
+        <button mat-button color="accent">
+          Baja
+        </button>
+        <button mat-button color="accent">
+          Listar
+        </button>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-sidenav>
