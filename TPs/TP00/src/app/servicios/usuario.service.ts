@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection
-} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UsuarioI } from '../interfaces/usuario-i';
 
 @Injectable({
@@ -13,7 +12,7 @@ export class UsuarioService {
   usuarios: AngularFirestoreCollection;
 
   constructor(private af: AngularFirestore, private afs: AngularFireStorage) {
-    this.usuarios = this.af.collection('usuarios');
+    this.usuarios = this.af.collection<UsuarioI>('usuarios');
   }
 
   persistirUsuario(usuario: UsuarioI, uid: string) {
@@ -33,5 +32,17 @@ export class UsuarioService {
           });
         });
     });
+  }
+
+  traerUsuarios(): Observable<any[]> {
+    return this.usuarios.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(action => {
+          const datos = action.payload.doc.data() as UsuarioI;
+          const id = action.payload.doc.id;
+          return { id, ...datos };
+        });
+      })
+    );
   }
 }

@@ -77,6 +77,9 @@
     },
     "editor.fontFamily": "'Fira Code','Droid Sans Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "files.hotExit": "onExit",
-    "prettier.singleQuote": true
+    "prettier.jsxSingleQuote": true,
+    "prettier.singleQuote": true,
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single"
   }
 }

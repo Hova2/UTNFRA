@@ -29,6 +29,7 @@ import { BarraHerramientasComponent } from "./componentes/barra-herramientas/bar
 import { MatMenuModule } from "@angular/material/menu";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { TablaListadoComponent } from './componentes/tabla-listado/tabla-listado.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     BarraTituloComponent,
     PaginaNoEncontradaComponent,
     PaginaPrincipalComponent,
-    BarraHerramientasComponent
+    BarraHerramientasComponent,
+    TablaListadoComponent
   ],
   imports: [
     BrowserModule,
