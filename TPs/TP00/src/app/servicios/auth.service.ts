@@ -24,7 +24,6 @@ export class AuthService {
 
   async registracion(
     usuario: UsuarioI,
-    email: string,
     password: string,
     foto: Array<File>
   ): Promise<string> {
@@ -32,7 +31,7 @@ export class AuthService {
 
     try {
       const res = await this.afa.auth.createUserWithEmailAndPassword(
-        email,
+        usuario.email,
         password
       );
       this.us.persistirUsuario(usuario, res.user.uid);

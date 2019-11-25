@@ -7,7 +7,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { PaginaPrincipalComponent } from './componentes/pagina-principal/pagina-principal.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'principal', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'altausuario', component: AltaUsuarioComponent },
   {

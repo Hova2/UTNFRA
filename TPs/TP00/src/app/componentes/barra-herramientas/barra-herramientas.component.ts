@@ -13,13 +13,12 @@ export class BarraHerramientasComponent implements OnInit {
   foto: string;
   rol: string;
   nomApe: string;
+  tipoBoton: string;
   usuario$: Observable<UsuarioI>;
-  listaUsuarios$: Observable<any[]>;
 
-  constructor(private as: AuthService, private us: UsuarioService) {
+  constructor(private as: AuthService) {
     this.usuario$ = as.traerUsuarioActivo();
-    this.listaUsuarios$ = this.us.traerUsuarios();
-
+    this.tipoBoton = 'ninguno';
     this.usuario$.subscribe(usuario => {
       this.foto = usuario.foto;
       this.rol = usuario.rol;
@@ -31,5 +30,9 @@ export class BarraHerramientasComponent implements OnInit {
 
   cerrarSesion() {
     this.as.salir();
+  }
+
+  asignarTipoBoton(tipo: string) {
+    this.tipoBoton = tipo;
   }
 }

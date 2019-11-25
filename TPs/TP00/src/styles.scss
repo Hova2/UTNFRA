@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 
 mat-card {
   position: absolute;
@@ -38,24 +44,30 @@ mat-toolbar-row {
 button {
   width: 50%;
 }
-.cerrar-sesion{
+
+table {
+  width: 100%;
+}
+
+.cerrar-sesion {
   width: 100% !important;
 }
 
 .sidenav-container {
+  display: flex;
+  justify-content: center;
   height: 95%;
 }
 
 .sidenav-menu {
   width: 10%;
-
 }
 
 .sidenav-contenedor {
   width: 90%;
 }
 
-.titulo{
+.titulo {
   display: flex;
   background-color: steelblue;
   justify-content: center;
@@ -65,5 +77,30 @@ button {
 .imagen {
   width: auto;
   height: 12%;
+}
 
+tr.detalle-fila {
+  height: 0;
+}
+
+tr.producto-fila:not(.fila-expandida):hover {
+  background: #777;
+}
+
+tr.producto-fila:not(.fila-expandida):active {
+  background: #efefef;
+}
+
+.producto-fila td {
+  border-bottom-width: 0;
+}
+
+.expandir-detalle {
+  overflow: hidden;
+  display: flex;
+}
+
+.producto-descripcion-observaciones {
+  padding: 16px;
+  text-align: center;
 }

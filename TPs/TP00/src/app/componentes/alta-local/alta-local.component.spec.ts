@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TablaListadoComponent } from './tabla-listado.component';
+import { AltaLocalComponent } from './alta-local.component';
 
-describe('TablaListadoComponent', () => {
-  let component: TablaListadoComponent;
-  let fixture: ComponentFixture<TablaListadoComponent>;
+describe('AltaLocalComponent', () => {
+  let component: AltaLocalComponent;
+  let fixture: ComponentFixture<AltaLocalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TablaListadoComponent ]
+      declarations: [ AltaLocalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TablaListadoComponent);
+    fixture = TestBed.createComponent(AltaLocalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

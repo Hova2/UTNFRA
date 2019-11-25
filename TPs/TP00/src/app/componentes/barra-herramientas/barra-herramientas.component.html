@@ -8,7 +8,7 @@
     >
       Cerrar sesion
     </button>
-    <img class="imagen" [src]="foto" alt="Photo of a Shiba Inu" />
+    <img class="imagen" [src]="foto" />
     <p>{{ nomApe }}</p>
     <mat-accordion>
       <mat-expansion-panel>
@@ -17,7 +17,11 @@
             Usuario
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <button mat-button color="accent">
+        <button
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('listarusuarios')"
+        >
           Lista
         </button>
       </mat-expansion-panel>
@@ -27,10 +31,19 @@
             Producto
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <button *ngIf="rol == 'Administrador'" mat-button color="accent">
+        <button
+          *ngIf="rol == 'Administrador'"
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('altaproducto')"
+        >
           Alta
         </button>
-        <button mat-button color="accent">
+        <button
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('listaproductos')"
+        >
           Lista
         </button>
       </mat-expansion-panel>
@@ -40,10 +53,19 @@
             Local
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <button *ngIf="rol == 'Administrador'" mat-button color="accent">
+        <button
+          *ngIf="rol == 'Administrador'"
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('altalocal')"
+        >
           Alta
         </button>
-        <button mat-button color="accent">
+        <button
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('listarlocales')"
+        >
           Lista
         </button>
       </mat-expansion-panel>
@@ -53,7 +75,11 @@
             Movimientos
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <button mat-button color="accent">
+        <button
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('listarmovimientos')"
+        >
           Lista
         </button>
       </mat-expansion-panel>
@@ -61,6 +87,21 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="sidenav-contenedor">
-    <app-tabla-listado [rol]="rol"> </app-tabla-listado>
+    <ng-container [ngSwitch]="tipoBoton">
+      <app-tabla-listado-usuarios *ngSwitchCase="'listarusuarios'" [rol]="rol">
+      </app-tabla-listado-usuarios>
+      <app-tabla-listado-productos *ngSwitchCase="'listaproductos'" [rol]="rol">
+      </app-tabla-listado-productos>
+      <app-alta-producto *ngSwitchCase="'altaproducto'"> </app-alta-producto>
+      <app-tabla-listado-locales *ngSwitchCase="'listarlocales'" [rol]="rol">
+      </app-tabla-listado-locales>
+      <app-alta-local *ngSwitchCase="'altalocal'"></app-alta-local>
+      <app-tabla-listado-movimientos
+        *ngSwitchCase="'listarmovimientos'"
+        [rol]="rol"
+      >
+      </app-tabla-listado-movimientos>
+      <p *ngSwitchDefault>Nada seleccionado</p>
+    </ng-container>
   </mat-sidenav-content>
 </mat-sidenav-container>

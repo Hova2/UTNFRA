@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Rol } from 'src/app/enums/rol.enum';
 import { AuthService } from 'src/app/servicios/auth.service';
 
-
 @Component({
   selector: 'app-alta-usuario',
   templateUrl: './alta-usuario.component.html',
@@ -23,14 +22,11 @@ export class AltaUsuarioComponent implements OnInit {
     });
   }
 
-  private borrarForm() {
-    this.usuarioForm.reset();
-  }
-
   guardarForm() {
     const usuarioTmp = {
       nombre: this.usuarioForm.value.nombre,
       apellido: this.usuarioForm.value.apellido,
+      email: this.usuarioForm.value.email,
       foto: '',
       activo: true,
       rol: Rol.Usuario
@@ -38,18 +34,16 @@ export class AltaUsuarioComponent implements OnInit {
 
     this.as.registracion(
       usuarioTmp,
-      this.usuarioForm.value.email,
       this.usuarioForm.value.password,
       this.usuarioForm.value.foto.files
     );
 
-    this.borrarForm();
+    this.usuarioForm.reset();
   }
 
-  cancelarForm(){
-    this.borrarForm();
+  cancelarForm() {
+    this.usuarioForm.reset();
     this.router.navigate(['/login']);
-
   }
 
   ngOnInit() {}
