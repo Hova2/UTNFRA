@@ -60,6 +60,7 @@
           <div class="producto-descripcion-observaciones">
             <div><span>{{ producto.descripcion }}</span></div>
             <div><span>{{ producto.observaciones }}</span></div>
+            <div><img class="tam" [src]="producto.foto" /></div>
           </div>
         </div>
       </td>
@@ -82,3 +83,4 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
+

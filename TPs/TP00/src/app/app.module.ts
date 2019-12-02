@@ -38,6 +38,10 @@ import { TablaListadoMovimientosComponent } from './componentes/tabla-listado-mo
 import { ProductoService } from './servicios/producto.service';
 import { AltaLocalComponent } from './componentes/alta-local/alta-local.component';
 import { LocalService } from './servicios/local.service';
+import { MovimientoService } from './servicios/movimiento.service';
+import { AgregarProductoLocalComponent } from './componentes/agregar-producto-local/agregar-producto-local.component';
+import { MatSelectModule } from '@angular/material/select';
+import { AgregarUsuarioLocalComponent } from './componentes/agregar-usuario-local/agregar-usuario-local.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,9 @@ import { LocalService } from './servicios/local.service';
     TablaListadoProductosComponent,
     TablaListadoLocalesComponent,
     TablaListadoMovimientosComponent,
-    AltaLocalComponent
+    AltaLocalComponent,
+    AgregarProductoLocalComponent,
+    AgregarUsuarioLocalComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +80,8 @@ import { LocalService } from './servicios/local.service';
     MatSidenavModule,
     MatExpansionModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
   ],
   providers: [
     AngularFirestore,
@@ -84,7 +91,8 @@ import { LocalService } from './servicios/local.service';
     UsuarioService,
     FormBuilder,
     ProductoService,
-    LocalService
+    LocalService,
+    MovimientoService
   ],
   bootstrap: [AppComponent]
 })

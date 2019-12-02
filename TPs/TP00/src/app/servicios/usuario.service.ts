@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection
+} from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -20,7 +23,7 @@ export class UsuarioService {
   }
 
   deshabilitarUsuario(uid: string) {
-    this.usuarios.doc(uid).update({activo: false});
+    this.usuarios.doc(uid).update({ activo: false });
   }
 
   subirFoto(foto: File, uid: string) {
@@ -48,5 +51,9 @@ export class UsuarioService {
         });
       })
     );
+  }
+
+  traerUsuario(id: string): Observable<UsuarioI> {
+    return this.usuarios.doc<UsuarioI>(id).valueChanges();
   }
 }

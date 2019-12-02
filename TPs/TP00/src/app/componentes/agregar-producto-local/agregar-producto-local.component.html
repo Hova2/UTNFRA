@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Agregar un producto a un local
+    </mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="productoLocalForm" (ngSubmit)="guardarForm()">
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Local</mat-label>
+          <mat-select formControlName="localId" name="localId">
+            <mat-option *ngFor="let local of locales$ | async" [value]=local.id>
+              {{ local.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Producto</mat-label>
+          <mat-select formControlName="productoId" name="productoId">
+            <mat-option *ngFor="let producto of productos$ | async" [value]=producto.id>
+              {{ producto.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="primary">
+        Aceptar
+      </button>
+      <button mat-raised-button (click)="cancelarForm()" color="warn">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ProductoI } from '../interfaces/producto-i';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestoreCollection,
+  AngularFirestore,
+  AngularFirestoreDocument,
+  DocumentSnapshot
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { MovimientoService } from './movimiento.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,21 +17,24 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class ProductoService {
   productos: AngularFirestoreCollection;
 
-
-  constructor(private af: AngularFirestore, private afs: AngularFireStorage) {
+  constructor(
+    private af: AngularFirestore,
+    private afs: AngularFireStorage,
+    private ms: MovimientoService
+  ) {
     this.productos = this.af.collection<ProductoI>('productos');
   }
 
   persistirProducto(producto: ProductoI, foto: Array<File>) {
-    this.productos.add(producto).then(doc =>{
+    this.productos.add(producto).then(doc => {
       if (foto) {
         this.subirFoto(foto[0], doc.id);
       }
-   });
+    });
   }
 
   deshabilitarProducto(uid: string) {
-    this.productos.doc(uid).update({activo: false});
+    this.productos.doc(uid).update({ activo: false });
   }
 
   traerProductos(): Observable<any[]> {
@@ -55,4 +64,7 @@ export class ProductoService {
     });
   }
 
+  traerProducto(id: string): Observable<ProductoI> {
+    return this.productos.doc<ProductoI>(id).valueChanges();
+  }
 }

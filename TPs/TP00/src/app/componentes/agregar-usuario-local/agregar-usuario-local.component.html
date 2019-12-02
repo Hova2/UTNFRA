@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Agregar un usuario a un local
+    </mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="usuarioLocalForm" (ngSubmit)="guardarForm()">
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Local</mat-label>
+          <mat-select formControlName="localId" name="localId">
+            <mat-option *ngFor="let local of locales$ | async" [value]=local.id>
+              {{ local.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <mat-select formControlName="usuarioId" name="usuarioId">
+            <mat-option *ngFor="let usuario of usuarios$ | async" [value]=usuario.id>
+              {{ usuario.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="primary">
+        Aceptar
+      </button>
+      <button mat-raised-button (click)="cancelarForm()" color="warn">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

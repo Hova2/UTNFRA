@@ -68,6 +68,22 @@
         >
           Lista
         </button>
+        <button
+          *ngIf="rol == 'Administrador'"
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('agregarproductolocal')"
+        >
+          Agregar prod.
+        </button>
+        <button
+        *ngIf="rol == 'Administrador'"
+        mat-button
+        color="accent"
+        (click)="asignarTipoBoton('agregarusuariolocal')"
+      >
+        Agregar user.
+      </button>
       </mat-expansion-panel>
       <mat-expansion-panel *ngIf="rol == 'Administrador'">
         <mat-expansion-panel-header>
@@ -96,6 +112,8 @@
       <app-tabla-listado-locales *ngSwitchCase="'listarlocales'" [rol]="rol">
       </app-tabla-listado-locales>
       <app-alta-local *ngSwitchCase="'altalocal'"></app-alta-local>
+      <app-agregar-producto-local *ngSwitchCase="'agregarproductolocal'"></app-agregar-producto-local>
+      <app-agregar-usuario-local *ngSwitchCase="'agregarusuariolocal'"></app-agregar-usuario-local>
       <app-tabla-listado-movimientos
         *ngSwitchCase="'listarmovimientos'"
         [rol]="rol"
