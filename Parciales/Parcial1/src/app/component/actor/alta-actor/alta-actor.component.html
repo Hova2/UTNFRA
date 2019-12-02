@@ -1,0 +1,92 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Alta de actor
+    </mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="actorForm" (ngSubmit)="guardarForm()">
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="nombre"
+            name="nombre"
+            placeholder="Ingrese nombre"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="apellido"
+            name="apellido"
+            placeholder="Ingrese apellido"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Nacionalidad</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="nacionalidad"
+            name="nacionalidad"
+            placeholder="Ingrese nacionalidad"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="fNacimiento"
+            name="fNacimiento"
+            placeholder="Ingrese la fecha de nacimiento"
+          />
+        </mat-form-field>
+      </div>
+      <!-- <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            name="password"
+            placeholder="Ingrese password"
+          />
+          <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
+      </div> -->
+      <!-- <div>
+        <mat-form-field>
+          <mat-label>Foto</mat-label>
+          <ngx-mat-file-input
+            formControlName="foto"
+            name="foto"
+            observeFiles
+            placeholder="Ingrese foto"
+          ></ngx-mat-file-input>
+          <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+      </div> -->
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="primary">
+        Aceptar
+      </button>
+      <button mat-raised-button (click)="cancelarForm()" color="warn">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
