@@ -27,7 +27,7 @@ export class PeliculaService {
           id: 1,
           nombre: 'Actor 1',
           apellido: 'Apellido 1',
-          nacionalidad: 'Argentino',
+          nacionalidad: 'argentino',
           fNacimiento: '02-02-1990',
           foto: ''
         }
@@ -44,7 +44,7 @@ export class PeliculaService {
           id: 1,
           nombre: 'Actor 1',
           apellido: 'Apellido 1',
-          nacionalidad: 'Argentino',
+          nacionalidad: 'argentino',
           fNacimiento: '02-02-1990',
           foto: ''
         }
@@ -61,7 +61,7 @@ export class PeliculaService {
           id: 1,
           nombre: 'Actor 1',
           apellido: 'Apellido 1',
-          nacionalidad: 'Argentino',
+          nacionalidad: 'argentino',
           fNacimiento: '02-02-1990',
           foto: ''
         }

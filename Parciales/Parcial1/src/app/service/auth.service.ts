@@ -7,7 +7,7 @@ import { delay, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  estaLogueado = false;
+
   usuarioLogueado: UsuarioI;
 
   constructor() {}
@@ -23,13 +23,22 @@ export class AuthService {
         'usuarioLogueado',
         JSON.stringify(this.usuarioLogueado)
       );
-      this.estaLogueado = true;
+    }
+  }
+
+  estaLogueado(): boolean{
+    const usuario = JSON.parse(localStorage.getItem('usuarioLogueado'));
+    if (usuario){
+      return true;
     } else {
-      this.estaLogueado = false;
+      return false;
     }
   }
 
   desloguearse() {
-    this.estaLogueado = false;
+    localStorage.setItem(
+      'usuarioLogueado',
+      ''
+    );
   }
 }

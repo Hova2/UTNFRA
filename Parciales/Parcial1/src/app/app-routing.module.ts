@@ -9,6 +9,7 @@ import { ListadoActoresComponent } from './component/actor/listado-actores/lista
 import { ActorDetalleComponent } from './component/actor/actor-detalle/actor-detalle.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './component/login/login.component';
+import { NexoSusApellidoComponenteComponent } from './component/nexo-sus-apellido-componente/nexo-sus-apellido-componente.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,13 +19,14 @@ const routes: Routes = [
     data: { animation: 'Bienvenido' }
   },
   { path: 'login', component: LoginComponent, data: { animation: 'Login' } },
+  { path: 'nexo', component: NexoSusApellidoComponenteComponent },
   { path: 'busqueda', component: MostrarBusquedaComponent },
   {
     path: 'peliculas',
     children: [
       {
         path: 'alta',
-        component: AltaPeliculaComponent
+        component: AltaPeliculaComponent, canActivate: [AuthGuard]
       },
       { path: 'listado', component: ListadoPeliculasComponent }
     ]
@@ -32,7 +34,7 @@ const routes: Routes = [
   {
     path: 'actor',
     children: [
-      { path: 'alta', component: AltaActorComponent },
+      { path: 'alta', component: AltaActorComponent, canActivate: [AuthGuard]},
       { path: 'listado', component: ListadoActoresComponent },
       { path: 'actor_detalle', component: ActorDetalleComponent }
     ]

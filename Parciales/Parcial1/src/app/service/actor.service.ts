@@ -17,7 +17,7 @@ export class ActorService {
         id: 1,
         nombre: 'Actor 1',
         apellido: 'Apellido 1',
-        nacionalidad: 'Argentino',
+        nacionalidad: 'argentino',
         fNacimiento: '02-02-1990',
         foto: ''
       });
@@ -50,4 +50,24 @@ export class ActorService {
     this.actores.push(actor);
     localStorage.setItem('actores', JSON.stringify(this.actores));
   }
+
+  public traerNacionalidades(): Array<string>{
+    const salida = new Array<string>();
+    this.actores.forEach(actor => {
+      if(salida.indexOf(actor.nacionalidad.toLowerCase()) === -1){
+        salida.push(actor.nacionalidad.toLowerCase());
+      }
+    });
+    return salida;
+  }
+
+  public traerListadoPorNacionalidades(nacionalidad: string): Array<ActorI>{
+    const salida = this.actores.filter(actor => {
+      if(actor.nacionalidad.toLowerCase() === nacionalidad){
+        return actor;
+      }
+    });
+    return salida;
+  }
+
 }

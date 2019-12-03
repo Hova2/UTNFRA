@@ -21,6 +21,9 @@ import { ActorDetalleComponent } from './component/actor/actor-detalle/actor-det
 import { LoginComponent } from './component/login/login.component';
 import { AuthService } from './service/auth.service';
 import { ModificarFotoComponent } from './component/actor/modificar-foto/modificar-foto.component';
+import { NexoSusApellidoComponenteComponent } from './component/nexo-sus-apellido-componente/nexo-sus-apellido-componente.component';
+import { FiltoSuApellidoComponent } from './component/filto-su-apellido/filto-su-apellido.component';
+import { ListadoEstrellasSuApellidoComponent } from './component/listado-estrellas-su-apellido/listado-estrellas-su-apellido.component';
 
 
 
@@ -38,6 +41,9 @@ import { ModificarFotoComponent } from './component/actor/modificar-foto/modific
     ActorDetalleComponent,
     LoginComponent,
     ModificarFotoComponent,
+    NexoSusApellidoComponenteComponent,
+    FiltoSuApellidoComponent,
+    ListadoEstrellasSuApellidoComponent,
   ],
   imports: [
     ReactiveFormsModule,

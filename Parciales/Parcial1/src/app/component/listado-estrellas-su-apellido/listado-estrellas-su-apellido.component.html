@@ -12,8 +12,6 @@
     <td>{{ actor.apellido }}</td>
     <td>{{ actor.nacionalidad }}</td>
     <td>{{ actor.fNacimiento }}</td>
-    <td><img [src]='actor.foto' width="102" height="102"></td>
-    <td><button (click)="mostrarDetalle(actor)">Ver detalle</button></td>
-    <app-modificar-foto [actor]="actor" (actorModificado)="modificarActor($event)"></app-modificar-foto>
+    <td><img [src]="actor.foto" width="102" height="102"></td>
   </tr>
 </table>

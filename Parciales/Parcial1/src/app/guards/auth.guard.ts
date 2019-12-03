@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
 
   chequeoLogueado(): boolean {
     let salida = false;
-    if (this.as.estaLogueado) {
+    if (this.as.estaLogueado()) {
       salida = true;
     } else {
       salida = false;

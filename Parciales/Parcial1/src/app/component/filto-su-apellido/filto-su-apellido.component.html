@@ -1,0 +1,5 @@
+<div>
+<mat-select (selectionChange)="nacionalidadSel($event)">
+  <mat-option *ngFor="let nacion of listaNacionalidades" [value]="nacion">{{ nacion }}</mat-option>
+</mat-select>
+</div>
