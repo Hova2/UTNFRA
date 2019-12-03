@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     });
     this.borrarForm();
     if (this.as.estaLogueado) {
-      this.router.navigate(['/bienvenido']);
+      this.router.navigate(['/actor/alta']);
     }
 
   }

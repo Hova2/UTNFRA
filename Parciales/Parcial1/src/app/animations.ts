@@ -2,7 +2,7 @@ import { trigger, transition, style, query, group, animateChild, animate } from 
 
 export const slideInAnimation =
   trigger('routeAnimations', [
-    transition('Login => Bienvenido', [
+    transition('Login => AltaActor', [
       style({ position: 'relative' }),
       query(':enter, :leave', [
         style({
@@ -26,7 +26,7 @@ export const slideInAnimation =
       ]),
       query(':enter', animateChild()),
     ]),
-    transition('Bienvenido => Login', [
+    transition('AltaActor => Login', [
       style({ position: 'relative' }),
       query(':enter, :leave', [
         style({

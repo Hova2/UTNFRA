@@ -15,8 +15,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'bienvenido',
-    component: BienvenidoComponent,
-    data: { animation: 'Bienvenido' }
+    component: BienvenidoComponent
   },
   { path: 'login', component: LoginComponent, data: { animation: 'Login' } },
   { path: 'nexo', component: NexoSusApellidoComponenteComponent },
@@ -34,7 +33,7 @@ const routes: Routes = [
   {
     path: 'actor',
     children: [
-      { path: 'alta', component: AltaActorComponent, canActivate: [AuthGuard]},
+      { path: 'alta', component: AltaActorComponent, canActivate: [AuthGuard], data: { animation: 'AltaActor' }},
       { path: 'listado', component: ListadoActoresComponent },
       { path: 'actor_detalle', component: ActorDetalleComponent }
     ]
