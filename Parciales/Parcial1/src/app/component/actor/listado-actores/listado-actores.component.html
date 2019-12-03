@@ -1,1 +1,16 @@
-<p>listado-actores works!</p>
+<h1>Actores</h1>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Nacionalidad</th>
+    <th>Fecha de nacimiento</th>
+  </tr>
+  <tr *ngFor="let actor of listadoActores">
+    <td>{{ actor.nombre }}</td>
+    <td>{{ actor.apellido }}</td>
+    <td>{{ actor.nacionalidad }}</td>
+    <td>{{ actor.fNacimiento }}</td>
+    <td><button (click)="mostrarDetalle(actor)">Ver detalle</button></td>
+  </tr>
+</table>

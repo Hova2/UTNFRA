@@ -10,7 +10,7 @@ import { ActorService } from 'src/app/service/actor.service';
 export class AltaActorComponent implements OnInit {
   public actorForm: FormGroup;
 
-  constructor(public as: ActorService) {
+  constructor(private as: ActorService) {
     this.actorForm = new FormGroup({
       nombre: new FormControl('', Validators.required),
       apellido: new FormControl('', Validators.required),

@@ -11,8 +11,15 @@ export class ActorService {
   constructor() {
     this.ultimoId = JSON.parse(localStorage.getItem('ultimoIdActor'));
     if (!this.ultimoId) {
-      this.ultimoId = 1;
+      this.ultimoId = 2;
       this.actores = new Array<ActorI>();
+      this.actores.push({
+        id: 1,
+        nombre: 'Actor 1',
+        apellido: 'Apellido 1',
+        nacionalidad: 'Argentino',
+        fNacimiento: '02-02-1990'
+      });
       localStorage.setItem('actores', JSON.stringify(this.actores));
       localStorage.setItem('ultimoIdActor', JSON.stringify(this.ultimoId));
     } else {

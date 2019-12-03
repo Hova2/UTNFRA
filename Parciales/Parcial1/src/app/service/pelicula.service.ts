@@ -22,7 +22,14 @@ export class PeliculaService {
         fechaEstreno: '04-10-2019',
         cantPublico: 100000,
         fotoPelicula:
-          'https://image.tmdb.org/t/p/w600_and_h900_bestv2/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg'
+          'https://image.tmdb.org/t/p/w600_and_h900_bestv2/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg',
+        estrellaPrincipal: {
+          id: 1,
+          nombre: 'Actor 1',
+          apellido: 'Apellido 1',
+          nacionalidad: 'Argentino',
+          fNacimiento: '02-02-1990'
+        }
       });
       this.peliculas.push({
         id: 2,
@@ -31,7 +38,14 @@ export class PeliculaService {
         fechaEstreno: '16-06-1960',
         cantPublico: 50000000,
         fotoPelicula:
-          'https://image.tmdb.org/t/p/w600_and_h900_bestv2/81d8oyEFgj7FlxJqSDXWr8JH8kV.jpg'
+          'https://image.tmdb.org/t/p/w600_and_h900_bestv2/81d8oyEFgj7FlxJqSDXWr8JH8kV.jpg',
+        estrellaPrincipal: {
+          id: 1,
+          nombre: 'Actor 1',
+          apellido: 'Apellido 1',
+          nacionalidad: 'Argentino',
+          fNacimiento: '02-02-1990'
+        }
       });
       this.peliculas.push({
         id: 3,
@@ -40,11 +54,18 @@ export class PeliculaService {
         fechaEstreno: '03-07-2016',
         cantPublico: 10000,
         fotoPelicula:
-          'https://image.tmdb.org/t/p/w600_and_h900_bestv2/xq1Ugd62d23K2knRUx6xxuALTZB.jpg'
+          'https://image.tmdb.org/t/p/w600_and_h900_bestv2/xq1Ugd62d23K2knRUx6xxuALTZB.jpg',
+        estrellaPrincipal: {
+          id: 1,
+          nombre: 'Actor 1',
+          apellido: 'Apellido 1',
+          nacionalidad: 'Argentino',
+          fNacimiento: '02-02-1990'
+        }
       });
       localStorage.setItem('peliculas', JSON.stringify(this.peliculas));
-      localStorage.setItem('ultimoIdPelicula',JSON.stringify(this.ultimoId));
-    }else{
+      localStorage.setItem('ultimoIdPelicula', JSON.stringify(this.ultimoId));
+    } else {
       this.peliculas = JSON.parse(localStorage.getItem('peliculas'));
       this.ultimoId = JSON.parse(localStorage.getItem('ultimoIdPelicula'));
     }
@@ -75,7 +96,7 @@ export class PeliculaService {
     this.peliculas.push(pelicula);
     this.ultimoId++;
     localStorage.setItem('peliculas', JSON.stringify(this.peliculas));
-    localStorage.setItem('ultimoIdPelicula',JSON.stringify(this.ultimoId));
+    localStorage.setItem('ultimoIdPelicula', JSON.stringify(this.ultimoId));
   }
 
   traerUltimoId(): number {

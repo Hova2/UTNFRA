@@ -8,5 +8,5 @@ export interface IPelicula {
   fechaEstreno: string;
   cantPublico: number;
   fotoPelicula: string;
-  estrellaPrincipal?: ActorI;
+  estrellaPrincipal: ActorI;
 }

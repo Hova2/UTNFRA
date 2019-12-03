@@ -1,0 +1,24 @@
+<h1>Detalle de peliculas</h1>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Tipo</th>
+    <th>Fecha de estreno</th>
+    <th>Cantidad de publico</th>
+    <th>Foto</th>
+  </tr>
+  <tr *ngFor="let pelicula of listadoPeliculas">
+    <td>{{ pelicula.nombre }}</td>
+    <td>{{ enumTipo[pelicula.tipo] }}</td>
+    <td>{{ pelicula.fechaEstreno }}</td>
+    <td>{{ pelicula.cantPublico }}</td>
+    <td>
+      <img
+        [src]="pelicula.fotoPelicula"
+        width="152"
+        height="152"
+        [alt]="pelicula.nombre"
+      />
+    </td>
+  </tr>
+</table>

@@ -13,7 +13,7 @@ export class AltaPeliculaComponent implements OnInit {
   listaActores: Array<ActorI>;
   public peliculaForm: FormGroup;
 
-  constructor(public as: ActorService, public ps: PeliculaService) {
+  constructor(private as: ActorService, private ps: PeliculaService) {
     this.peliculaForm = new FormGroup({
       nombre: new FormControl("", Validators.required),
       tPelicula: new FormControl("", Validators.required),

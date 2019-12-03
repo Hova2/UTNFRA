@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActorI } from 'src/app/interface/actor-i';
+import { ActorService } from 'src/app/service/actor.service';
+import { MiServicioPrincipalService } from 'src/app/service/mi-servicio-principal.service';
 
 @Component({
   selector: 'app-listado-actores',
@@ -6,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listado-actores.component.css']
 })
 export class ListadoActoresComponent implements OnInit {
+  private listadoActores: Array<ActorI>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private as: ActorService,
+    private msps: MiServicioPrincipalService
+  ) {
+    this.listadoActores = this.as.traerActores();
   }
 
+  mostrarDetalle(actor: ActorI) {
+    this.msps.asignarActor(actor);
+  }
+
+  ngOnInit() {}
 }
