@@ -28,7 +28,8 @@ export class PeliculaService {
           nombre: 'Actor 1',
           apellido: 'Apellido 1',
           nacionalidad: 'Argentino',
-          fNacimiento: '02-02-1990'
+          fNacimiento: '02-02-1990',
+          foto: ''
         }
       });
       this.peliculas.push({
@@ -44,7 +45,8 @@ export class PeliculaService {
           nombre: 'Actor 1',
           apellido: 'Apellido 1',
           nacionalidad: 'Argentino',
-          fNacimiento: '02-02-1990'
+          fNacimiento: '02-02-1990',
+          foto: ''
         }
       });
       this.peliculas.push({
@@ -60,7 +62,8 @@ export class PeliculaService {
           nombre: 'Actor 1',
           apellido: 'Apellido 1',
           nacionalidad: 'Argentino',
-          fNacimiento: '02-02-1990'
+          fNacimiento: '02-02-1990',
+          foto: ''
         }
       });
       localStorage.setItem('peliculas', JSON.stringify(this.peliculas));

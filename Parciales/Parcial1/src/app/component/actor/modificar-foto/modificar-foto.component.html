@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Agregar foto
+    </mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="fotoForm" (ngSubmit)="guardarForm()">
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Foto</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="foto"
+            name="foto"
+            placeholder="Ingrese URL de la foto"
+          />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="primary">
+        Aceptar
+      </button>
+      <button mat-raised-button (click)="cancelarForm()" color="warn">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

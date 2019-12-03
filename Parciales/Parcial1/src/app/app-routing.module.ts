@@ -24,8 +24,7 @@ const routes: Routes = [
     children: [
       {
         path: 'alta',
-        component: AltaPeliculaComponent,
-        canActivate: [AuthGuard]
+        component: AltaPeliculaComponent
       },
       { path: 'listado', component: ListadoPeliculasComponent }
     ]
@@ -33,7 +32,7 @@ const routes: Routes = [
   {
     path: 'actor',
     children: [
-      { path: 'alta', component: AltaActorComponent, canActivate: [AuthGuard] },
+      { path: 'alta', component: AltaActorComponent },
       { path: 'listado', component: ListadoActoresComponent },
       { path: 'actor_detalle', component: ActorDetalleComponent }
     ]

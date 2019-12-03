@@ -22,5 +22,9 @@ export class ListadoActoresComponent implements OnInit {
     this.msps.asignarActor(actor);
   }
 
+  modificarActor(evento: ActorI){
+    this.as.modificarActor(evento);
+  }
+
   ngOnInit() {}
 }

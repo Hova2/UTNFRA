@@ -20,6 +20,7 @@ import { MiServicioPrincipalService } from './service/mi-servicio-principal.serv
 import { ActorDetalleComponent } from './component/actor/actor-detalle/actor-detalle.component';
 import { LoginComponent } from './component/login/login.component';
 import { AuthService } from './service/auth.service';
+import { ModificarFotoComponent } from './component/actor/modificar-foto/modificar-foto.component';
 
 
 
@@ -36,6 +37,7 @@ import { AuthService } from './service/auth.service';
     ListadoActoresComponent,
     ActorDetalleComponent,
     LoginComponent,
+    ModificarFotoComponent,
   ],
   imports: [
     ReactiveFormsModule,

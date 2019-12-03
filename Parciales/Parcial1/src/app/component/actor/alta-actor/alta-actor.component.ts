@@ -27,7 +27,8 @@ export class AltaActorComponent implements OnInit {
         nombre: this.actorForm.value.nombre,
         apellido: this.actorForm.value.apellido,
         nacionalidad: this.actorForm.value.nacionalidad,
-        fNacimiento: this.actorForm.value.fNacimiento
+        fNacimiento: this.actorForm.value.fNacimiento,
+        foto: ''
       };
       this.as.persistirActor(actorTmp);
     }

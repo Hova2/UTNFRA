@@ -4,4 +4,5 @@ export interface ActorI {
   apellido: string;
   nacionalidad: string;
   fNacimiento: string;
+  foto: string;
 }

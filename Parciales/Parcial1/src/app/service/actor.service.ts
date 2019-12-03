@@ -18,7 +18,8 @@ export class ActorService {
         nombre: 'Actor 1',
         apellido: 'Apellido 1',
         nacionalidad: 'Argentino',
-        fNacimiento: '02-02-1990'
+        fNacimiento: '02-02-1990',
+        foto: ''
       });
       localStorage.setItem('actores', JSON.stringify(this.actores));
       localStorage.setItem('ultimoIdActor', JSON.stringify(this.ultimoId));
@@ -41,5 +42,12 @@ export class ActorService {
 
   traerActores(): Array<ActorI> {
     return this.actores;
+  }
+
+  public modificarActor(actor: ActorI) {
+    const indice = this.actores.indexOf(actor);
+    this.actores.splice(indice, 1);
+    this.actores.push(actor);
+    localStorage.setItem('actores', JSON.stringify(this.actores));
   }
 }

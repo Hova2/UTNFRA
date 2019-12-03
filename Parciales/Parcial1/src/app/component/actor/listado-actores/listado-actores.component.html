@@ -12,5 +12,6 @@
     <td>{{ actor.nacionalidad }}</td>
     <td>{{ actor.fNacimiento }}</td>
     <td><button (click)="mostrarDetalle(actor)">Ver detalle</button></td>
+    <app-modificar-foto [actor]="actor" (actorModificado)="modificarActor($event)"></app-modificar-foto>
   </tr>
 </table>
