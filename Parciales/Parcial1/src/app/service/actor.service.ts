@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { ActorI } from '../interface/actor-i';
+import { Injectable } from "@angular/core";
+import { ActorI } from "../interface/actor-i";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ActorService {
   ultimoId: number;
@@ -13,13 +13,17 @@ export class ActorService {
     this.actores = new Array<ActorI>();
   }
 
-  persistirActor(actor: ActorI){
+  persistirActor(actor: ActorI) {
     this.actores.push(actor);
     this.ultimoId++;
     console.table(this.actores);
   }
 
-  traerUltimoId(): number{
+  traerUltimoId(): number {
     return this.ultimoId;
+  }
+
+  traerActores(): Array<ActorI> {
+    return this.actores;
   }
 }

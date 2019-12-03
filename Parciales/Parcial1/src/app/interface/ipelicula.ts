@@ -1,4 +1,5 @@
 import { ETipoPelicula } from '../enum/etipo-pelicula.enum';
+import { ActorI } from './actor-i';
 
 export interface IPelicula {
   id: number;
@@ -7,4 +8,5 @@ export interface IPelicula {
   fechaEstreno: string;
   cantPublico: number;
   fotoPelicula: string;
+  estrellaPrincipal?: ActorI;
 }
