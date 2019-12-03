@@ -7,24 +7,41 @@ import { AltaPeliculaComponent } from './component/peliculas/alta-pelicula/alta-
 import { AltaActorComponent } from './component/actor/alta-actor/alta-actor.component';
 import { ListadoActoresComponent } from './component/actor/listado-actores/listado-actores.component';
 import { ActorDetalleComponent } from './component/actor/actor-detalle/actor-detalle.component';
-
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './component/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: BienvenidoComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: 'bienvenido',
+    component: BienvenidoComponent,
+    data: { animation: 'Bienvenido' }
+  },
+  { path: 'login', component: LoginComponent, data: { animation: 'Login' } },
   { path: 'busqueda', component: MostrarBusquedaComponent },
-  { path: 'peliculas', children: [
-    { path: 'alta', component: AltaPeliculaComponent },
-    { path: 'listado', component: ListadoPeliculasComponent }
-   ]},
-   { path: 'actor', children: [
-    { path: 'alta', component: AltaActorComponent },
-    { path: 'listado', component: ListadoActoresComponent },
-    { path: 'actor_detalle', component: ActorDetalleComponent }
-   ]}
+  {
+    path: 'peliculas',
+    children: [
+      {
+        path: 'alta',
+        component: AltaPeliculaComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: 'listado', component: ListadoPeliculasComponent }
+    ]
+  },
+  {
+    path: 'actor',
+    children: [
+      { path: 'alta', component: AltaActorComponent, canActivate: [AuthGuard] },
+      { path: 'listado', component: ListadoActoresComponent },
+      { path: 'actor_detalle', component: ActorDetalleComponent }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -18,6 +18,8 @@ import { PeliculaService } from './service/pelicula.service';
 import { ActorService } from './service/actor.service';
 import { MiServicioPrincipalService } from './service/mi-servicio-principal.service';
 import { ActorDetalleComponent } from './component/actor/actor-detalle/actor-detalle.component';
+import { LoginComponent } from './component/login/login.component';
+import { AuthService } from './service/auth.service';
 
 
 
@@ -33,6 +35,7 @@ import { ActorDetalleComponent } from './component/actor/actor-detalle/actor-det
     AltaPeliculaComponent,
     ListadoActoresComponent,
     ActorDetalleComponent,
+    LoginComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -45,7 +48,8 @@ import { ActorDetalleComponent } from './component/actor/actor-detalle/actor-det
   providers: [
     PeliculaService,
     ActorService,
-    MiServicioPrincipalService
+    MiServicioPrincipalService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
