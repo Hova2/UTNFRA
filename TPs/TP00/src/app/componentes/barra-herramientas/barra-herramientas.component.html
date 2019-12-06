@@ -18,6 +18,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <button
+          class="boton-bloque"
           mat-button
           color="accent"
           (click)="asignarTipoBoton('listarusuarios')"
@@ -32,6 +33,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <button
+          class="boton-bloque"
           *ngIf="rol == 'Administrador'"
           mat-button
           color="accent"
@@ -40,6 +42,7 @@
           Alta
         </button>
         <button
+          class="boton-bloque"
           mat-button
           color="accent"
           (click)="asignarTipoBoton('listaproductos')"
@@ -54,6 +57,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <button
+          class="boton-bloque"
           *ngIf="rol == 'Administrador'"
           mat-button
           color="accent"
@@ -62,6 +66,7 @@
           Alta
         </button>
         <button
+          class="boton-bloque"
           mat-button
           color="accent"
           (click)="asignarTipoBoton('listarlocales')"
@@ -69,6 +74,7 @@
           Lista
         </button>
         <button
+          class="boton-bloque"
           *ngIf="rol == 'Administrador'"
           mat-button
           color="accent"
@@ -77,13 +83,30 @@
           Agregar prod.
         </button>
         <button
-        *ngIf="rol == 'Administrador'"
-        mat-button
-        color="accent"
-        (click)="asignarTipoBoton('agregarusuariolocal')"
-      >
-        Agregar user.
-      </button>
+          class="boton-bloque"
+          *ngIf="rol == 'Administrador'"
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('agregarusuariolocal')"
+        >
+          Agregar user.
+        </button>
+        <button
+          class="boton-bloque"
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('listarmovimientos')"
+        >
+          Lista usuarios
+        </button>
+        <button
+          class="boton-bloque"
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('listarmovimientos')"
+        >
+          Stock productos
+        </button>
       </mat-expansion-panel>
       <mat-expansion-panel *ngIf="rol == 'Administrador'">
         <mat-expansion-panel-header>
@@ -92,11 +115,28 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <button
+          class="boton-bloque"
           mat-button
           color="accent"
           (click)="asignarTipoBoton('listarmovimientos')"
         >
-          Lista
+          Lista mov. producto
+        </button>
+        <button
+          class="boton-bloque"
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('listarmovimientos')"
+        >
+          Lista mov. usuario
+        </button>
+        <button
+          class="boton-bloque"
+          mat-button
+          color="accent"
+          (click)="asignarTipoBoton('listarmovimientos')"
+        >
+          Lista mov. local
         </button>
       </mat-expansion-panel>
     </mat-accordion>
@@ -112,8 +152,12 @@
       <app-tabla-listado-locales *ngSwitchCase="'listarlocales'" [rol]="rol">
       </app-tabla-listado-locales>
       <app-alta-local *ngSwitchCase="'altalocal'"></app-alta-local>
-      <app-agregar-producto-local *ngSwitchCase="'agregarproductolocal'"></app-agregar-producto-local>
-      <app-agregar-usuario-local *ngSwitchCase="'agregarusuariolocal'"></app-agregar-usuario-local>
+      <app-agregar-producto-local
+        *ngSwitchCase="'agregarproductolocal'"
+      ></app-agregar-producto-local>
+      <app-agregar-usuario-local
+        *ngSwitchCase="'agregarusuariolocal'"
+      ></app-agregar-usuario-local>
       <app-tabla-listado-movimientos
         *ngSwitchCase="'listarmovimientos'"
         [rol]="rol"
