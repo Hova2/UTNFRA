@@ -1,8 +1,13 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+/** Fuentes a importar **/
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 /** Ionic CSS Variables **/
 :root {
+  /** Colores en toda la app**/
+  /** Se pueden generar desde la pagina: https://ionicframework.com/docs/theming/color-generator **/
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -74,4 +79,41 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** Color de fondo y de las letras en toda la app**/
+  /** Se pueden generar desde la pagina: https://ionicframework.com/docs/theming/themes **/
+  --ion-background-color: #387ef5;
+  --ion-background-color-rgb: 56,126,245;
+
+  --ion-text-color: #000000;
+  --ion-text-color-rgb: 0,0,0;
+
+  --ion-color-step-50: #3578e9;
+  --ion-color-step-100: #3271dd;
+  --ion-color-step-150: #306bd0;
+  --ion-color-step-200: #2d65c4;
+  --ion-color-step-250: #2a5fb8;
+  --ion-color-step-300: #2758ac;
+  --ion-color-step-350: #24529f;
+  --ion-color-step-400: #224c93;
+  --ion-color-step-450: #1f4587;
+  --ion-color-step-500: #1c3f7b;
+  --ion-color-step-550: #19396e;
+  --ion-color-step-600: #163262;
+  --ion-color-step-650: #142c56;
+  --ion-color-step-700: #11264a;
+  --ion-color-step-750: #0e203d;
+  --ion-color-step-800: #0b1931;
+  --ion-color-step-850: #081325;
+  --ion-color-step-900: #060d18;
+  --ion-color-step-950: #03060c;
+
+  /** Cambia la fuente de las letras en toda la app **/
+  /** Recordar que se aplican de izquierda a derecha, si una no esta instalada usa la otra. **/
+  /** Es importante que la lista tenga mas de una **/
+  /** Se pueden obtener mas fuentes desde la pagina: https://fonts.google.com **/
+
+  --ion-font-family: "Bangers",-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
 }
+
+

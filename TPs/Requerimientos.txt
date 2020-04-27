@@ -1,0 +1,27 @@
+1 - Los iconos de las aplicaciones que se reconozcan como pertenecientes a un mismo
+paquete de aplicaciones. (Distintos, pero iguales).
+2 - Splash animado con: ícono de la aplicación, el apellido y nombre del alumno y la
+división.
+3 - Todo en español. (¡TODO EN ESPAÑOL!, ¡los acentos pertenecen al idioma!).
+4 - Todo error o información mostrarlo con distintas ventanas. (DISTINTAS, ¡NO alerts!).
+5 - Cada aplicación con estilos que difieran entre sí. (Colores y fuentes y tamaños y
+formas, imágenes).
+6 - Validación de datos, en todos los formularios. (TODOS LOS DATOS, EN TODOS
+LOS FORMULARIOS).
+7 - Spinners en todas las esperas (TODAS). (establecer esperas de al menos 2
+segundos).
+8 - Distintos botones de usuario, para testear el ingreso, en cada aplicación (flotantes,
+fijos, con distintas formas y distintas posiciones).
+9 - La TOTALIDAD de la superficie de la pantalla debe estar ocupada con distintos
+elementos. (¡NO debe haber espacios neutros!).
+10 - Los spinners con el logo de la empresa.
+11 - Sonidos distintos al iniciar las aplicaciones.
+12 - Botones de las aplicaciones con animaciones.
+13 - Sonidos por cada transición de páginas.
+14 - Sonido al cerrar la sesión.
+15 - Vibraciones al detectarse un error.
+
+Resueltos:
+
+1 - OK
+2 - OK en parte. tengo que cambiar el nombre de la division
