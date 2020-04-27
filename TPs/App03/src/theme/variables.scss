@@ -2,7 +2,7 @@
 // http://ionicframework.com/docs/theming/
 
 /** Fuentes a importar **/
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 /** Ionic CSS Variables **/
 :root {
@@ -113,7 +113,7 @@
   /** Es importante que la lista tenga mas de una **/
   /** Se pueden obtener mas fuentes desde la pagina: https://fonts.google.com **/
 
-  --ion-font-family: "Bangers",-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
+  --ion-font-family: "Open Sans",-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
 }
 
 
