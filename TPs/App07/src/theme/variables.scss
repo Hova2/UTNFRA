@@ -9,28 +9,28 @@
   /** Colores en toda la app**/
   /** Se pueden generar desde la pagina: https://ionicframework.com/docs/theming/color-generator **/
   /** primary **/
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary: #ef473a;
+  --ion-color-primary-rgb: 239,71,58;
   --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-contrast-rgb: 255,255,255;
+  --ion-color-primary-shade: #d23e33;
+  --ion-color-primary-tint: #f1594e;
 
   /** secondary **/
-  --ion-color-secondary: #0cd1e8;
-  --ion-color-secondary-rgb: 12, 209, 232;
+  --ion-color-secondary: #3a88ef;
+  --ion-color-secondary-rgb: 58,136,239;
   --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #0bb8cc;
-  --ion-color-secondary-tint: #24d6ea;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #3378d2;
+  --ion-color-secondary-tint: #4e94f1;
 
   /** tertiary **/
-  --ion-color-tertiary: #7044ff;
-  --ion-color-tertiary-rgb: 112, 68, 255;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #633ce0;
-  --ion-color-tertiary-tint: #7e57ff;
+  --ion-color-tertiary: #3aefa1;
+  --ion-color-tertiary-rgb: 58,239,161;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0,0,0;
+  --ion-color-tertiary-shade: #33d28e;
+  --ion-color-tertiary-tint: #4ef1aa;
 
   /** success **/
   --ion-color-success: #10dc60;
@@ -82,31 +82,31 @@
 
   /** Color de fondo y de las letras en toda la app**/
   /** Se pueden generar desde la pagina: https://ionicframework.com/docs/theming/themes **/
-  --ion-background-color: #387ef5;
-  --ion-background-color-rgb: 56,126,245;
+  --ion-background-color: #ef473a;
+  --ion-background-color-rgb: 239,71,58;
 
-  --ion-text-color: #000000;
-  --ion-text-color-rgb: 0,0,0;
+  --ion-text-color: #3aefa1;
+  --ion-text-color-rgb: 58,239,161;
 
-  --ion-color-step-50: #3578e9;
-  --ion-color-step-100: #3271dd;
-  --ion-color-step-150: #306bd0;
-  --ion-color-step-200: #2d65c4;
-  --ion-color-step-250: #2a5fb8;
-  --ion-color-step-300: #2758ac;
-  --ion-color-step-350: #24529f;
-  --ion-color-step-400: #224c93;
-  --ion-color-step-450: #1f4587;
-  --ion-color-step-500: #1c3f7b;
-  --ion-color-step-550: #19396e;
-  --ion-color-step-600: #163262;
-  --ion-color-step-650: #142c56;
-  --ion-color-step-700: #11264a;
-  --ion-color-step-750: #0e203d;
-  --ion-color-step-800: #0b1931;
-  --ion-color-step-850: #081325;
-  --ion-color-step-900: #060d18;
-  --ion-color-step-950: #03060c;
+  --ion-color-step-50: #e64f3f;
+  --ion-color-step-100: #dd5844;
+  --ion-color-step-150: #d46049;
+  --ion-color-step-200: #cb694f;
+  --ion-color-step-250: #c27154;
+  --ion-color-step-300: #b97959;
+  --ion-color-step-350: #b0825e;
+  --ion-color-step-400: #a78a63;
+  --ion-color-step-450: #9e9368;
+  --ion-color-step-500: #959b6e;
+  --ion-color-step-550: #8ba373;
+  --ion-color-step-600: #82ac78;
+  --ion-color-step-650: #79b47d;
+  --ion-color-step-700: #70bd82;
+  --ion-color-step-750: #67c587;
+  --ion-color-step-800: #5ecd8c;
+  --ion-color-step-850: #55d692;
+  --ion-color-step-900: #4cde97;
+  --ion-color-step-950: #43e79c;
 
   /** Cambia la fuente de las letras en toda la app **/
   /** Recordar que se aplican de izquierda a derecha, si una no esta instalada usa la otra. **/
