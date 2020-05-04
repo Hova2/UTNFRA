@@ -29,11 +29,7 @@ export class AppComponent {
       this.splashScreen.hide();
       timer(3000).subscribe(() => {
         this.showSplash1 = false;
-        this.showSplash2 = true;
-        timer(1000).subscribe(() => {
-          this.showSplash2 = false;
-          this.showApp = true;
-        });
+        this.showApp = true;
       });
     });
   }
