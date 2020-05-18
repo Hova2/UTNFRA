@@ -4,11 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { timer } from 'rxjs/internal/observable/timer';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
   showSplash1 = true;
@@ -29,11 +28,7 @@ export class AppComponent {
       this.splashScreen.hide();
       timer(3000).subscribe(() => {
         this.showSplash1 = false;
-        this.showSplash2 = true;
-        timer(1000).subscribe(() => {
-          this.showSplash2 = false;
-          this.showApp = true;
-        });
+        this.showApp = true;
       });
     });
   }
