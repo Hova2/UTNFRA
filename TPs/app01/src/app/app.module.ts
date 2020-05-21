@@ -39,7 +39,7 @@ import { UsuarioService } from './services/usuario.service';
     AngularFireFunctions,
     AuthService,
     FormBuilder,
-    UsuarioService,
+    UsuarioService
   ],
   bootstrap: [AppComponent],
 })
