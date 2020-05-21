@@ -1,9 +1,105 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <div class="ion-justify-content-center" style="display: flex;">
+      <ion-img class="imagen" src="../../assets/icon.png"></ion-img>
+    </div>
+    <ion-title class="ion-text-center borde">
+      Conversando en el aula
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <ion-grid slot="fixed" fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item color="secondary">
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" placeholder="Ingrese su usuario"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item color="secondary">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input
+            type="password"
+            placeholder="Ingrese su contraseña"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-radio-group name="usuarios">
+            <ion-list-header>
+              <ion-label color="secondary">Usuarios</ion-label>
+            </ion-list-header>
 
+            <ion-item>
+              <ion-label>Admin</ion-label>
+              <ion-radio
+                slot="start"
+                value="admin"
+                color="secondary"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Invitado</ion-label>
+              <ion-radio
+                slot="start"
+                value="invitado"
+                color="secondary"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Usuario</ion-label>
+              <ion-radio
+                slot="start"
+                value="usuario"
+                color="secondary"
+              ></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Anonimo</ion-label>
+              <ion-radio
+                slot="start"
+                value="anonimo"
+                color="secondary"
+              ></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Tester</ion-label>
+              <ion-radio
+                slot="start"
+                value="tester"
+                color="secondary"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+<ion-footer class="fondo">
+  <ion-button
+    color="success"
+    type="submit"
+    fill="solid"
+    shape="round"
+    expand="full"
+    >Ingresar</ion-button
+  >
+  <ion-button
+    color="danger"
+    type="reset"
+    fill="solid"
+    shape="round"
+    expand="full"
+    >Borrar</ion-button
+  >
+</ion-footer>

@@ -1,0 +1,24 @@
+.imagen {
+  height: 130px;
+  width: 80px;
+}
+
+.borde {
+  border-radius: 10px;
+  border-style: outset;
+  border-width: 4px;
+  border-color: var(--ion-color-tertiary-shade);
+  background-color: var(--ion-color-light-tint);
+}
+
+.fondo {
+  background-color: var(--ion-color-light-tint);
+}
+
+.boton-fab {
+  font-size: 9px;
+}
+
+.altura {
+  height: 25vh;
+}

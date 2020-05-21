@@ -1,9 +1,68 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
+  <ion-title class="ion-text-center borde">
+    Tabla didáctica de idiomas <br />
+    para niños (5 años)
+  </ion-title>
+  <div class="ion-justify-content-center" style="display: flex;">
+    <ion-img class="imagen" src="../../assets/icon.png"></ion-img>
+  </div>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid fixed class="fondo">
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" placeholder="Ingrese su usuario"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input
+            type="password"
+            placeholder="Ingrese su contraseña"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="12">
+        <ion-button
+          class="largo-completo"
+          color="success"
+          type="submit"
+          style="height: 100px;"
+          >Ingresar</ion-button
+        >
+        <ion-button
+          class="largo-completo"
+          color="danger"
+          type="reset"
+          style="height: 100px;"
+          >Borrar</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title size="small" class="ion-text-center borde">
+      Usuarios
+    </ion-title>
+  </ion-toolbar>
+  <ion-item class="largo-completo">
+    <ion-select interface="popover" placeholder="Elegir uno">
+      <ion-select-option value="admin">Admin</ion-select-option>
+      <ion-select-option value="invitado">Invitado</ion-select-option>
+      <ion-select-option value="usuario">Usuario</ion-select-option>
+      <ion-select-option value="anonimo">Anonimo</ion-select-option>
+      <ion-select-option value="tester">Tester</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-footer>
