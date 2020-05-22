@@ -5,27 +5,38 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="contenido">
   <ion-fab vertical="center" horizontal="center" slot="fixed">
-    <ion-fab-button color="secondary">
+    <ion-fab-button color="secondary" class="boton-fab">
       Usuarios
     </ion-fab-button>
     <ion-fab-list side="top">
-      <ion-fab-button class="boton-fab">Admin</ion-fab-button>
-      <ion-fab-button class="boton-fab">Tester</ion-fab-button>
+      <ion-fab-button (click)="completarUsuario('admin')" class="boton-fab"
+        >Admin</ion-fab-button
+      >
+      <ion-fab-button (click)="completarUsuario('tester')" class="boton-fab"
+        >Tester</ion-fab-button
+      >
     </ion-fab-list>
     <ion-fab-list side="bottom">
-      <ion-fab-button class="boton-fab">Invitado</ion-fab-button>
+      <ion-fab-button (click)="completarUsuario('invitado')" class="boton-fab"
+        >Invitado</ion-fab-button
+      >
     </ion-fab-list>
     <ion-fab-list side="start">
-      <ion-fab-button class="boton-fab">Usuario</ion-fab-button>
+      <ion-fab-button (click)="completarUsuario('usuario')" class="boton-fab"
+        >Usuario</ion-fab-button
+      >
     </ion-fab-list>
     <ion-fab-list side="end">
-      <ion-fab-button class="boton-fab">Anonimo</ion-fab-button>
+      <ion-fab-button (click)="completarUsuario('anonimo')" class="boton-fab"
+        >Anonimo</ion-fab-button
+      >
     </ion-fab-list>
   </ion-fab>
 </ion-content>
-<ion-content>
+
+<form [formGroup]="formulario">
   <ion-grid slot="fixed" fixed>
     <ion-row class="ion-align-items-center ion-justify-content-center">
       <ion-col class="fondo">
@@ -46,20 +57,27 @@
         </div>
       </ion-col>
     </ion-row>
+    <ion-row
+      ><ion-col>
+        <ion-item color="secondary">
+          <ion-label>Usuario</ion-label>
+          <ion-input
+            type="text"
+            formControlName="usuario"
+            placeholder="Ingrese su usuario"
+          ></ion-input> </ion-item
+      ></ion-col>
+    </ion-row>
+    <ion-row
+      ><ion-col>
+        <ion-item color="secondary">
+          <ion-label>Contraseña</ion-label>
+          <ion-input
+            type="password"
+            formControlName="clave"
+            placeholder="Ingrese su contraseña"
+          ></ion-input> </ion-item
+      ></ion-col>
+    </ion-row>
   </ion-grid>
-</ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-item color="secondary">
-      <ion-label>Usuario</ion-label>
-      <ion-input type="text" placeholder="Ingrese su usuario"></ion-input>
-    </ion-item>
-    <ion-item color="secondary">
-      <ion-label>Contraseña</ion-label>
-      <ion-input
-        type="password"
-        placeholder="Ingrese su contraseña"
-      ></ion-input>
-    </ion-item>
-  </ion-toolbar>
-</ion-footer>
+</form>

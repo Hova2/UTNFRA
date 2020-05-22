@@ -9,45 +9,52 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid fixed class="fondo">
-    <ion-row class="ion-align-items-center ion-justify-content-center">
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text" placeholder="Ingrese su usuario"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-align-items-center ion-justify-content-center">
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input
-            type="password"
-            placeholder="Ingrese su contraseña"
-          ></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-align-items-center ion-justify-content-center">
-      <ion-col size="12">
-        <ion-button
-          class="largo-completo"
-          color="success"
-          type="submit"
-          style="height: 100px;"
-          >Ingresar</ion-button
-        >
-        <ion-button
-          class="largo-completo"
-          color="danger"
-          type="reset"
-          style="height: 100px;"
-          >Borrar</ion-button
-        >
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <form [formGroup]="formulario">
+    <ion-grid fixed class="fondo">
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input
+              type="text"
+              formControlName="usuario"
+              placeholder="Ingrese su usuario"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input
+              type="password"
+              formControlName="clave"
+              placeholder="Ingrese su contraseña"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+        <ion-col size="12">
+          <ion-button
+            class="largo-completo"
+            color="success"
+            type="submit"
+            style="height: 100px;"
+            >Ingresar</ion-button
+          >
+          <ion-button
+            class="largo-completo"
+            color="danger"
+            type="reset"
+            style="height: 100px;"
+            >Borrar</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
 
 <ion-footer>
@@ -57,7 +64,7 @@
     </ion-title>
   </ion-toolbar>
   <ion-item class="largo-completo">
-    <ion-select interface="popover" placeholder="Elegir uno">
+    <ion-select [(ngModel)]="usuario" (ionChange)="completarUsuario(value)" interface="popover" placeholder="Elegir uno">
       <ion-select-option value="admin">Admin</ion-select-option>
       <ion-select-option value="invitado">Invitado</ion-select-option>
       <ion-select-option value="usuario">Usuario</ion-select-option>

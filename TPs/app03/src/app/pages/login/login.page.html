@@ -8,7 +8,7 @@
     </ion-title>
   </ion-toolbar>
   <ion-item color="secondary">
-    <ion-select interface="action-sheet" placeholder="Elegir uno">
+    <ion-select [(ngModel)]="usuario" (ionChange)="completarUsuario()" interface="action-sheet" placeholder="Elegir uno">
       <ion-select-option value="admin">Admin</ion-select-option>
       <ion-select-option value="invitado">Invitado</ion-select-option>
       <ion-select-option value="usuario">Usuario</ion-select-option>
@@ -18,39 +18,46 @@
   </ion-item>
 </ion-header>
 <ion-content>
-  <ion-grid slot="fixed" fixed>
-    <ion-row class="ion-align-items-center ion-justify-content-center">
-      <ion-col>
-        <ion-button color="success" type="submit" fill="outline" expand="full"
-          >Ingresar</ion-button
-        >
-      </ion-col>
-      <ion-col>
-        <ion-button color="danger" type="reset" fill="outline" expand="full"
-          >Borrar</ion-button
-        >
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-align-items-center ion-justify-content-center">
-      <ion-col size="12">
-        <ion-item color="secondary">
-          <ion-label position="stacked">Usuario</ion-label>
-          <ion-input type="text" placeholder="Ingrese su usuario"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-align-items-center ion-justify-content-center">
-      <ion-col size="12">
-        <ion-item color="secondary">
-          <ion-label position="stacked">Contraseña</ion-label>
-          <ion-input
-            type="password"
-            placeholder="Ingrese su contraseña"
-          ></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <form [formGroup]="formulario">
+    <ion-grid slot="fixed" fixed>
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+        <ion-col>
+          <ion-button color="success" type="submit" fill="outline" expand="full"
+            >Ingresar</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button color="danger" type="reset" fill="outline" expand="full"
+            >Borrar</ion-button
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+        <ion-col size="12">
+          <ion-item color="secondary">
+            <ion-label position="stacked">Usuario</ion-label>
+            <ion-input
+              type="text"
+              formControlName="usuario"
+              placeholder="Ingrese su usuario"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+        <ion-col size="12">
+          <ion-item color="secondary">
+            <ion-label position="stacked">Contraseña</ion-label>
+            <ion-input
+              type="password"
+              formControlName="clave"
+              placeholder="Ingrese su contraseña"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
 
 <div class="ion-justify-content-center" style="display: flex;">
