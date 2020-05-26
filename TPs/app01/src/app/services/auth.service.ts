@@ -2,35 +2,26 @@ import { Injectable } from '@angular/core';
 
 import { UsuarioService } from './usuario.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { UsuarioI } from '../interfaces/usuario-i';
-
+import { Observable } from 'rxjs';
+import { User } from 'firebase';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afa: AngularFireAuth, private us: UsuarioService) {}
+  constructor(private afa: AngularFireAuth, private us: UsuarioService) {
+    this.afa.setPersistence('none');
+  }
 
-    // public registrarConMailAdmin(usuario: UsuarioI) {
-  //   return new Promise((resolve, reject) => {
-  //     this.afa.auth
-  //       .createUserWithEmailAndPassword(usuario.email, usuario.password)
-  //       .then((datosUsuario) => {
-  //         resolve(datosUsuario);
-  //       })
-  //       .catch();
-  //   });
-  // }
+  public ingresarConMail(
+    email: string,
+    pwd: string
+  ): Promise<firebase.auth.UserCredential> {
+    return this.afa.signInWithEmailAndPassword(email, pwd);
+  }
 
-  // public ingresarConMail(email: string, pwd: string) {
-  //   return new Promise((resolve, reject) => {
-  //     this.afa.auth
-  //       .signInWithEmailAndPassword(email, pwd)
-  //       .then((datosUsuario) => {
-  //         resolve(datosUsuario);
-  //       })
-  //       .catch((error) => reject(error));
-  //   });
-  // }
+  public existeUsuarioLogueado(): Observable<User>{
+    return this.afa.authState;
+  }
 
   // public signOut(): void {
   //   this.afa.auth.signOut();

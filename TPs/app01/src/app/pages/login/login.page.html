@@ -13,7 +13,7 @@
       </ion-toolbar>
     </ion-col>
   </ion-row>
-  <form [formGroup]="formulario">
+  <form [formGroup]="formulario" (ngSubmit)="ingresar()">
     <ion-row class="ion-align-items-center ion-justify-content-center">
       <ion-col size="12">
         <ion-item>

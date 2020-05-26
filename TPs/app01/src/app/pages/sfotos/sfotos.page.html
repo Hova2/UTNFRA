@@ -1,0 +1,17 @@
+<ion-header class="ion-text-center">
+  <ion-toolbar>
+    <ion-title>Sacar fotos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-cosaslindas (recargar)="recargarLista($event)"></app-cosaslindas>
+  <app-cosasfeas></app-cosasfeas>
+  <ion-button color="secondary" expand="full" size="large" type="button" (click)="subirFotos()">Subir</ion-button>
+  <div *ngFor="let imagen of imagenesCosasLindas | async">
+    <ion-img class="imagen-lista" src="{{ imagen.url }}"></ion-img>
+    <p>{{ imagen.nombre }}</p>
+  </div>
+</ion-content>
+
+

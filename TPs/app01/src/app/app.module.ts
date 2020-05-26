@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, ToastController, LoadingController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -17,6 +17,12 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AuthService } from './services/auth.service';
 import { UsuarioService } from './services/usuario.service';
+import { ToastService } from './services/toast.service';
+import { CargandoService } from './services/cargando.service';
+import { RutasService } from './services/rutas.service';
+import { Camera } from '@ionic-native/camera/ngx';
+import { ArchivoService } from './services/archivo.service';
+import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +33,7 @@ import { UsuarioService } from './services/usuario.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
   providers: [
     StatusBar,
@@ -39,7 +45,15 @@ import { UsuarioService } from './services/usuario.service';
     AngularFireFunctions,
     AuthService,
     FormBuilder,
-    UsuarioService
+    UsuarioService,
+    ToastController,
+    ToastService,
+    LoadingController,
+    CargandoService,
+    RutasService,
+    Camera,
+    ArchivoService,
+    File
   ],
   bootstrap: [AppComponent],
 })
