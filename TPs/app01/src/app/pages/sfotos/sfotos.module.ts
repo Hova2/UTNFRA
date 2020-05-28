@@ -11,9 +11,16 @@ import { SfotosPage } from './sfotos.page';
 import { CosaslindasComponent } from 'src/app/components/cosaslindas/cosaslindas.component';
 import { CosasfeasComponent } from 'src/app/components/cosasfeas/cosasfeas.component';
 import { Camera } from '@ionic-native/camera/ngx';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, SfotosPageRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    SfotosPageRoutingModule,
+    OverlayPanelModule,
+  ],
   declarations: [SfotosPage, CosaslindasComponent, CosasfeasComponent],
   providers: [Camera],
 })

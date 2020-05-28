@@ -15,7 +15,9 @@ export class FotoService {
   private app01Fotos: AngularFirestoreCollection;
 
   constructor(private af: AngularFirestore, private as: AuthService) {
-    this.app01Fotos = this.af.collection<App01FotosI>('app01fotos');
+    this.app01Fotos = this.af.collection<App01FotosI>('app01fotos', (ref) =>
+      ref.orderBy('fechaYHora', 'desc')
+    );
   }
 
   public listaFotosUsuario(): Observable<any[]> {
@@ -125,5 +127,4 @@ export class FotoService {
       })
     );
   }
-
 }

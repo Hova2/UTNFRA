@@ -4,7 +4,7 @@
   </ion-toolbar>
   <ion-toolbar>
     <app-cosaslindas (recargar)="recargarLista($event)"></app-cosaslindas>
-    <app-cosasfeas (recargar)="recargarLista($event)"></app-cosasfeas>
+    <app-cosasfeas  (recargar)="recargarLista($event)"></app-cosasfeas>
   </ion-toolbar>
 </ion-header>
 
@@ -17,7 +17,7 @@
 
     <ion-item *ngFor="let foto of listadoDeFotos | async">
       <ion-avatar slot="start">
-        <img src="{{ foto.url }}" />
+        <img (click)="mostratFoto($event,foto.url)" src="{{ foto.url }}" />
       </ion-avatar>
 
       <ion-label>
@@ -33,6 +33,9 @@
       >
     </ion-item>
   </ion-list>
+  <p-overlayPanel #pop>
+    <img [src]="imagen" />
+  </p-overlayPanel>
 </ion-content>
 <ion-footer>
   <ion-button

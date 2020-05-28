@@ -40,6 +40,7 @@ export class ArchivoService {
                   usuario: usuario.email,
                   urlFoto: url,
                   esLinda: esLinda,
+                  fechaYHora: info.metadata.timeCreated,
                   usuariosVotaron: [usuario.email],
                 };
                 this.app01Fotos.add(nuevaFoto);
