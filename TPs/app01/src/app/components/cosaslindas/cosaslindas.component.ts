@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ArchivoService } from 'src/app/services/archivo.service';
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-cosaslindas',
@@ -9,7 +9,7 @@ import { ArchivoService } from 'src/app/services/archivo.service';
 })
 export class CosaslindasComponent implements OnInit {
   opcionesDeLaCamara: CameraOptions = {
-    quality: 50,
+    quality: 30,
     cameraDirection: this.camara.Direction.BACK,
     sourceType: this.camara.PictureSourceType.CAMERA,
     destinationType: this.camara.DestinationType.FILE_URI,
@@ -18,13 +18,22 @@ export class CosaslindasComponent implements OnInit {
   };
   @Output() recargar = new EventEmitter<boolean>();
 
-  constructor(private camara: Camera, private as: ArchivoService) {}
+  constructor(private camara: Camera, private file: File) {}
 
   ngOnInit() {}
 
   public sacarFoto() {
-    this.camara.getPicture(this.opcionesDeLaCamara).finally(()=>{
-      this.recargar.emit(true);
+    this.camara.getPicture(this.opcionesDeLaCamara).then((urlImagen) => {
+      this.file
+        .moveFile(
+          this.file.externalCacheDirectory,
+          urlImagen.split('/').pop(),
+          this.file.externalCacheDirectory,
+          'linda-' + urlImagen.split('/').pop()
+        )
+        .finally(() => {
+          this.recargar.emit(true);
+        });
     });
   }
 }

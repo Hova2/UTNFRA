@@ -5,5 +5,41 @@
 </ion-header>
 
 <ion-content>
+  <ion-toolbar slot="fixed">
+    <ion-title>Listado de fotos de los usuarios</ion-title>
+  </ion-toolbar>
+  <ion-list>
+    <ion-list-header slot="fixed"> </ion-list-header>
 
+    <ion-item *ngFor="let elemento of $listaDeTodasLasFotos | async">
+      <ion-avatar slot="start">
+        <img (click)="mostratFoto($event,elemento.foto.urlFoto)" src="{{ elemento.foto.urlFoto }}" />
+      </ion-avatar>
+
+      <ion-label *ngIf="elemento.foto.esLinda">
+        <h2>LINDA</h2>
+        <h3>{{ elemento.foto.usuario }}</h3>
+      </ion-label>
+
+      <ion-label *ngIf="!elemento.foto.esLinda">
+        <h2>FEA</h2>
+        <h3>{{ elemento.foto.usuario }}</h3>
+      </ion-label>
+
+      <ion-button
+        [disabled]="elemento.noPuedeVotar"
+        color="secondary"
+        size="large"
+        type="button"
+        (click)="votarFoto(elemento)"
+        >Votar</ion-button
+      >
+    </ion-item>
+  </ion-list>
+
+  <p-overlayPanel #pop>
+    <img [src]="imagen" />
+  </p-overlayPanel>
 </ion-content>
+
+<ion-footer> </ion-footer>

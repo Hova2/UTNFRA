@@ -7,14 +7,19 @@ import { IonicModule } from '@ionic/angular';
 import { GraficosPageRoutingModule } from './graficos-routing.module';
 
 import { GraficosPage } from './graficos.page';
+import { ChartModule } from 'primeng/chart';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GraficosPageRoutingModule
+    GraficosPageRoutingModule,
+    ChartModule,
+    OverlayPanelModule,
   ],
-  declarations: [GraficosPage]
+  declarations: [GraficosPage],
 })
 export class GraficosPageModule {}

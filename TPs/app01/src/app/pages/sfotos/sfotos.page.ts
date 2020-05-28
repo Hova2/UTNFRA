@@ -1,27 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { ArchivoService } from 'src/app/services/archivo.service';
 
+
 @Component({
   selector: 'app-sfotos',
   templateUrl: './sfotos.page.html',
   styleUrls: ['./sfotos.page.scss'],
 })
 export class SfotosPage implements OnInit {
-  imagenesCosasLindas: Promise<any>;
+  listadoDeFotos: Promise<any> = null;
 
   constructor(private as: ArchivoService) {}
 
-  ngOnInit() {
-    this.imagenesCosasLindas = this.as.listarDirectorio();
-  }
+  ngOnInit() {}
 
-  public subirFotos() {
-    this.as.borrarArchivos().finally(() => {
-      this.imagenesCosasLindas = this.as.listarDirectorio();
+  public borrarFoto(nombreFoto: string) {
+    this.as.borrarFoto(nombreFoto).finally(async () => {
+      this.listadoDeFotos = this.as.listarDirectorio();
+      const lista = await this.listadoDeFotos;
+      if(lista.length === 0){
+        this.listadoDeFotos = null;
+      }
     });
   }
 
   public recargarLista(variable: boolean) {
-    this.imagenesCosasLindas = this.as.listarDirectorio();
+    this.listadoDeFotos = this.as.listarDirectorio();
+  }
+
+  public subirFotos() {
+    this.as.subirFotos();
+    this.listadoDeFotos = null;
   }
 }

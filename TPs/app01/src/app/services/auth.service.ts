@@ -19,7 +19,11 @@ export class AuthService {
     return this.afa.signInWithEmailAndPassword(email, pwd);
   }
 
-  public existeUsuarioLogueado(): Observable<User>{
+  public existeUsuarioLogueado(): Observable<User> {
+    return this.afa.authState;
+  }
+
+  public traerUsuarioActual(): Observable<User>{
     return this.afa.authState;
   }
 

@@ -1,29 +1,54 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import {
-  AngularFireStorage,
-  AngularFireUploadTask,
-} from '@angular/fire/storage';
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { File } from '@ionic-native/file/ngx';
+import { App01FotosI } from '../interfaces/app01fotos-i';
+import { AuthService } from './auth.service';
+
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArchivoService {
-  public imagenesCosasLindas: Array<Promise<any>>;
+  app01Fotos: AngularFirestoreCollection;
 
   constructor(
     private af: AngularFirestore,
     private afs: AngularFireStorage,
-    private file: File
-  ) {}
+    private file: File,
+    private as: AuthService
+  ) {
+    this.app01Fotos = this.af.collection<App01FotosI>('app01fotos');
+  }
 
-  // public subirFotoCamara(rutaArchivo: string) {
-  //   this.afs.upload(nombreArchivo, archivo);
-  // }
-
-  public agregarFotoCamara(rutaArchivo: string) {
-    this.imagenesCosasLindas.push(this.convertirArchivoABlob(rutaArchivo));
+  public subirFotos() {
+    this.listarDirectorio().then((elemento) => {
+      elemento.forEach((foto) => {
+        this.convertirArchivoABlob(foto.urlNativa).then((archivo) => {
+          this.afs.upload('app01/' + foto.nombre, archivo).then((info) => {
+            info.ref.getDownloadURL().then((url) => {
+              this.as.traerUsuarioActual().subscribe((usuario) => {
+                let esLinda = false;
+                if (foto.nombreMostrar === 'LINDA') {
+                  esLinda = true;
+                }
+                const nuevaFoto: App01FotosI = {
+                  usuario: usuario.email,
+                  urlFoto: url,
+                  esLinda: esLinda,
+                  usuariosVotaron: [usuario.email],
+                };
+                this.app01Fotos.add(nuevaFoto);
+              });
+            });
+          });
+        });
+      });
+    });
   }
 
   public listarDirectorio(): Promise<any> {
@@ -38,12 +63,21 @@ export class ArchivoService {
                 elemento.nativeURL
               ),
               nombre: elemento.name,
+              nombreMostrar: elemento.name
+                .split('-', 1)
+                .toString()
+                .toUpperCase(),
+              urlNativa: elemento.nativeURL,
             });
           });
           resolve(listaURL);
         })
         .catch((e) => reject(e));
     });
+  }
+
+  public borrarFoto(nombreFoto: string): Promise<any> {
+    return this.file.removeFile(this.file.externalCacheDirectory, nombreFoto);
   }
 
   public borrarArchivos(): Promise<any> {
@@ -56,7 +90,7 @@ export class ArchivoService {
       });
   }
 
-  public convertirArchivoABlob(rutaImagen: string): Promise<any> {
+  private convertirArchivoABlob(rutaImagen: string): Promise<any> {
     return new Promise((resolve, reject) => {
       let nombreDelArchivo = '';
       this.file
@@ -72,28 +106,9 @@ export class ArchivoService {
             type: 'image/jpeg',
           });
 
-          resolve({
-            nombreDelArchivo,
-            imgBlob,
-          });
+          resolve(imgBlob);
         })
         .catch((e) => reject(e));
     });
   }
 }
-
-// this.convertirArchivoABlob(imagen).then((respuesta) => {
-//   this.as
-//     .subir(respuesta.nombreDelArchivo, respuesta.imgBlob)
-//     .then(() => {
-//       this.cs.estaCargando(true);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     })
-//     .finally(() => {
-//       timer(2000).subscribe(() => {
-//         this.cs.estaCargando(false);
-//       });
-//     });
-// });

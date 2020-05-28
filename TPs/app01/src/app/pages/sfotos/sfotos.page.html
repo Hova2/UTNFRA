@@ -2,16 +2,46 @@
   <ion-toolbar>
     <ion-title>Sacar fotos</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <app-cosaslindas (recargar)="recargarLista($event)"></app-cosaslindas>
+    <app-cosasfeas (recargar)="recargarLista($event)"></app-cosasfeas>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <app-cosaslindas (recargar)="recargarLista($event)"></app-cosaslindas>
-  <app-cosasfeas></app-cosasfeas>
-  <ion-button color="secondary" expand="full" size="large" type="button" (click)="subirFotos()">Subir</ion-button>
-  <div *ngFor="let imagen of imagenesCosasLindas | async">
-    <ion-img class="imagen-lista" src="{{ imagen.url }}"></ion-img>
-    <p>{{ imagen.nombre }}</p>
-  </div>
+<ion-content *ngIf="listadoDeFotos" [scrollEvents]="true">
+  <ion-toolbar slot="fixed">
+    <ion-title>Lista de fotos a subir</ion-title>
+  </ion-toolbar>
+  <ion-list>
+    <ion-list-header slot="fixed"> </ion-list-header>
+
+    <ion-item *ngFor="let foto of listadoDeFotos | async">
+      <ion-avatar slot="start">
+        <img src="{{ foto.url }}" />
+      </ion-avatar>
+
+      <ion-label>
+        {{ foto.nombreMostrar }}
+      </ion-label>
+
+      <ion-button
+        color="danger"
+        size="large"
+        type="button"
+        (click)="borrarFoto(foto.nombre)"
+        >Borrar</ion-button
+      >
+    </ion-item>
+  </ion-list>
 </ion-content>
-
-
+<ion-footer>
+  <ion-button
+    [disabled]="listadoDeFotos === null"
+    color="dark"
+    size="large"
+    type="button"
+    expand="full"
+    (click)="subirFotos()"
+    >Subir</ion-button
+  >
+</ion-footer>

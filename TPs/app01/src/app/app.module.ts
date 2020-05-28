@@ -23,12 +23,15 @@ import { RutasService } from './services/rutas.service';
 import { Camera } from '@ionic-native/camera/ngx';
 import { ArchivoService } from './services/archivo.service';
 import { File } from '@ionic-native/file/ngx';
+import { FotoService } from './services/foto.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
@@ -53,7 +56,8 @@ import { File } from '@ionic-native/file/ngx';
     RutasService,
     Camera,
     ArchivoService,
-    File
+    File,
+    FotoService,
   ],
   bootstrap: [AppComponent],
 })

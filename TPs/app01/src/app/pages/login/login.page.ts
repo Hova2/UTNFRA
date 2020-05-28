@@ -5,6 +5,7 @@ import { ToastService } from 'src/app/services/toast.service';
 import { CargandoService } from 'src/app/services/cargando.service';
 import { RutasService } from 'src/app/services/rutas.service';
 import { timer } from 'rxjs';
+import { ArchivoService } from 'src/app/services/archivo.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginPage implements OnInit {
     private as: AuthService,
     private ts: ToastService,
     private cs: CargandoService,
-    private rs: RutasService
+    private rs: RutasService,
+    private ars: ArchivoService
   ) {
     this.formulario = new FormGroup({
       usuario: new FormControl(null, [Validators.required]),
@@ -28,7 +30,9 @@ export class LoginPage implements OnInit {
     this.cargando = false;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ars.borrarArchivos();
+  }
 
   public completarUsuario(usuario: string) {
     switch (usuario) {

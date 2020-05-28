@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { MfotosPageRoutingModule } from './mfotos-routing.module';
 
 import { MfotosPage } from './mfotos.page';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MfotosPageRoutingModule
+    MfotosPageRoutingModule,
+    OverlayPanelModule,
   ],
-  declarations: [MfotosPage]
+  declarations: [MfotosPage],
 })
 export class MfotosPageModule {}
