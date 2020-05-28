@@ -36,7 +36,7 @@
   </ion-fab>
 </ion-content>
 
-<form [formGroup]="formulario">
+<form [formGroup]="formulario" (ngSubmit)="ingresar()">
   <ion-grid slot="fixed" fixed>
     <ion-row class="ion-align-items-center ion-justify-content-center">
       <ion-col class="fondo">

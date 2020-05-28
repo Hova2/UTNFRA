@@ -1,6 +1,6 @@
 <ion-content>
   <ion-grid slot="fixed" fixed>
-    <form [formGroup]="formulario">
+    <form [formGroup]="formulario" (ngSubmit)="ingresar()">
       <ion-row>
         <ion-col class="ion-text-center">
           <ion-button type="reset" expand="block" fill="solid" color="danger"

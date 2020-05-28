@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="formulario">
+  <form [formGroup]="formulario" (ngSubmit)="ingresar()">
     <ion-grid fixed class="fondo">
       <ion-row class="ion-align-items-center ion-justify-content-center">
         <ion-col size="12">

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { CargandoService } from 'src/app/services/cargando.service';
+import { RutasService } from 'src/app/services/rutas.service';
+import { timer } from 'rxjs/internal/observable/timer';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +13,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginPage implements OnInit {
   public formulario: FormGroup;
+  public usuario: string;
 
-  constructor(private as: AuthService) {
+  constructor(
+    private as: AuthService,
+    private ts: ToastService,
+    private cs: CargandoService,
+    private rs: RutasService,
+  ) {
     this.formulario = new FormGroup({
       usuario: new FormControl(null, [Validators.required]),
       clave: new FormControl(null, [Validators.required]),
@@ -19,8 +29,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  public completarUsuario(usuario: string) {
-    switch (usuario) {
+  public completarUsuario() {
+    switch (this.usuario) {
       case 'admin':
         this.formulario.controls.usuario.setValue('admin@admin.com');
         this.formulario.controls.clave.setValue('11111111');
@@ -42,5 +52,29 @@ export class LoginPage implements OnInit {
         this.formulario.controls.clave.setValue('55555555');
         break;
     }
+  }
+
+  public ingresar() {
+    this.as
+      .ingresarConMail(
+        this.formulario.controls.usuario.value,
+        this.formulario.controls.clave.value
+      )
+      .then((variable) => {
+        this.cs.estaCargando(true);
+      })
+      .catch((error) => {
+        this.ts.mensajesLoguin(error.code);
+      })
+      .finally(() => {
+        this.as.existeUsuarioLogueado().subscribe((usuario) => {
+          if (usuario) {
+            timer(2000).subscribe(() => {
+              this.cs.estaCargando(false);
+              this.rs.principal();
+            });
+          }
+        });
+      });
   }
 }
