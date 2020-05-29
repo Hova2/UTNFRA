@@ -8,6 +8,7 @@ export class CargandoService {
   private cargando: Promise<HTMLIonLoadingElement>;
   constructor(private lc: LoadingController) {
     this.cargando = this.lc.create({
+      spinner: null,
       message:
         '<img class="animation-target imagen-carga" src="../../assets/icon.png" />',
     });

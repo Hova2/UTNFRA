@@ -1,9 +1,106 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>principal</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <ion-grid fixed class="altura-100 ion-no-margin">
+    <ion-row class="altura-20">
+      <ion-col size="12">
+        <ion-button
+          #boton1
+          class="altura-100 ion-no-padding ion-no-margin rojo"
+          expand="full"
+          (click)="reproducirAudio('boton1')"
+        >
+          <ion-thumbnail [(class)]="thumbnail1Css">
+            <ion-img #imagen1></ion-img>
+          </ion-thumbnail>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="altura-20">
+      <ion-col size="12">
+        <ion-button
+          #boton2
+          class="altura-100 ion-no-padding ion-no-margin azul"
+          expand="full"
+          (click)="reproducirAudio('boton2')"
+        >
+          <ion-thumbnail [(class)]="thumbnail2Css">
+            <ion-img #imagen2></ion-img>
+          </ion-thumbnail>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="altura-20">
+      <ion-col size="12">
+        <ion-button
+          #boton3
+          class="altura-100 ion-no-padding ion-no-margin amarillo"
+          expand="full"
+          (click)="reproducirAudio('boton3')"
+        >
+          <ion-thumbnail [(class)]="thumbnail3Css">
+            <ion-img #imagen3></ion-img>
+          </ion-thumbnail>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="altura-20">
+      <ion-col size="12">
+        <ion-button
+          #boton4
+          class="altura-100 ion-no-padding ion-no-margin naranja"
+          expand="full"
+          (click)="reproducirAudio('boton4')"
+        >
+          <ion-thumbnail [(class)]="thumbnail4Css">
+            <ion-img #imagen4></ion-img>
+          </ion-thumbnail>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="altura-20">
+      <ion-col size="12">
+        <ion-button
+          #boton5
+          class="altura-100 ion-no-padding ion-no-margin verde"
+          expand="full"
+          (click)="reproducirAudio('boton5')"
+        >
+          <ion-thumbnail [(class)]="thumbnail5Css">
+            <ion-img #imagen5></ion-img>
+          </ion-thumbnail>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-img [(src)]="temaActivo"></ion-img>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button (click)="cambiarTema('animales')">
+        <ion-img src="../../../assets/animales.png"></ion-img>
+      </ion-fab-button>
+      <ion-fab-button (click)="cambiarTema('números')">
+        <ion-img src="../../../assets/numeros.png"></ion-img>
+      </ion-fab-button>
+      <ion-fab-button (click)="cambiarTema('colores')">
+        <ion-img src="../../../assets/colores.png"></ion-img>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+    <ion-fab-button>
+      <ion-img [(src)]="idiomaActivo"></ion-img>
+    </ion-fab-button>
+    <ion-fab-list side="end">
+      <ion-fab-button (click)="cambiarIdioma('español')">
+        <ion-img src="../../../assets/esp.png"></ion-img>
+      </ion-fab-button>
+      <ion-fab-button (click)="cambiarIdioma('inglés')">
+        <ion-img src="../../../assets/ing.png"></ion-img>
+      </ion-fab-button>
+      <ion-fab-button (click)="cambiarIdioma('portugués')">
+        <ion-img src="../../../assets/por.png"></ion-img>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
