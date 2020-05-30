@@ -29,8 +29,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  public completarUsuario() {
-    switch (this.usuario) {
+  public completarUsuario(usuario: string) {
+    switch (usuario) {
       case 'admin':
         this.formulario.controls.usuario.setValue('admin@admin.com');
         this.formulario.controls.clave.setValue('11111111');

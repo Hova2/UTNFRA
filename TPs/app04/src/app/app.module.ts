@@ -20,6 +20,9 @@ import { UsuarioService } from './services/usuario.service';
 import { ToastService } from './services/toast.service';
 import { CargandoService } from './services/cargando.service';
 import { RutasService } from './services/rutas.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { SaldoService } from './services/saldo.service';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -48,6 +51,8 @@ import { RutasService } from './services/rutas.service';
     LoadingController,
     CargandoService,
     RutasService,
+    BarcodeScanner,
+    SaldoService
   ],
   bootstrap: [AppComponent],
 })

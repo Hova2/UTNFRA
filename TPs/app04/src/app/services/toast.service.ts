@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastService {
   constructor(private tc: ToastController) {}
@@ -28,5 +28,20 @@ export class ToastService {
     }
     mToast.present();
   }
-}
 
+  public async errorDeCarga() {
+    const mToast = await this.tc.create({
+      duration: 2000,
+      message: 'El credito ya se encuentra cargado',
+    });
+    mToast.present();
+  }
+
+  public async errorDeCargaAdmin() {
+    const mToast = await this.tc.create({
+      duration: 2000,
+      message: 'El admin solo puede realizar 2 cargas',
+    });
+    mToast.present();
+  }
+}

@@ -1,9 +1,50 @@
-<ion-header>
+<ion-header class="ion-text-center">
   <ion-toolbar>
-    <ion-title>principal</ion-title>
+    <ion-title>Tarjeta suba</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="fondo">
+  <div
+    style="
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <ion-card>
+      <ion-item>
+        <ion-icon name="cash-outline" slot="start"></ion-icon>
+        <ion-label>Su saldo es: {{ saldo }} </ion-label>
+        <ion-button fill="outline" slot="end">View</ion-button>
+      </ion-item>
 
+      <ion-card-content class="ion-text-center">
+        Usted esta logueado con el usuario <b>{{ usuario }}</b>
+      </ion-card-content>
+      <ion-item>
+        <ion-button
+          shape="round"
+          expand="full"
+          (click)="borrarCargas()"
+          color="danger"
+          [disabled]="elementoActivo"
+        >
+          Borrar sus cargas
+        </ion-button>
+      </ion-item>
+    </ion-card>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-button
+    shape="round"
+    expand="block"
+    (click)="escanearCodigo()"
+    color="tertiary"
+  >
+    <ion-icon name="qr-code-outline"></ion-icon>
+  </ion-button>
+</ion-footer>
