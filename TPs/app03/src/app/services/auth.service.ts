@@ -27,4 +27,6 @@ export class AuthService {
   public traerUsuarioActual(): Observable<User> {
     return this.afa.authState;
   }
+
+
 }

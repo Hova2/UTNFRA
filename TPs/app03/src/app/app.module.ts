@@ -2,7 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy, ToastController, LoadingController } from '@ionic/angular';
+import {
+  IonicModule,
+  IonicRouteStrategy,
+  ToastController,
+  LoadingController,
+  ModalController,
+} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -20,6 +26,10 @@ import { UsuarioService } from './services/usuario.service';
 import { ToastService } from './services/toast.service';
 import { CargandoService } from './services/cargando.service';
 import { RutasService } from './services/rutas.service';
+import { DeviceMotion } from '@ionic-native/device-motion/ngx';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
+import { Flashlight } from '@ionic-native/flashlight/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -48,6 +58,11 @@ import { RutasService } from './services/rutas.service';
     LoadingController,
     CargandoService,
     RutasService,
+    DeviceMotion,
+    NativeAudio,
+    Vibration,
+    Flashlight,
+    ModalController,
   ],
   bootstrap: [AppComponent],
 })
