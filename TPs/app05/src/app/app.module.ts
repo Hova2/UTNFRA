@@ -20,6 +20,7 @@ import { UsuarioService } from './services/usuario.service';
 import { ToastService } from './services/toast.service';
 import { CargandoService } from './services/cargando.service';
 import { RutasService } from './services/rutas.service';
+import { MensajeService } from './services/mensaje.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -48,6 +49,7 @@ import { RutasService } from './services/rutas.service';
     LoadingController,
     CargandoService,
     RutasService,
+    MensajeService,
   ],
   bootstrap: [AppComponent],
 })

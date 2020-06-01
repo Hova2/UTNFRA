@@ -1,0 +1,22 @@
+<ion-grid fixed>
+  <ion-row *ngFor="let mensaje of listaMensaje">
+    <ion-col *ngIf="mensaje.usuario === usuarioLogueado" size="6"></ion-col>
+    <ion-col size="6">
+      <ion-item class="contenedor-mensaje">
+        <ion-label class="etiqueta" >
+          <p
+            *ngIf="!(mensaje.usuario === usuarioLogueado)"
+            class="cuerpo-mensaje"
+          >
+            <b> {{ mensaje.usuario.split('@', 1) }} </b>
+          </p>
+
+          <p class="ion-text-wrap cuerpo-mensaje">{{ mensaje.texto }}</p>
+          <p class="ion-text-end fecha-hora">
+            {{ mensaje.fechaHora.toDate() | date: 'dd/MM/yyyy - HH:mm:ss' }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>

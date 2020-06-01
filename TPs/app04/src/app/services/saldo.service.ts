@@ -3,10 +3,9 @@ import { SaldoI } from '../interfaces/saldo-i';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  DocumentData,
 } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from 'firebase';
 import { map } from 'rxjs/operators';
 

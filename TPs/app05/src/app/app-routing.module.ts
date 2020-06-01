@@ -10,18 +10,22 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'principal',
-    loadChildren: () => import('./pages/principal/principal.module').then( m => m.PrincipalPageModule)
+    loadChildren: () =>
+      import('./pages/principal/principal.module').then(
+        (m) => m.PrincipalPageModule
+      ),
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
