@@ -4,6 +4,7 @@ import { MensajeI } from 'src/app/interfaces/mensaje-i';
 import { IonToolbar, IonItem, IonContent, IonInput } from '@ionic/angular';
 import { MensajeService } from 'src/app/services/mensaje.service';
 import { CargandoService } from 'src/app/services/cargando.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-principal',
@@ -14,6 +15,7 @@ export class PrincipalPage implements OnInit {
   @ViewChild('items') items: IonItem;
   @ViewChild('barra') barra: IonToolbar;
   @ViewChild('contenido') contenido: IonContent;
+  @ViewChild('mensaje') mensaje: IonInput;
 
   public listaMensaje: MensajeI[];
   public nombreSala: string;
@@ -26,7 +28,8 @@ export class PrincipalPage implements OnInit {
   constructor(
     private as: AuthService,
     private ms: MensajeService,
-    private cs: CargandoService
+    private cs: CargandoService,
+    private ts: ToastService
   ) {
     this.claseHeader = 'ion-hide';
     this.claseOculto = 'ion-hide';
@@ -66,7 +69,6 @@ export class PrincipalPage implements OnInit {
       spinner.then((elemento) => {
         elemento.dismiss();
       });
-      subs.unsubscribe();
       this.contenido.scrollToBottom();
     }, 2000);
   }
@@ -113,6 +115,8 @@ export class PrincipalPage implements OnInit {
         });
         subs.unsubscribe();
       }, 2000);
+    } else {
+      this.ts.mensajeGenerico('Minimo 10 mensajes');
     }
   }
 }
