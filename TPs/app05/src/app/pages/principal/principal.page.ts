@@ -11,40 +11,35 @@ import { CargandoService } from 'src/app/services/cargando.service';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-  @ViewChild('items')
-  items: IonItem;
-  @ViewChild('barra')
-  barra: IonToolbar;
-  @ViewChild('contenido')
-  contenido: IonContent;
-  @ViewChild('mensaje')
-  mensaje: IonInput;
+  @ViewChild('items') items: IonItem;
+  @ViewChild('barra') barra: IonToolbar;
+  @ViewChild('contenido') contenido: IonContent;
 
   public listaMensaje: MensajeI[];
   public nombreSala: string;
-  public claseCabezera: string;
-  public clasePie: string;
+  public claseOculto: string;
+  public claseInfscr: string;
   public claseBoton: string;
-  public claseAppSala: string;
+  public claseHeader: string;
+  public cantMensajes: number;
 
   constructor(
     private as: AuthService,
     private ms: MensajeService,
     private cs: CargandoService
   ) {
-    this.claseCabezera = 'ion-hide';
-    this.clasePie = 'ion-hide';
-    this.claseAppSala = 'ion-hide';
+    this.claseHeader = 'ion-hide';
+    this.claseOculto = 'ion-hide';
     this.claseBoton = 'altura-50 ion-no-margin';
+    this.cantMensajes = 10;
   }
 
   ngOnInit() {}
 
   public seleccionarSala(nombre: string) {
     this.nombreSala = nombre;
-    this.claseCabezera = '';
-    this.clasePie = '';
-    this.claseAppSala = '';
+    this.claseOculto = '';
+    this.claseHeader = 'ion-text-center';
     this.claseBoton = 'ion-hide';
     switch (nombre) {
       case 'PPS-4A':
@@ -58,9 +53,22 @@ export class PrincipalPage implements OnInit {
         this.contenido.color = 'tertiary';
         break;
     }
-    this.ms.listarMensajes(nombre, 10).subscribe((mensajes) => {
-      this.listaMensaje = mensajes.reverse();
+    const spinner = this.cs.devolverSpinner();
+    spinner.then((elemento) => {
+      elemento.present();
     });
+    const subs = this.ms
+      .listarMensajes(nombre, this.cantMensajes)
+      .subscribe((mensajes) => {
+        this.listaMensaje = mensajes.reverse();
+      });
+    setTimeout(() => {
+      spinner.then((elemento) => {
+        elemento.dismiss();
+      });
+      subs.unsubscribe();
+      this.contenido.scrollToBottom();
+    }, 2000);
   }
 
   public enviar(texto: string) {
@@ -71,13 +79,40 @@ export class PrincipalPage implements OnInit {
         fechaHora: new Date(),
         texto: texto,
       };
-      this.ms.agregarMensaje(msjTmp).finally(() => {
+      const subs = this.ms.agregarMensaje(msjTmp).finally(() => {
         this.mensaje.value = '';
-        this.ms.listarMensajes(this.nombreSala, 10).subscribe((mensajes) => {
-          this.listaMensaje = mensajes.reverse();
-        });
-        this.contenido.scrollToBottom();
+        const subs = this.ms
+          .listarMensajes(this.nombreSala, this.cantMensajes)
+          .subscribe((mensajes) => {
+            this.listaMensaje = mensajes.reverse();
+          });
+
+        setTimeout(() => {
+          subs.unsubscribe();
+          this.contenido.scrollToBottom();
+        }, 2000);
       });
     });
+  }
+
+  public cambiarCantMensajes(cant: number) {
+    if (cant >= 10) {
+      this.cantMensajes = parseInt(cant.toString());
+      const spinner = this.cs.devolverSpinner();
+      spinner.then((elemento) => {
+        elemento.present();
+      });
+      const subs = this.ms
+        .listarMensajes(this.nombreSala, this.cantMensajes)
+        .subscribe((mensajes) => {
+          this.listaMensaje = mensajes.reverse();
+        });
+      setTimeout(() => {
+        spinner.then((elemento) => {
+          elemento.dismiss();
+        });
+        subs.unsubscribe();
+      }, 2000);
+    }
   }
 }

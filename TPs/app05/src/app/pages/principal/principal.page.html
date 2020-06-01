@@ -1,7 +1,22 @@
-<ion-header [(class)]="claseCabezera">
+<ion-header [(class)]="claseHeader">
   <ion-toolbar #barra>
     <ion-title>Salon {{ nombreSala }}</ion-title>
   </ion-toolbar>
+  <ion-item class="ion-nowrap ion-align-items-stretch">
+    <ion-input
+      style="width: 30%;"
+      #cantmensajes
+      placeholder="Cantidad de mensajes"
+      type="number"
+      value="10"
+    ></ion-input>
+    <ion-button
+      color="success"
+      size="small"
+      (click)="cambiarCantMensajes(cantmensajes.value)"
+      >Mensajes<ion-icon name="eye-outline"></ion-icon
+    ></ion-button>
+  </ion-item>
 </ion-header>
 <ion-content #contenido>
   <ion-button
@@ -21,10 +36,10 @@
     (click)="seleccionarSala('PPS-4B')"
     >PPS-4B</ion-button
   >
-  <app-sala [(class)]="claseAppSala" [listaMensaje]="listaMensaje"></app-sala>
+  <app-sala [(class)]="claseOculto" [listaMensaje]="listaMensaje"></app-sala>
 </ion-content>
 
-<ion-footer [(class)]="clasePie">
+<ion-footer [(class)]="claseOculto">
   <ion-item #items>
     <ion-input
       #mensaje
