@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Crear partido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid slot="fixed" fixed>
+    <form [formGroup]="formulario" (ngSubmit)="ingresar()">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="secondary" position="floating"
+              >Jugador 1</ion-label
+            >
+            <ion-select
+              formControlName="jugador1"
+              placeholder="Elegir un jugador"
+              [compareWith]="comparar"
+              interface="action-sheet"
+            >
+              <ion-select-option
+                [value]="usuario"
+                *ngFor="let usuario of listaUsuarios | async"
+                >{{ usuario }}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="secondary" position="floating"
+              >Jugador 2</ion-label
+            >
+            <ion-select
+              formControlName="jugador2"
+              placeholder="Elegir un jugador"
+              [compareWith]="comparar"
+              interface="action-sheet"
+            >
+              <ion-select-option
+                [value]="usuario"
+                *ngFor="let usuario of listaUsuarios | async"
+                >{{ usuario }}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Fecha</ion-label>
+            <ion-datetime
+              displayFormat="DD/MM/YYYY"
+              placeholder="Elegir una fecha"
+            ></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col> </ion-col>
+      </ion-row>
+    </form>
+    <ion-row>
+      <ion-col> </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="secondary" (click)="altaPartido()">Alta</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

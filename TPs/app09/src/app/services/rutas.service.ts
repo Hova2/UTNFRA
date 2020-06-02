@@ -8,6 +8,10 @@ export class RutasService {
   constructor(private router: Router) {}
 
   public principal() {
-    this.router.navigate(['principal']);
+    this.router.navigate(['principal/partido']);
+  }
+
+  public principalRutas(pagina: string) {
+    this.router.navigate(['principal/' + pagina]);
   }
 }

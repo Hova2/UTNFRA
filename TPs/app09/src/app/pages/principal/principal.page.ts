@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RutasService } from 'src/app/services/rutas.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private rs: RutasService
+  ) { }
 
   ngOnInit() {
+  }
+
+  public redirector(pagina: string){
+    this.rs.principalRutas(pagina);
   }
 
 }

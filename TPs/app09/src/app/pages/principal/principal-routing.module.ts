@@ -6,8 +6,15 @@ import { PrincipalPage } from './principal.page';
 const routes: Routes = [
   {
     path: '',
-    component: PrincipalPage
-  }
+    component: PrincipalPage,
+    children: [
+      {
+        path: 'partido',
+        loadChildren: () =>
+          import('../partido/partido.module').then((m) => m.PartidoPageModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({

@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
     private as: AuthService,
     private ts: ToastService,
     private cs: CargandoService,
-    private rs: RutasService,
+    private rs: RutasService
   ) {
     this.formulario = new FormGroup({
       usuario: new FormControl(null, [Validators.required]),
@@ -55,13 +55,16 @@ export class LoginPage implements OnInit {
   }
 
   public ingresar() {
+    const spinner = this.cs.devolverSpinner();
     this.as
       .ingresarConMail(
         this.formulario.controls.usuario.value,
         this.formulario.controls.clave.value
       )
       .then((variable) => {
-        this.cs.estaCargando(true);
+        spinner.then((elemento) => {
+          elemento.present();
+        });
       })
       .catch((error) => {
         this.ts.mensajesLoguin(error.code);
@@ -70,7 +73,9 @@ export class LoginPage implements OnInit {
         this.as.existeUsuarioLogueado().subscribe((usuario) => {
           if (usuario) {
             timer(2000).subscribe(() => {
-              this.cs.estaCargando(false);
+              spinner.then((elemento) => {
+                elemento.dismiss();
+              });
               this.rs.principal();
             });
           }

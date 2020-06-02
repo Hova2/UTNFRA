@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>principal</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-menu side="start" content-id="contenido-principal">
+  <ion-header>
+    <ion-toolbar translucent>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item>
+          <ion-icon name="football-outline" slot="start"></ion-icon>
+          <ion-label color="secondary" (click)="redirector('partido')">Crear partido</ion-label>
+        </ion-item>
 
-<ion-content>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
-</ion-content>
+<ion-router-outlet id="contenido-principal"></ion-router-outlet>
