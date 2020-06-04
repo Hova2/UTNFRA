@@ -9,47 +9,41 @@
 
 <ion-content>
   <ion-grid slot="fixed" fixed>
-    <form [formGroup]="formulario" (ngSubmit)="ingresar()">
+    <form [formGroup]="formulario">
       <ion-row>
         <ion-col>
-          <ion-item>
-            <ion-label color="secondary" position="floating"
-              >Jugador 1</ion-label
-            >
-            <ion-select
-              formControlName="jugador1"
-              placeholder="Elegir un jugador"
-              [compareWith]="comparar"
-              interface="action-sheet"
-            >
-              <ion-select-option
-                [value]="usuario"
-                *ngFor="let usuario of listaUsuarios | async"
-                >{{ usuario }}</ion-select-option
-              >
-            </ion-select>
-          </ion-item>
+          <ion-searchbar
+            formControlName="jugador1"
+            placeholder="Buscar jugador 1"
+            (ionInput)="devolverListaUsuarios1($event)"
+          ></ion-searchbar>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-item>
-            <ion-label color="secondary" position="floating"
-              >Jugador 2</ion-label
-            >
-            <ion-select
-              formControlName="jugador2"
-              placeholder="Elegir un jugador"
-              [compareWith]="comparar"
-              interface="action-sheet"
-            >
-              <ion-select-option
-                [value]="usuario"
-                *ngFor="let usuario of listaUsuarios | async"
-                >{{ usuario }}</ion-select-option
-              >
-            </ion-select>
-          </ion-item>
+          <ion-item
+            (click)="elegirJugador1(usuario)"
+            *ngFor="let usuario of listaUsuarios1"
+            >{{ usuario }}</ion-item
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-searchbar
+            formControlName="jugador2"
+            placeholder="Buscar jugador 2"
+            (ionInput)="devolverListaUsuarios2($event)"
+          ></ion-searchbar>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item
+            (click)="elegirJugador2(usuario)"
+            *ngFor="let usuario of listaUsuarios2"
+            >{{ usuario }}</ion-item
+          >
         </ion-col>
       </ion-row>
       <ion-row>
@@ -57,22 +51,22 @@
           <ion-item>
             <ion-label position="floating">Fecha</ion-label>
             <ion-datetime
+              formControlName="fecha"
+              doneText="Aceptar"
+              cancelText="Cancelar"
               displayFormat="DD/MM/YYYY"
               placeholder="Elegir una fecha"
+              [(pickerOptions)]="opcionesDelDatePicker"
             ></ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col> </ion-col>
-      </ion-row>
     </form>
     <ion-row>
-      <ion-col> </ion-col>
-    </ion-row>
-    <ion-row>
       <ion-col>
-        <ion-button color="secondary" (click)="altaPartido()">Alta</ion-button>
+        <ion-button expand="full" color="secondary" (click)="altaPartido()"
+          >Alta</ion-button
+        >
       </ion-col>
     </ion-row>
   </ion-grid>

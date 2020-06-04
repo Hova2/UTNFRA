@@ -29,6 +29,10 @@
   border-style: solid;
 }
 
+.color-texto {
+  --background: var(--ion-color-primary-contrast);
+}
+
 .imagen-carga{
   height: 50px;
   width: 40px;

@@ -21,7 +21,7 @@ export class UsuarioService {
       map((arreglo) => {
         const salida: Array<string> = new Array<string>();
         arreglo.forEach((usuario) => {
-          salida.push(usuario.correo.split('@', 1));
+          salida.push(usuario.correo.split('@', 1).toString());
         });
         return salida;
       })

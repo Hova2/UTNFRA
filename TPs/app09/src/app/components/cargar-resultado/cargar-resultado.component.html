@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cargar resultado</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid slot="fixed" fixed>
+    <ion-row>
+      <ion-col>
+        <ion-item class="fondo-item">
+          <ion-label position="fixed">{{
+            elemento.partido.jugador1
+          }}</ion-label>
+          <ion-input #igolesjug1
+            type="number"
+            placeholder="Ingresar goles"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item class="fondo-item">
+          <ion-label position="fixed">{{
+            elemento.partido.jugador2
+          }}</ion-label>
+          <ion-input #igolesjug2
+            type="number"
+            placeholder="Ingresar goles"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" color="secondary" (click)="cargarResultado()"
+          >Cargar</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" color="danger" (click)="salir()"
+          >Salir</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

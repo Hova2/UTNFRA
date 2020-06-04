@@ -13,6 +13,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('../partido/partido.module').then((m) => m.PartidoPageModule),
       },
+      {
+        path: 'resultado',
+        loadChildren: () =>
+          import('../resultado/resultado.module').then(
+            (m) => m.ResultadoPageModule
+          ),
+      },
     ],
   },
 ];

@@ -14,8 +14,8 @@ import { PartidoPage } from './partido.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    PartidoPageRoutingModule
+    PartidoPageRoutingModule,
   ],
-  declarations: [PartidoPage]
+  declarations: [PartidoPage],
 })
 export class PartidoPageModule {}
