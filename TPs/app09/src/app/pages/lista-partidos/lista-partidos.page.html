@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Listado de partidos</ion-title>
+  </ion-toolbar>
+  <ion-item class="ion-nowrap ion-align-items-stretch">
+    <ion-input
+      style="width: 30%;"
+      #cantpartidos
+      placeholder="Cantidad de partidos"
+      type="number"
+      value="10"
+    ></ion-input>
+    <ion-button
+      color="success"
+      size="small"
+      (click)="cambiarCantPartidos(cantpartidos.value)"
+      >Partidos<ion-icon name="eye-outline"></ion-icon
+    ></ion-button>
+  </ion-item>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <div class="verborde" *ngFor="let elemento of $listaDePartidos | async">
+      <ion-row>
+        <ion-col>
+          <ion-item class="ion-text-center">
+            <ion-label>
+              {{ elemento.partido.fecha.toDate() | date:'dd/MM/yyyy' }}
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="ion-text-center">
+            <ion-label>{{ elemento.partido.jugador1 }} </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col *ngIf="elemento.partido.golesJug1">
+          <ion-item class="ion-text-center">
+            <ion-label>Goles: {{ elemento.partido.golesJug1 }} </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center">
+        <ion-col>
+          <ion-item class="ion-text-center">
+            <ion-label>
+              VS
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="ion-text-center">
+            <ion-label>{{ elemento.partido.jugador2 }} </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col *ngIf="elemento.partido.golesJug2">
+          <ion-item class="ion-text-center">
+            <ion-label>Goles: {{ elemento.partido.golesJug2 }} </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button
+            *ngIf="elemento.partido.urlFoto !== ''"
+            color="secondary"
+            expand="full"
+            type="button"
+            (click)="verFoto(elemento)"
+            >Ver foto</ion-button
+          >
+          <ion-button
+            *ngIf="elemento.partido.urlVideo !== ''"
+            color="secondary"
+            expand="full"
+            type="button"
+            (click)="verVideo(elemento)"
+            >Ver video</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

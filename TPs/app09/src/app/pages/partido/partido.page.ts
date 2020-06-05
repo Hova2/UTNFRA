@@ -65,8 +65,8 @@ export class PartidoPage implements OnInit {
           jugador2: jugador2,
           fecha: new Date(fecha),
           terminado: false,
-          urlFoto:
-            'https://firebasestorage.googleapis.com/v0/b/tpapps-639a1.appspot.com/o/app09%2Ficon.png?alt=media&token=d5dda193-e49a-473b-b6bf-8840547cce5d',
+          urlFoto: '',
+          urlVideo: '',
         };
         spinner.then((elemento) => {
           elemento.present();

@@ -4,7 +4,7 @@ export interface PartidoI {
   fecha: Date;
   terminado: boolean;
   urlFoto: string;
+  urlVideo: string;
   golesJug1?: number;
   golesJug2?: number;
-  urlVideo?: string;
 }

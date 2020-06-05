@@ -1,3 +1,37 @@
-<p>
-  cargar-foto works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cargar foto</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid slot="fixed" fixed>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" color="secondary" (click)="sacarFoto()"
+          >Sacar foto</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" color="danger" (click)="salir()"
+          >Salir</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <div #divsubir class="ion-hide">
+      <ion-row>
+        <ion-col>
+          <img width="340" height="320" src="{{ imagen }}" />
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full" color="secondary" (click)="subirFoto()"
+            >Subir</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

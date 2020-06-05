@@ -7,8 +7,12 @@ import { Router } from '@angular/router';
 export class RutasService {
   constructor(private router: Router) {}
 
-  public principal() {
+  public principalAdmin() {
     this.router.navigate(['principal/partido']);
+  }
+
+  public principalUsuario() {
+    this.router.navigate(['principal/lista-partidos']);
   }
 
   public principalRutas(pagina: string) {

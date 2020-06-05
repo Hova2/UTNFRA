@@ -5,13 +5,15 @@ import { CargandoService } from 'src/app/services/cargando.service';
 import { ModalController } from '@ionic/angular';
 import { CargarResultadoComponent } from 'src/app/components/cargar-resultado/cargar-resultado.component';
 import { ToastService } from 'src/app/services/toast.service';
+import { MostrarFotoComponent } from 'src/app/components/mostrar-foto/mostrar-foto.component';
+import { MostrarVideoComponent } from 'src/app/components/mostrar-video/mostrar-video.component';
 
 @Component({
-  selector: 'app-resultado',
-  templateUrl: './resultado.page.html',
-  styleUrls: ['./resultado.page.scss'],
+  selector: 'app-lista-partidos',
+  templateUrl: './lista-partidos.page.html',
+  styleUrls: ['./lista-partidos.page.scss'],
 })
-export class ResultadoPage implements OnInit {
+export class ListaPartidosPage implements OnInit {
   public $listaDePartidos: Observable<any[]>;
   public cantPartidos: number;
 
@@ -26,7 +28,7 @@ export class ResultadoPage implements OnInit {
       elemento.present();
     });
     this.cantPartidos = 10;
-    this.$listaDePartidos = this.ps.listarPartidos(this.cantPartidos);
+    this.$listaDePartidos = this.ps.listarPartidosTerminados(this.cantPartidos);
     setTimeout(() => {
       spinner.then((elemento) => {
         elemento.dismiss();
@@ -36,9 +38,9 @@ export class ResultadoPage implements OnInit {
 
   ngOnInit() {}
 
-  public async cargarResultado(elemento: any, evento: any) {
+  public async verFoto(elemento: any) {
     const modal = await this.mc.create({
-      component: CargarResultadoComponent,
+      component: MostrarFotoComponent,
       componentProps: { elemento: elemento },
       cssClass: '',
       animated: true,
@@ -46,21 +48,13 @@ export class ResultadoPage implements OnInit {
     return await modal.present();
   }
 
-  public cambiarCantPartidos(cant: number) {
-    if (cant >= 10) {
-      this.cantPartidos = parseInt(cant.toString());
-      const spinner = this.cs.devolverSpinner();
-      spinner.then((elemento) => {
-        elemento.present();
-      });
-      this.$listaDePartidos = this.ps.listarPartidos(this.cantPartidos);
-      setTimeout(() => {
-        spinner.then((elemento) => {
-          elemento.dismiss();
-        });
-      }, 3000);
-    } else {
-      this.ts.mensajeGenerico('Minimo 10 partidos');
-    }
+  public async verVideo(elemento: any) {
+    const modal = await this.mc.create({
+      component: MostrarVideoComponent,
+      componentProps: { elemento: elemento },
+      cssClass: '',
+      animated: true,
+    });
+    return await modal.present();
   }
 }

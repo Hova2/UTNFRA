@@ -1,17 +1,18 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { PartidoService } from 'src/app/services/partido.service';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { PartidoService } from 'src/app/services/partido.service';
 import { CargandoService } from 'src/app/services/cargando.service';
 import { ModalController } from '@ionic/angular';
-import { CargarResultadoComponent } from 'src/app/components/cargar-resultado/cargar-resultado.component';
 import { ToastService } from 'src/app/services/toast.service';
+import { CargarFotoComponent } from 'src/app/components/cargar-foto/cargar-foto.component';
+import { CargarVideoComponent } from 'src/app/components/cargar-video/cargar-video.component';
 
 @Component({
-  selector: 'app-resultado',
-  templateUrl: './resultado.page.html',
-  styleUrls: ['./resultado.page.scss'],
+  selector: 'app-foto-yvideo',
+  templateUrl: './foto-yvideo.page.html',
+  styleUrls: ['./foto-yvideo.page.scss'],
 })
-export class ResultadoPage implements OnInit {
+export class FotoYVideoPage implements OnInit {
   public $listaDePartidos: Observable<any[]>;
   public cantPartidos: number;
 
@@ -36,9 +37,19 @@ export class ResultadoPage implements OnInit {
 
   ngOnInit() {}
 
-  public async cargarResultado(elemento: any, evento: any) {
+  public async cargarFoto(elemento: any) {
     const modal = await this.mc.create({
-      component: CargarResultadoComponent,
+      component: CargarFotoComponent,
+      componentProps: { elemento: elemento },
+      cssClass: '',
+      animated: true,
+    });
+    return await modal.present();
+  }
+
+  public async cargarVideo(elemento: any) {
+    const modal = await this.mc.create({
+      component: CargarVideoComponent,
       componentProps: { elemento: elemento },
       cssClass: '',
       animated: true,

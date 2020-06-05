@@ -26,6 +26,12 @@ import { ToastService } from './services/toast.service';
 import { CargandoService } from './services/cargando.service';
 import { RutasService } from './services/rutas.service';
 import { PartidoService } from './services/partido.service';
+import { Camera } from '@ionic-native/camera/ngx';
+import { ArchivoService } from './services/archivo.service';
+import { File } from '@ionic-native/file/ngx';
+import { MediaCapture } from '@ionic-native/media-capture/ngx';
+import { VideoPlayer } from '@ionic-native/video-player/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -54,7 +60,12 @@ import { PartidoService } from './services/partido.service';
     LoadingController,
     CargandoService,
     RutasService,
-    PartidoService
+    PartidoService,
+    Camera,
+    ArchivoService,
+    File,
+    MediaCapture,
+    VideoPlayer,
   ],
   bootstrap: [AppComponent],
 })

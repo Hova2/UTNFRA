@@ -20,6 +20,27 @@ const routes: Routes = [
             (m) => m.ResultadoPageModule
           ),
       },
+      {
+        path: 'foto-yvideo',
+        loadChildren: () =>
+          import('../foto-yvideo/foto-yvideo.module').then(
+            (m) => m.FotoYVideoPageModule
+          ),
+      },
+      {
+        path: 'lista-partidos',
+        loadChildren: () =>
+          import('../lista-partidos/lista-partidos.module').then(
+            (m) => m.ListaPartidosPageModule
+          ),
+      },
+      {
+        path: 'mejores-cinco',
+        loadChildren: () =>
+          import('../mejores-cinco/mejores-cinco.module').then(
+            (m) => m.MejoresCincoPageModule
+          ),
+      },
     ],
   },
 ];

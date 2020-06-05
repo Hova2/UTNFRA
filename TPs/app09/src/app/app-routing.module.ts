@@ -20,6 +20,7 @@ const routes: Routes = [
         (m) => m.PrincipalPageModule
       ),
   },
+  
 ];
 
 @NgModule({
