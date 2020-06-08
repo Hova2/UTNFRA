@@ -5,5 +5,10 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-input
+    #dir
+    placeholder="Ingrese una direccion"
+  ></ion-input>
+  <ion-button color="success" size="large" (click)="traerCoordenadas(dir.value)"
+    >Buscar</ion-button>
 </ion-content>

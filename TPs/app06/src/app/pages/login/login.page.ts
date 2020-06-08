@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
     private as: AuthService,
     private ts: ToastService,
     private cs: CargandoService,
-    private rs: RutasService,
+    private rs: RutasService
   ) {
     this.formulario = new FormGroup({
       usuario: new FormControl(null, [Validators.required]),
@@ -29,8 +29,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  public completarUsuario() {
-    switch (this.usuario) {
+  public completarUsuario(usuario: string) {
+    switch (usuario) {
       case 'admin':
         this.formulario.controls.usuario.setValue('admin@admin.com');
         this.formulario.controls.clave.setValue('11111111');
