@@ -1,0 +1,14 @@
+.fondo-content {
+  --background: none;
+  background-image: var(--imagen);
+  background-position: var(--pos-x) var(--pos-y);
+  background-repeat: no-repeat;
+  border-style: solid;
+  background-size: 20%;
+}
+
+.borde {
+  border-style: solid;
+  border-width: 4px;
+  border-color: var(--color-fondo);
+}

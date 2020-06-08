@@ -68,6 +68,9 @@ export class CargarResultadoComponent implements OnInit {
             this.tc.mensajeGenerico(
               'El resultado se dio de alta correctamente'
             );
+            setTimeout(() => {
+              this.salir();
+            }, 1500);
           }, 3000);
         });
     }

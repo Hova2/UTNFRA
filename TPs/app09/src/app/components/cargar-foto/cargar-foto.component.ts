@@ -16,6 +16,7 @@ export class CargarFotoComponent implements OnInit {
     destinationType: this.camara.DestinationType.FILE_URI,
     encodingType: this.camara.EncodingType.JPEG,
     mediaType: this.camara.MediaType.PICTURE,
+    correctOrientation: true
   };
 
   @ViewChild('divsubir') divsubir: any;

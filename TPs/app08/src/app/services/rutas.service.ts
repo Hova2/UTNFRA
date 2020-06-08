@@ -10,4 +10,8 @@ export class RutasService {
   public principal() {
     this.router.navigate(['principal']);
   }
+
+  public juego() {
+    this.router.navigate(['juego']);
+  }
 }

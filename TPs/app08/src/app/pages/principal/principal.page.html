@@ -1,9 +1,45 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>principal</ion-title>
+    <ion-title>Menu principal</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <ion-list class="fondo">
+    <ion-radio-group #radioGrupo value="dc">
+      <ion-list-header>
+        <ion-label> Seleccione un personaje </ion-label>
+      </ion-list-header>
 
+      <ion-item>
+        <ion-label>DC</ion-label>
+        <ion-radio value="dc"></ion-radio>
+        <ion-avatar slot="start">
+          <img src="../../../assets/batman.png" />
+        </ion-avatar>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>MARVEL</ion-label>
+        <ion-radio value="marvel"></ion-radio>
+        <ion-avatar slot="start">
+          <img src="../../../assets/ironman.png" />
+        </ion-avatar>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <ion-button (click)="jugar()" expand="full" color="tertiary" shape="round">
+    Jugar
+  </ion-button>
+  <ion-list class="fondo">
+    <ion-list-header>
+      Mejores 3 jugadores
+    </ion-list-header>
+
+    <ion-item *ngFor="let juego of listaJuegos | async">
+      <ion-label>
+        <h2>Usuario: {{ juego.usuario }}</h2>
+        <h3>Puntos: {{ juego.puntos }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
