@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastService {
   constructor(private tc: ToastController) {}
@@ -29,4 +29,3 @@ export class ToastService {
     mToast.present();
   }
 }
-

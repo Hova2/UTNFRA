@@ -1,0 +1,27 @@
+<ion-header class="ion-text-center">
+  <ion-toolbar>
+    <ion-title>Graficos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p-chart
+    type="pie"
+    [data]="chatTop3MasLindas"
+    (onDataSelect)="masLindaSeleccionada($event)"
+    (click)="pop.show($event)"
+    [options]="top3MasLindasOpciones"
+  ></p-chart>
+
+   <p-chart
+    type="bar"
+    [data]="chatTop3MasFeas"
+    (onDataSelect)="masFeaSeleccionada($event)"
+    (click)="pop.show($event)"
+    [options]="top3MasFeasOpciones"
+  ></p-chart>
+
+  <p-overlayPanel #pop>
+    <img [src]="imagen" />
+  </p-overlayPanel>
+</ion-content>

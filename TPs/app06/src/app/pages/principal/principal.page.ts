@@ -1,8 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
-import { IonInput } from '@ionic/angular';
+import { RutasService } from 'src/app/services/rutas.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { AlarmaService } from 'src/app/services/alarma.service';
+import { CargandoService } from 'src/app/services/cargando.service';
+import { Media, MediaObject } from '@ionic-native/media/ngx';
+import { AuthService } from 'src/app/services/auth.service';
+import { ModalController } from '@ionic/angular';
+import { CargarAudioComponent } from 'src/app/components/cargar-audio/cargar-audio.component';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-principal',
@@ -10,45 +16,118 @@ import { IonInput } from '@ionic/angular';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-  //@ViewChild('dir') dir: IonInput;
+  public listaAlarmas: Observable<any[]>;
+  public usuarioLogueado: string;
+  public latitud: any;
+  public longitud: any;
+  public arregloAlarmas: Array<any>;
+  public audioAlarma: MediaObject;
+  public enPlay: boolean;
 
-  constructor(private ngeoc: NativeGeocoder, private ngeol: Geolocation) {}
+  constructor(
+    private ngeol: Geolocation,
+    private rs: RutasService,
+    private as: AlarmaService,
+    private cs: CargandoService,
+    private media: Media,
+    private auths: AuthService,
+    private mc: ModalController,
+    private tc: ToastService
+  ) {
+    this.auths.traerUsuarioActual().subscribe((datos) => {
+      this.usuarioLogueado = datos.email;
+    });
+    this.arregloAlarmas = new Array<any>();
 
-  ngOnInit() {}
+    this.enPlay = false;
+    const spinner = this.cs.devolverSpinner();
+    spinner.then((elemento) => {
+      elemento.present();
+    });
 
-  public traerCoordenadas(dir: string) {
+    setTimeout(() => {
+      this.listaAlarmas = this.as.listarAlarmas(this.usuarioLogueado);
+      this.listaAlarmas.subscribe((elementos) => {
+        this.arregloAlarmas.forEach((elemento) => {
+          this.arregloAlarmas.pop();
+        });
 
-    this.ngeoc
-      .forwardGeocode(dir, { useLocale: true, maxResults: 5 })
-      .then((result) => {
-        /*result.forEach((item) => {
-          console.log(item.latitude);
-          console.log(item.longitude);
-          console.log(item.postalCode);
-          console.log(item.countryName);
-          console.log(item.subAdministrativeArea);
-        });*/
-        //console.table(result);
+        elementos.forEach((elemento) => {
+          const alarmaTmp = {
+            latitud: elemento.alarma.latitud,
+            longitud: elemento.alarma.longitud,
+            distancia: elemento.alarma.distancia,
+            audio: this.media.create(elemento.alarma.urlAudio),
+          };
+          this.arregloAlarmas.push(alarmaTmp);
+        });
       });
-    this.ngeol
-      .getCurrentPosition({ enableHighAccuracy: true })
-      .then((datos) => {
-        const distancia = this.calcularDistancia(
-          {
-            latitude: -34.6024901,
-            longitude: -58.4487588,
-          },
-          {
-            latitude: datos.coords.latitude,
-            longitude: datos.coords.longitude,
-          }
-        );
-
-          if(distancia * 1000 < 200){
-            console.log('alarma')
-          }
-
+      spinner.then((elemento) => {
+        elemento.dismiss();
       });
+    }, 3000);
+  }
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.ngeol
+        .watchPosition({ enableHighAccuracy: true })
+        .subscribe((datos) => {
+          this.arregloAlarmas.forEach((alarma) => {
+            const distancia = this.calcularDistancia(
+              {
+                latitude: alarma.latitud,
+                longitude: alarma.longitud,
+              },
+              {
+                latitude: datos.coords.latitude,
+                longitude: datos.coords.longitude,
+              }
+            );
+
+            if (distancia * 1000 < alarma.distancia && !this.enPlay) {
+              alarma.audio.onStatusUpdate.subscribe((datos) => {
+                if (datos === 1 || datos === 2) {
+                  this.enPlay = true;
+                } else {
+                  this.enPlay = false;
+                  alarma.audio.stop();
+                }
+              });
+              alarma.audio.play();
+            }
+          });
+        });
+    }, 3000);
+  }
+
+  public cargarAlarma() {
+    this.rs.cargaAlarma();
+  }
+
+  public async cargarAudio(elemento: any) {
+    const modal = await this.mc.create({
+      component: CargarAudioComponent,
+      componentProps: { elemento: elemento },
+      cssClass: '',
+      animated: true,
+    });
+    return await modal.present();
+  }
+
+  public borrarAlarma(elemento: any) {
+    const spinner = this.cs.devolverSpinner();
+    spinner.then((elemento) => {
+      elemento.present();
+    });
+    this.as.borrarAlarma(elemento.id).finally(() => {
+      setTimeout(() => {
+        spinner.then((elemento) => {
+          elemento.dismiss();
+        });
+        this.tc.mensajeGenerico('La alarma se dio de baja correctamente');
+      }, 3000);
+    });
   }
 
   private toRad(value) {

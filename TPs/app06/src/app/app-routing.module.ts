@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'principal',
     loadChildren: () => import('./pages/principal/principal.module').then( m => m.PrincipalPageModule)
   },
+  {
+    path: 'carga-alarma',
+    loadChildren: () => import('./pages/carga-alarma/carga-alarma.module').then( m => m.CargaAlarmaPageModule)
+  },
 ];
 
 @NgModule({

@@ -114,7 +114,14 @@ export class JuegoPage implements OnInit {
         }
 
         setTimeout(() => {
-          if (parseInt(ad.x.toString()) > 0) {
+          if (
+            parseFloat(parseFloat(ad.x.toString()).toPrecision(2)) >= -0.01 &&
+            parseFloat(parseFloat(ad.x.toString()).toPrecision(2)) <= 0.01
+          ) {
+            this.posx = this.posx;
+          } else if (
+            parseFloat(parseFloat(ad.x.toString()).toPrecision(2)) > 0.05
+          ) {
             this.posx = this.posx - 1;
           } else {
             this.posx = this.posx + 1;
@@ -156,7 +163,14 @@ export class JuegoPage implements OnInit {
         }
 
         setTimeout(() => {
-          if (parseInt(ad.y.toString()) > 0) {
+          if (
+            parseFloat(parseFloat(ad.y.toString()).toPrecision(2)) >= -0.01 &&
+            parseFloat(parseFloat(ad.y.toString()).toPrecision(2)) <= 0.01
+          ) {
+            this.posy = this.posy;
+          } else if (
+            parseFloat(parseFloat(ad.y.toString()).toPrecision(2)) > 0.01
+          ) {
             this.posy = this.posy + 1;
           } else {
             this.posy = this.posy - 1;

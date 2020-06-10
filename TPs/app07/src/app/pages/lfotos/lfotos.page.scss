@@ -1,0 +1,12 @@
+ion-slides {
+  height: 100%;
+}
+
+ion-slide {
+  touch-action: none;
+}
+
+.fondo {
+  --ion-background-color: var(--ion-color-primary-contrast);
+  border-style: solid;
+}

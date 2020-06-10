@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { User } from 'firebase';
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -24,7 +22,8 @@ export class AuthService {
     return this.afa.authState;
   }
 
-  public traerUsuarioActual(): Observable<User> {
+  public traerUsuarioActual(): Observable<User>{
     return this.afa.authState;
   }
+
 }

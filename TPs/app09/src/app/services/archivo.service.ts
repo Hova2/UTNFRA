@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
-  AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { File } from '@ionic-native/file/ngx';
-import { AuthService } from './auth.service';
 import { PartidoService } from './partido.service';
 import { PartidoI } from '../interfaces/partido-i';
 

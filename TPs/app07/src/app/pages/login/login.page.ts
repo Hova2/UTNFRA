@@ -5,6 +5,7 @@ import { ToastService } from 'src/app/services/toast.service';
 import { CargandoService } from 'src/app/services/cargando.service';
 import { RutasService } from 'src/app/services/rutas.service';
 import { timer } from 'rxjs/internal/observable/timer';
+import { ArchivoService } from 'src/app/services/archivo.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginPage implements OnInit {
     private ts: ToastService,
     private cs: CargandoService,
     private rs: RutasService,
+    private ars: ArchivoService
   ) {
     this.formulario = new FormGroup({
       usuario: new FormControl(null, [Validators.required]),
@@ -27,10 +29,12 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ars.borrarArchivos();
+  }
 
-  public completarUsuario() {
-    switch (this.usuario) {
+  public completarUsuario(usuario: string) {
+    switch (usuario) {
       case 'admin':
         this.formulario.controls.usuario.setValue('admin@admin.com');
         this.formulario.controls.clave.setValue('11111111');
@@ -55,13 +59,17 @@ export class LoginPage implements OnInit {
   }
 
   public ingresar() {
+    const spinner = this.cs.devolverSpinner();
+
     this.as
       .ingresarConMail(
         this.formulario.controls.usuario.value,
         this.formulario.controls.clave.value
       )
       .then((variable) => {
-        this.cs.estaCargando(true);
+        spinner.then((elemento) => {
+          elemento.present();
+        });
       })
       .catch((error) => {
         this.ts.mensajesLoguin(error.code);
@@ -70,7 +78,9 @@ export class LoginPage implements OnInit {
         this.as.existeUsuarioLogueado().subscribe((usuario) => {
           if (usuario) {
             timer(2000).subscribe(() => {
-              this.cs.estaCargando(false);
+              spinner.then((elemento) => {
+                elemento.dismiss();
+              });
               this.rs.principal();
             });
           }

@@ -1,0 +1,37 @@
+<ion-content>
+  <ion-slides #slider pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let elemento of $listaDeTodasLasFotos | async">
+      <ion-card class="fondo">
+        <img src="{{ elemento.foto.urlFoto }}" />
+        <ion-item>
+          <ion-label *ngIf="elemento.foto.esLinda">
+            <h2>LINDA</h2>
+            <h3>{{ elemento.foto.usuario }}</h3>
+            <h3>
+              {{ elemento.foto.fechaYHora | date:'dd/MM/yyyy - HH:mm:ss' }}
+            </h3>
+          </ion-label>
+
+          <ion-label *ngIf="!elemento.foto.esLinda">
+            <h2>FEA</h2>
+            <h3>{{ elemento.foto.usuario }}</h3>
+            <h3>
+              {{ elemento.foto.fechaYHora | date:'dd/MM/yyyy - HH:mm:ss' }}
+            </h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-card-content>
+          <ion-button
+            [disabled]="elemento.noPuedeVotar"
+            color="secondary"
+            size="large"
+            type="button"
+            (click)="votarFoto(elemento)"
+            >Votar</ion-button
+          >
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -10,4 +10,8 @@ export class RutasService {
   public principal() {
     this.router.navigate(['principal']);
   }
+
+  public cargaAlarma() {
+    this.router.navigate(['carga-alarma']);
+  }
 }

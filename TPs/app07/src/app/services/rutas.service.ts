@@ -8,6 +8,6 @@ export class RutasService {
   constructor(private router: Router) {}
 
   public principal() {
-    this.router.navigate(['principal']);
+    this.router.navigate(['principal/sfotos']);
   }
 }

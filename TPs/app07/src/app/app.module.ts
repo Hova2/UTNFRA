@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy, ToastController, LoadingController } from '@ionic/angular';
+import {
+  IonicModule,
+  IonicRouteStrategy,
+  ToastController,
+  LoadingController,
+} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -20,12 +25,19 @@ import { UsuarioService } from './services/usuario.service';
 import { ToastService } from './services/toast.service';
 import { CargandoService } from './services/cargando.service';
 import { RutasService } from './services/rutas.service';
+import { Camera } from '@ionic-native/camera/ngx';
+import { ArchivoService } from './services/archivo.service';
+import { File } from '@ionic-native/file/ngx';
+import { FotoService } from './services/foto.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DeviceMotion } from '@ionic-native/device-motion/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
@@ -48,6 +60,11 @@ import { RutasService } from './services/rutas.service';
     LoadingController,
     CargandoService,
     RutasService,
+    Camera,
+    ArchivoService,
+    File,
+    FotoService,
+    DeviceMotion,
   ],
   bootstrap: [AppComponent],
 })

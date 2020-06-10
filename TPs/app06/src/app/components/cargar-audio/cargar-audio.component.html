@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cargar audio</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid slot="fixed" fixed>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" color="secondary" (click)="grabarAudio()"
+          >Grabar audio</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <div #divsubir class="ion-hide">
+      <ion-row>
+        <ion-col>
+          <ion-button
+            expand="full"
+            color="secondary"
+            (click)="reproducirAudio()"
+            >Reproducir audio</ion-button
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full" color="secondary" (click)="subirAudio()"
+            >Subir</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" color="danger" (click)="salir()"
+          >Salir</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
